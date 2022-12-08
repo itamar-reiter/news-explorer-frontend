@@ -1,13 +1,18 @@
 import { React, useState } from 'react'
 import CurrentUserContext from '../../utils/CurrentUserContext';
+import './App';
 import Header from '../Header/Header'
 import { Route, Switch, useHistory } from "react-router-dom";
 
 function App() {
   const history = useHistory();
-  const [currentUser, setCurrentUser] = useState({duck: "duck"});
-  
+  const [currentUser, setCurrentUser] = useState({ duck: "duck" });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
+  const [isInsideMain, setIsInsideMain] = useState(false);
+  
 
   function onSigninClick() {
 
@@ -24,9 +29,11 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className='app'>
         <Header
+          isLoggedIn={true}
           onSigninClick={onSigninClick}
           onSavedArticlesClick={onSavedArticlesClick}
-          insideSavedArticles={isInsideSavedArticles}
+          insideSavedArticles={true}
+          insideMain={false}
           onLogout={onLogout}
         />
       </div>
