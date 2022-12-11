@@ -5,6 +5,19 @@
   --header-padding: 0 104px;
   --fs-header-text: 18px;
   --fs-logo: 20px;
+
+  /* search-form vars */
+  --search-form-padding: 80px 416px; 
+  --fs-search-form-title: 60px;
+  --lh-search-form-title: 64px;
+  --mt-search-form-subtitle: 32px;
+  --fs-search-form-subtitle: 18px;
+  --lh-search-form-subtitle: 24px;
+  --mt-search-form-input: 88px;
+  --w-search-form-input:  100%;
+  --h-search-form-input: 64px;
+  --w-search-form-submit-button: 168px;
+  /* --h-search-form-submit-button: 64px; */
 }
 
 @media (max-width: 768px) {
@@ -13,6 +26,10 @@
     --header-padding: 0 40px;
     --header-height: 66px;
     --fs-header-text: 16px;
+    /* search-form vars */
+    --search-form-padding: 38px 156px 48px 160px;
+    --mt-search-form-subtitle: 16px;
+    --mt-search-form-input: 48px;
   }
 }
 
@@ -23,5 +40,9 @@
     --header-padding: 0 20px 0 16px;
     --fs-header-text: 18px;
     --fs-logo: 16px;
+    /* search-form vars */
+    --search-form-padding: 30px 16px 32px;
+    --mt-search-form-input: 122px;
+
   }
 }

@@ -37,7 +37,6 @@ function SearchForm({ onArticleSearch }) {
           Search
         </button>
       </form>
-
     </div>
   )
 }
