@@ -2,6 +2,7 @@
   width: 100%;
   height: var(--header-height);
   margin: 0;
+  margin-bottom: var(--mb-header);
   padding: var(--header-padding);
   box-sizing: border-box;
   display: flex;

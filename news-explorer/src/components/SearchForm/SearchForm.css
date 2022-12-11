@@ -1,6 +1,8 @@
 .search-form {
   color: white;
-  background-color: black;
+  background: url('../../images/search-form-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
