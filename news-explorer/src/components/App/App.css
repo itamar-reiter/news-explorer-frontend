@@ -1,3 +1,27 @@
-.App{
+.app {
   width: 100vw;
+  /* header-vars */
+  --header-height: 80px;
+  --header-padding: 0 104px;
+  --fs-header-text: 18px;
+  --fs-logo: 20px;
+}
+
+@media (max-width: 768px) {
+  .app {
+    /* header vars */
+    --header-padding: 0 40px;
+    --header-height: 66px;
+    --fs-header-text: 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .app {
+    /* header-vars */
+    --header-height: 56px;
+    --header-padding: 0 20px 0 16px;
+    --fs-header-text: 18px;
+    --fs-logo: 16px;
+  }
 }

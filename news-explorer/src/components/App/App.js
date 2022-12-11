@@ -1,7 +1,8 @@
 import { React, useState } from 'react'
 import CurrentUserContext from '../../utils/CurrentUserContext';
-import './App';
+import './App.css';
 import Header from '../Header/Header'
+import Main from '../Main/Main';
 import { Route, Switch, useHistory } from "react-router-dom";
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
 
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
-  
 
+  function onArticleSearch() {
+
+  }
   function onSigninClick() {
 
   }
@@ -33,8 +36,11 @@ function App() {
           onSigninClick={onSigninClick}
           onSavedArticlesClick={onSavedArticlesClick}
           insideSavedArticles={true}
-          insideMain={false}
+          insideMain={true}
           onLogout={onLogout}
+        />
+        <Main
+          onArticleSearch={onArticleSearch}
         />
       </div>
     </CurrentUserContext.Provider>
