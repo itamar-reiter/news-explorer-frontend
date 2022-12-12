@@ -54,8 +54,9 @@
 }
 
 .search-form__submit-button {
+  cursor: pointer;
   width: var(--w-search-form-submit-button);
-  background: #2f71e5;
+  background: rgb(47, 113, 229);
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
   border-radius: 100px;
   border: none;
@@ -66,4 +67,13 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
+  transition: background-color 0.1s linear;
+}
+
+.search-form__submit-button:hover{
+  background-color: rgb(52, 126, 255);
+}
+
+.search-form__submit-button_active{
+  background: rgb(42, 101, 204);
 }

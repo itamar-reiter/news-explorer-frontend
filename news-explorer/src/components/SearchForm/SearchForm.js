@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import './SearchForm.css';
 
 function SearchForm({ onArticleSearch }) {
+
+  const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
+  
   const [articleName, setArticleName] = useState('');
 
   function handleArticleNameChange(e) {
@@ -9,8 +12,13 @@ function SearchForm({ onArticleSearch }) {
   }
 
   function handleSubmit(e) {
+    console.log("handling search submit")
     e.preventDefault();
     onArticleSearch(articleName);
+  }
+
+  function onSubmitClick(e) {
+    setIsSubmitButtonClicked(true);
   }
   return (
     <div className='search-form'>
@@ -32,7 +40,8 @@ function SearchForm({ onArticleSearch }) {
         <button
           type="submit"
           id="articleSearchSubmit"
-          className="search-form__submit-button"
+          onClick={onSubmitClick}
+          className={`search-form__submit-button ${isSubmitButtonClicked ? "search-form__submit-button_active" : ''}`}
         >
           Search
         </button>
