@@ -1,0 +1,44 @@
+.about {
+  display: flex;
+  box-sizing: border-box;
+  padding: var(--p-about);
+  background: white;
+  gap: var(--g-about);
+}
+
+.about__image {
+  background-image: url('../../images/itamar-profile-image.jpg');
+  width: var(--length-about-image);
+  height: var(--length-about-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: var(--background-position-about-image);
+  border-radius: 1000px;
+}
+
+.about__content {
+  height: 100%;
+  max-width: 600px;
+  padding-top: var(--pt-about-content);
+  margin: 0;
+}
+
+.about__title {
+  margin: var(--m-about-title);
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--fs-about-title);
+  color: #1a1b22;
+}
+
+.about__description {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+}
