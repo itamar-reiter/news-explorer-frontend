@@ -3,6 +3,7 @@ import CurrentUserContext from '../../utils/CurrentUserContext';
 import './App.css';
 import Header from '../Header/Header'
 import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 import { Route, Switch, useHistory } from "react-router-dom";
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Main
           onArticleSearch={onArticleSearch}
         />
+        <Footer />
       </div>
     </CurrentUserContext.Provider>
   )

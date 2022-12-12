@@ -37,6 +37,14 @@ g = gap
   --pt-about-content: 51px;
   --fs-about-title: 40px;
   --m-about-title: 0 0 24px 0;
+
+  /* footer-vars */
+  --p-footer: 30px 80px 30px 104px;
+  --m-footer-copyrights: 0 516px 0 0;
+  --w-footer-copyrights: 433px;
+  --m-footer-link: 0 40px 0 0;
+  --m-footer-icon: 0 26px 0 1.9px;
+
 }
 
 @media (max-width: 768px) {

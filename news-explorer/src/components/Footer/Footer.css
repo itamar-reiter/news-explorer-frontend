@@ -1,0 +1,39 @@
+.footer {
+  padding: var(--p-footer);
+  display: flex;
+  align-items: center;
+}
+
+.footer__copyrights {
+  margin: var(--m-footer-copyrights);
+  width: var(--w-footer-copyrights);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #b6bcbf;
+}
+
+.footer__link {
+  margin: var(--m-footer-link);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #1a1b22;
+  text-decoration: none;
+}
+
+.footer__icon{
+  width: 20.21px;
+  height: 19.71px;
+  margin: var(--m-footer-icon);
+}
+
+.footer__icon_type_github{
+  background-image: url('../../images/github-icon_comp.svg');
+}
+
+.footer__icon_type_facebook{
+  background-image: url('../../images/facebook-icon_comp.svg');
+}
