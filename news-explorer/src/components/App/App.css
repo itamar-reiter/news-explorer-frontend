@@ -55,6 +55,7 @@ g = gap
   --mb-not-found-image: 15.5px;
   --fs-not-found-title: 26px;
   --fs-not-found-paragraph: 18px;
+  --p-news-cards-list: 80px 0;
 }
 
 @media (max-width: 768px) {
