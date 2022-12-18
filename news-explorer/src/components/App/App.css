@@ -2,6 +2,7 @@
 p = padding
 fs = font-size
 lh = line-height
+s = size (used for width/height when they equal)
 h = height
 w = width
 g = gap 
@@ -45,6 +46,15 @@ g = gap
   --m-footer-link: 0 40px 0 0;
   --m-footer-icon: 0 26px 0 1.9px;
 
+  /* searchResults-vars */
+  --p-preloader: 80px 0;
+  --s-preloader-animation: 74px;
+  --p-not-found: 86px 0 80px;
+  --g-not-found: 16px;
+  --s-not-found-image: 82.5px;
+  --mb-not-found-image: 15.5px;
+  --fs-not-found-title: 26px;
+  --fs-not-found-paragraph: 18px;
 }
 
 @media (max-width: 768px) {
