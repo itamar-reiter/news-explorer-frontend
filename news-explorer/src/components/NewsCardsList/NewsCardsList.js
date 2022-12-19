@@ -9,13 +9,15 @@ function NewsCardsList({ cards }) {
     <h1 className='news-cards-list__title'>Search results</h1>
     <ul className='news-cards-list__content'>
       {cards.map((card) => (
+        <li>
         <NewsCard
-          key={card._id}
+        /*   key={card._id}
           card={card}
-        /* onCardClick={onCardClick}
+        onCardClick={onCardClick}
         onCardLike={onCardLike}
         onCardDelete={onCardDelete} */
         />
+        </li>
       ))}
     </ul>
     <button className='news-cards-list__show-more'>Show more</button>

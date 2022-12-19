@@ -56,7 +56,13 @@ g = gap
   --fs-not-found-title: 26px;
   --fs-not-found-paragraph: 18px;
   --p-news-cards-list: 80px 104px;
-  --grid-template-columns-cards-list: repeat(auto-fit, 272px);
+  --grid-template-columns-cards-list: repeat(auto-fit, 400px);
+  --h-news-card-image: 272px;
+  --m-news-card-save-button: 24px 24px 0 0;
+  --p-news-card-text: 20px 24px 24px;
+  --mt-news-card-title: 12px;
+  --mt-news-card-description: 16px;
+  --mt-news-card-source: 18px;
 }
 
 @media (max-width: 768px) {
