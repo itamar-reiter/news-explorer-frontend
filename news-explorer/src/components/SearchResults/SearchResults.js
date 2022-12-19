@@ -4,7 +4,7 @@ import PreLoader from '../Preloader/Preloader';
 import NewsCardsList from '../NewsCardsList/NewsCardsList';
 import NotFound from '../NotFound/NotFound';
 
-function SearchResults({ onLoading, cards }) {
+function SearchResults({ isSearching, onLoading, cards }) {
 
   let RenderedElement = null;
 
@@ -20,7 +20,7 @@ function SearchResults({ onLoading, cards }) {
 
 
   return (
-    <section className='search-results'>
+    <section className={`search-results ${isSearching? "" : "search-results_hidden"}`}>
       {RenderedElement}
     </section>
   )

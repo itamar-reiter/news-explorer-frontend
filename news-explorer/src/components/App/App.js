@@ -52,6 +52,8 @@ function App() {
 
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  
 
   function onArticleSearch() {
 
@@ -81,6 +83,7 @@ function App() {
         <Main
           onArticleSearch={onArticleSearch}
           cards={cards}
+          isSearching={isSearching}
         />
         <Footer />
       </div>
