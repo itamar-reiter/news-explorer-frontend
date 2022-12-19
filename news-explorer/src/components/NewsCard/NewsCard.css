@@ -15,7 +15,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  background-image: url('../../images/itamar-profile-image.jpg');
+  /* background-image: url('../../images/itamar-profile-image.jpg'); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -46,7 +46,7 @@
   background-image: url('../../images/save-button-icon-hover.svg');
 }
 
-.news-card__text {
+.news-card__description {
   padding: var(--p-news-card-text);
   display: flex;
   flex-direction: column;
@@ -72,7 +72,7 @@
   margin-top: var(--mt-news-card-title);
 }
 
-.news-card__description {
+.news-card__text {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;

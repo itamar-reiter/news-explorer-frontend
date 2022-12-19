@@ -11,9 +11,15 @@ function NewsCardsList({ cards }) {
       {cards.map((card) => (
         <li>
         <NewsCard
-        /*   key={card._id}
+          key={card._id}
+          keyword={card.keyword}
           card={card}
-        onCardClick={onCardClick}
+          title={card.title}
+          date={card.date}
+          text={card.text}
+          source={card.source}
+          image={card.image}
+        /* onCardClick={onCardClick}
         onCardLike={onCardLike}
         onCardDelete={onCardDelete} */
         />
