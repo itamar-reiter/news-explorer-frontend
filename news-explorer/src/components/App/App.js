@@ -80,11 +80,18 @@ function App() {
           insideMain={true}
           onLogout={onLogout}
         />
+        <Switch>
+          <Route path='/'>
         <Main
           onArticleSearch={onArticleSearch}
           cards={cards}
           isSearching={isSearching}
         />
+        </Route>
+        <Route path='/saved-news'>
+          
+        </Route>
+        </Switch>
         <Footer />
       </div>
     </CurrentUserContext.Provider>
