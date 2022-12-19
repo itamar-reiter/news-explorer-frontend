@@ -5,7 +5,9 @@ import NewsCard from '../NewsCard/NewsCard';
 function NewsCardsList({ cards }) {
 
   return (
-    <ul className='news-cards-list'>
+    <div className='news-cards-list'>
+    <h1 className='news-cards-list__title'>Search results</h1>
+    <ul className='news-cards-list__content'>
       {cards.map((card) => (
         <NewsCard
           key={card._id}
@@ -16,6 +18,8 @@ function NewsCardsList({ cards }) {
         />
       ))}
     </ul>
+    <button className='news-cards-list__show-more'>Show more</button>
+    </div>
   )
 }
 
