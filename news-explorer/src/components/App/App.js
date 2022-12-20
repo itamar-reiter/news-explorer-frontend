@@ -5,6 +5,7 @@ import Header from '../Header/Header'
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import { Route, Switch, useHistory } from "react-router-dom";
+import SavedNews from '../SavedNews/SavedNews';
 
 function App() {
   const history = useHistory();
@@ -48,9 +49,45 @@ function App() {
       "__v": 0
     }]);
 
+    const [savedCards, setSavedCards] = useState([
+      {
+        "_id": "638c9a5cccdc771d93f229c0",
+        "keyword": "keyword8",
+        "title": "title8",
+        "text": "text5",
+        "date": "date5",
+        "source": "source",
+        "link": "https://vb3bhb.com",
+        "image": "https://vb3bhb.com",
+        "owner": "63885fc54c95267b1ed22007",
+        "__v": 0
+      },
+      {
+        "_id": "638db088ec78557255adc4c5",
+        "keyword": "keyword82",
+        "title": "title8",
+        "text": "text5",
+        "date": "date5",
+        "source": "source",
+        "link": "https://vb3bhb.com",
+        "image": "https://vb3bhb.com",
+        "owner": "638d97840da314b1cb765151",
+        "__v": 0
+      },
+      {
+        "_id": "638db146ec78557255adc4ce",
+        "keyword": "keyword92",
+        "title": "title7",
+        "text": "text5",
+        "date": "date5",
+        "source": "source",
+        "link": "https://vb3bhb.com",
+        "image": "https://vb3bhb.com",
+        "owner": "638db0c6ec78557255adc4c9",
+        "__v": 0
+      }]);
 
-
-  const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
+  const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(true);
   const [isInsideMain, setIsInsideMain] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   
@@ -81,7 +118,7 @@ function App() {
           onLogout={onLogout}
         />
         <Switch>
-          <Route path='/'>
+          <Route exact path='/'>
         <Main
           onArticleSearch={onArticleSearch}
           cards={cards}
@@ -89,7 +126,10 @@ function App() {
         />
         </Route>
         <Route path='/saved-news'>
-          
+          <SavedNews
+          isInsideSavedArticles={isInsideSavedArticles}
+          cards={savedCards}
+          />
         </Route>
         </Switch>
         <Footer />

@@ -33,9 +33,7 @@ export default function Header({
       <Link to={'/'} className="header__logo">NewsExplorer</Link>
       <nav className="header__navbar">
         <Link to={'/'} className={`header__path ${insideMain? "header__path_decorated" : ''}`}>Home</Link>
-        <Route path='/'>
-          {isLoggedIn ? loggedinHeaderNav :notLoggedinHeaderNav}
-        </Route>
+          {isLoggedIn ? <loggedinHeaderNav/> :<notLoggedinHeaderNav/>}
       </nav>
     </header>
   );
