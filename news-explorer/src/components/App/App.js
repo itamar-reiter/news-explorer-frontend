@@ -21,7 +21,7 @@ function App() {
       "date": "date5",
       "source": "source",
       "link": "https://vb3bhb.com",
-      "image": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
       "owner": "63885fc54c95267b1ed22007",
       "__v": 0
     },
@@ -33,7 +33,7 @@ function App() {
       "date": "date5",
       "source": "source",
       "link": "https://vb3bhb.com",
-      "image": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
       "owner": "638d97840da314b1cb765151",
       "__v": 0
     },
@@ -45,7 +45,7 @@ function App() {
       "date": "date5",
       "source": "source",
       "link": "https://vb3bhb.com",
-      "image": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
       "owner": "638db0c6ec78557255adc4c9",
       "__v": 0
     }]);
@@ -59,7 +59,7 @@ function App() {
       "date": "date5",
       "source": "source",
       "link": "https://vb3bhb.com",
-      "image": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
       "owner": "63885fc54c95267b1ed22007",
       "__v": 0
     },
@@ -70,8 +70,8 @@ function App() {
       "text": "text5",
       "date": "date5",
       "source": "source",
+      "image": "../../images/itamar-profile-image.jpg",
       "link": "https://vb3bhb.com",
-      "image": "https://vb3bhb.com",
       "owner": "638d97840da314b1cb765151",
       "__v": 0
     },
@@ -83,7 +83,7 @@ function App() {
       "date": "date5",
       "source": "source",
       "link": "https://vb3bhb.com",
-      "image": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
       "owner": "638db0c6ec78557255adc4c9",
       "__v": 0
     }]);
@@ -122,7 +122,7 @@ function App() {
             <Main
               onArticleSearch={onArticleSearch}
               cards={cards}
-              isSearching={isSearching}
+              isSearching={true}
             />
           </Route>
           <Route path='/saved-news'>

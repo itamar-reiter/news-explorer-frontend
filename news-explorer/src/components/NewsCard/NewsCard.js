@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 import './NewsCard.css';
 
+
 function NewsCard({
-  key,
+  isInsideSavedArticles,
   keyword,
   card,
   title,

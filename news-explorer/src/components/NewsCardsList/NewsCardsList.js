@@ -2,31 +2,31 @@ import React from 'react'
 import './NewsCardsList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardsList({ cards }) {
+function NewsCardsList({ isInsideSavedArticles, cards }) {
 
   return (
     <div className='news-cards-list'>
-    <h1 className='news-cards-list__title'>Search results</h1>
-    <ul className='news-cards-list__content'>
-      {cards.map((card) => (
-        <li>
-        <NewsCard
-          key={card._id}
-          keyword={card.keyword}
-          card={card}
-          title={card.title}
-          date={card.date}
-          text={card.text}
-          source={card.source}
-          image={card.image}
-        /* onCardClick={onCardClick}
-        onCardLike={onCardLike}
-        onCardDelete={onCardDelete} */
-        />
-        </li>
-      ))}
-    </ul>
-    <button className='news-cards-list__show-more'>Show more</button>
+      <h1 className='news-cards-list__title'>Search results</h1>
+      <ul className='news-cards-list__content'>
+        {cards.map((card) => (
+          <li key={card._id}>
+            <NewsCard
+              isInsideSavedArticles={isInsideSavedArticles}
+              keyword={card.keyword}
+              card={card}
+              title={card.title}
+              date={card.date}
+              text={card.text}
+              source={card.source}
+              image={card.image}
+            /* onCardClick={onCardClick}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete} */
+            />
+          </li>
+        ))}
+      </ul>
+      <button className='news-cards-list__show-more'>Show more</button>
     </div>
   )
 }

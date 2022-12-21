@@ -11,12 +11,12 @@ function SavedNews({ isInsideSavedArticles, savedCards }) {
       <SavedNewsTitles name={currentUserValue.name}
       savedCards={savedCards}
       />
-      {/* <NewsCardsList
+      <NewsCardsList
         isInsideSavedArticles={isInsideSavedArticles}
         cards={savedCards}
-      /> */}
+      />
     </section>
   )
 }
 
-export default SavedNews
+export default SavedNews;
