@@ -13,16 +13,23 @@
   width: 100%;
   height: var(--h-news-card-image);
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
   align-items: flex-start;
-  /* background-image: url('../../images/itamar-profile-image.jpg'); */
+  background-image: url('../../images/itamar-profile-image.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 16px 16px 0 0;
 }
 
-.news-card__save-button {
+.news-card__image_type_main {
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+
+
+.news-card__button {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -35,6 +42,35 @@
   border: none;
 }
 
+.news-card__popup-text {
+  margin: 24px 0 0 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0px 10px 22px rgba(59, 74, 116, 0.1);
+  height: 40px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
+.news-card__popup-text_type_main{
+  padding: 0 20px;
+}
+
+.news-card__button_not-logged-in:hover + .news-card__popup-text{
+  opacity: 1;
+  visibility: visible;
+}
+
 .news-card__save-icon {
   width: 14px;
   height: 19px;
@@ -42,8 +78,43 @@
   transition: background-image 0.2s linear;
 }
 
-.news-card__save-button:hover .news-card__save-icon {
+.news-card__button:hover .news-card__save-icon {
   background-image: url('../../images/save-button-icon-hover.svg');
+}
+
+.news-card__image_type_saved-news {
+  justify-content: space-between;
+}
+
+.news-card__garbage-icon {
+  background-image: url('../../images/garbage-icon.svg');
+  width: 18px;
+  height: 19px;
+}
+
+.news-card__popup-text_type_saved-news{
+  margin-right: 5px;
+}
+
+.news-card__button_saved-news:hover + .news-card__popup-text{
+  visibility: visible;
+  opacity: 1;
+}
+
+.news-card__keyword {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 22px;
+  margin: var(--m-news-card-keyword);
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #000000;
 }
 
 .news-card__description {

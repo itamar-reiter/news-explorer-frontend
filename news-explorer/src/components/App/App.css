@@ -59,6 +59,7 @@ g = gap
   --grid-template-columns-cards-list: repeat(auto-fit, 400px);
   --h-news-card-image: 272px;
   --m-news-card-save-button: 24px 24px 0 0;
+  --m-news-card-keyword: 24px 0 0 24px;
   --p-news-card-text: 20px 24px 24px;
   --mt-news-card-title: 12px;
   --mt-news-card-description: 16px;

@@ -8,7 +8,7 @@ import Navigation from '../Navigation/Navigation';
 
 export default function SavedNewsHeader({
   onSavedArticlesClick,
-  insideSavedArticles,
+  isInsideSavedArticles,
   onSigninClick,
   onLogout
 }) {
@@ -21,7 +21,7 @@ export default function SavedNewsHeader({
         isLoggedIn={true}
         onSavedArticlesClick={onSavedArticlesClick}
         insideMain={false}
-        insideSavedArticles={true}
+        insideSavedArticles={isInsideSavedArticles}
         onSigninClick={onSigninClick}
         onLogout={onLogout}
       />

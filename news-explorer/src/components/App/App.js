@@ -120,6 +120,7 @@ function App() {
               onLogout={onLogout}
             />
             <Main
+            isLoggedIn={isLoggedIn}
               onArticleSearch={onArticleSearch}
               cards={cards}
               isSearching={true}
@@ -129,7 +130,7 @@ function App() {
             <SavedNewsHeader
             onSigninClick={onSigninClick}
             onSavedArticlesClick={onSavedArticlesClick}
-            insideSavedArticles={true}
+            isInsideSavedArticles={isInsideSavedArticles}
             onLogout={onLogout}
             />
             <SavedNews

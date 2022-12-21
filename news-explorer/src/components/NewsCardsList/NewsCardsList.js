@@ -2,7 +2,7 @@ import React from 'react'
 import './NewsCardsList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardsList({ isInsideSavedArticles, cards }) {
+function NewsCardsList({ isLoggedIn, isInsideSavedArticles, cards }) {
 
   return (
     <div className='news-cards-list'>
@@ -11,6 +11,7 @@ function NewsCardsList({ isInsideSavedArticles, cards }) {
         {cards.map((card) => (
           <li key={card._id}>
             <NewsCard
+              isLoggedIn={isLoggedIn}
               isInsideSavedArticles={isInsideSavedArticles}
               keyword={card.keyword}
               card={card}

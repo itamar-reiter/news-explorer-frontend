@@ -4,7 +4,7 @@ import PreLoader from '../Preloader/Preloader';
 import NewsCardsList from '../NewsCardsList/NewsCardsList';
 import NotFound from '../NotFound/NotFound';
 
-function SearchResults({ isSearching, onLoading, cards }) {
+function SearchResults({ isLoggedIn, isSearching, onLoading, cards, isInsideSavedArticles }) {
 
   let RenderedElement = null;
 
@@ -12,7 +12,7 @@ function SearchResults({ isSearching, onLoading, cards }) {
     RenderedElement = <PreLoader />
   }
   else if (cards) {
-    RenderedElement = <NewsCardsList cards={cards} />
+    RenderedElement = <NewsCardsList isLoggedIn={isLoggedIn} cards={cards} isInsideSavedArticles={isInsideSavedArticles} />
   }
   else {
     RenderedElement = <NotFound />
