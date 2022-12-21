@@ -9,7 +9,6 @@ import Navigation from '../Navigation/Navigation';
 export default function Header({
   isLoggedIn,
   onSavedArticlesClick,
-  insideMain,
   insideSavedArticles,
   onSigninClick,
   onLogout
@@ -17,12 +16,12 @@ export default function Header({
   const currentUserValue = useContext(CurrentUserContext);
 
   return (
-    <header className={`header ${insideSavedArticles ? "header_in-saved-news" : ""}`}>
-      <Link to={'/'} className={`header__logo ${insideSavedArticles ? "header__logo_in-saved-news" : ""}`}>NewsExplorer</Link>
+    <header className="header">
+      <Link to={'/'} className="header__logo">NewsExplorer</Link>
       <Navigation
         isLoggedIn={isLoggedIn}
         onSavedArticlesClick={onSavedArticlesClick}
-        insideMain={insideMain}
+        insideMain={true}
         insideSavedArticles={insideSavedArticles}
         onSigninClick={onSigninClick}
         onLogout={onLogout}

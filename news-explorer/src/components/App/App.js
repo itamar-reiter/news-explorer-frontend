@@ -6,6 +6,7 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import { Route, Switch, useHistory } from "react-router-dom";
 import SavedNews from '../SavedNews/SavedNews';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 
 function App() {
   const history = useHistory();
@@ -49,48 +50,48 @@ function App() {
       "__v": 0
     }]);
 
-    const [savedCards, setSavedCards] = useState([
-      {
-        "_id": "638c9a5cccdc771d93f229c0",
-        "keyword": "keyword8",
-        "title": "title8",
-        "text": "text5",
-        "date": "date5",
-        "source": "source",
-        "link": "https://vb3bhb.com",
-        "image": "https://vb3bhb.com",
-        "owner": "63885fc54c95267b1ed22007",
-        "__v": 0
-      },
-      {
-        "_id": "638db088ec78557255adc4c5",
-        "keyword": "keyword82",
-        "title": "title8",
-        "text": "text5",
-        "date": "date5",
-        "source": "source",
-        "link": "https://vb3bhb.com",
-        "image": "https://vb3bhb.com",
-        "owner": "638d97840da314b1cb765151",
-        "__v": 0
-      },
-      {
-        "_id": "638db146ec78557255adc4ce",
-        "keyword": "keyword92",
-        "title": "title7",
-        "text": "text5",
-        "date": "date5",
-        "source": "source",
-        "link": "https://vb3bhb.com",
-        "image": "https://vb3bhb.com",
-        "owner": "638db0c6ec78557255adc4c9",
-        "__v": 0
-      }]);
+  const [savedCards, setSavedCards] = useState([
+    {
+      "_id": "638c9a5cccdc771d93f229c0",
+      "keyword": "keyword8",
+      "title": "title8",
+      "text": "text5",
+      "date": "date5",
+      "source": "source",
+      "link": "https://vb3bhb.com",
+      "image": "https://vb3bhb.com",
+      "owner": "63885fc54c95267b1ed22007",
+      "__v": 0
+    },
+    {
+      "_id": "638db088ec78557255adc4c5",
+      "keyword": "keyword82",
+      "title": "title8",
+      "text": "text5",
+      "date": "date5",
+      "source": "source",
+      "link": "https://vb3bhb.com",
+      "image": "https://vb3bhb.com",
+      "owner": "638d97840da314b1cb765151",
+      "__v": 0
+    },
+    {
+      "_id": "638db146ec78557255adc4ce",
+      "keyword": "keyword92",
+      "title": "title7",
+      "text": "text5",
+      "date": "date5",
+      "source": "source",
+      "link": "https://vb3bhb.com",
+      "image": "https://vb3bhb.com",
+      "owner": "638db0c6ec78557255adc4c9",
+      "__v": 0
+    }]);
 
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
-  
+
 
   function onArticleSearch() {
 
@@ -109,28 +110,33 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='app'>
-        <Header
-          isLoggedIn={true}
-          onSigninClick={onSigninClick}
-          onSavedArticlesClick={onSavedArticlesClick}
-          insideSavedArticles={true}
-          insideMain={false}
-          onLogout={onLogout}
-        />
         <Switch>
           <Route exact path='/'>
-        <Main
-          onArticleSearch={onArticleSearch}
-          cards={cards}
-          isSearching={isSearching}
-        />
-        </Route>
-        <Route path='/saved-news'>
-          <SavedNews
-          isInsideSavedArticles={isInsideSavedArticles}
-          cards={savedCards}
-          />
-        </Route>
+            <Header
+              isLoggedIn={false}
+              onSigninClick={onSigninClick}
+              onSavedArticlesClick={onSavedArticlesClick}
+              insideSavedArticles={false}
+              onLogout={onLogout}
+            />
+            <Main
+              onArticleSearch={onArticleSearch}
+              cards={cards}
+              isSearching={isSearching}
+            />
+          </Route>
+          <Route path='/saved-news'>
+            <SavedNewsHeader
+            onSigninClick={onSigninClick}
+            onSavedArticlesClick={onSavedArticlesClick}
+            insideSavedArticles={true}
+            onLogout={onLogout}
+            />
+            <SavedNews
+              isInsideSavedArticles={isInsideSavedArticles}
+              cards={savedCards}
+            />
+          </Route>
         </Switch>
         <Footer />
       </div>

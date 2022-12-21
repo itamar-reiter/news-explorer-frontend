@@ -10,13 +10,8 @@
   align-items: center;
   color: white;
   background: rgba(196, 196, 196, 0.01);
-  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-}
-
-.header_in-saved-news {
-  background: #ffffff;
-  box-shadow: inset 0px -1px 0px #d1d2d6;
-  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
 }
 
 .header__logo {
@@ -26,10 +21,6 @@
   font-weight: 700;
   font-size: var(--fs-logo);
   text-decoration: none;
-}
-
-.header__logo_in-saved-news{
-  color: black;
 }
 
 

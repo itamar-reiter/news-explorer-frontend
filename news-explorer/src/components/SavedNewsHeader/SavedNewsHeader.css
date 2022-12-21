@@ -1,0 +1,25 @@
+.header_in-saved-news {
+  width: 100%;
+  height: var(--header-height);
+  margin: 0;
+  margin-bottom: var(--mb-header);
+  padding: var(--header-padding);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background: #ffffff;
+  border-bottom: 1px solid #D1D2D6;
+  margin: 0;
+}
+
+.header__logo_in-saved-news {
+  color: black;
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-size: var(--fs-logo);
+  text-decoration: none;
+}
+
