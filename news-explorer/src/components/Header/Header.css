@@ -16,6 +16,7 @@
 .header_in-saved-news {
   background: #ffffff;
   box-shadow: inset 0px -1px 0px #d1d2d6;
+  margin: 0;
 }
 
 .header__logo {
