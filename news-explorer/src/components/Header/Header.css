@@ -8,9 +8,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: black;
   color: white;
-  border-bottom: 1px solid rgba(196, 196, 196);
+  background: rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.header_in-saved-news {
+  background: #ffffff;
+  box-shadow: inset 0px -1px 0px #d1d2d6;
 }
 
 .header__logo {
@@ -22,48 +27,9 @@
   text-decoration: none;
 }
 
-.header__navbar {
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
-  align-items: center;
-  column-gap: 34px;
-  padding: 0;
+.header__logo_in-saved-news{
+  color: black;
 }
 
-.header__path {
-  display: flex;
-  height: 80px;
-  width: max-content;
-  color: white;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-size: var(--fs-header-text);
-  box-sizing: border-box;
-  text-decoration: none;
-  align-items: center;
-  justify-content: center;
-}
 
-.header__path_decorated {
-  border-bottom: 4px solid white;
-  margin-bottom: -4px;
-}
 
-.header__button {
-  border: 1px solid white;
-  border-radius: 100px;
-  padding: 12px 50px;
-  margin: 0;
-  color: white;
-  text-decoration: none;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-}
-
-.header__button:hover {
-  cursor: pointer;
-}

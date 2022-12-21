@@ -1,0 +1,97 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 33.5px;
+  height: 100%;
+  align-items: center;
+  column-gap: 34px;
+  padding: 0;
+}
+
+.navigation_in-saved-news{
+  background: white;
+}
+
+.navigation__path {
+  display: flex;
+  height: 100%;
+  color: white;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--fs-header-text);
+  box-sizing: border-box;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation__path_in-saved-news{
+  color: #1A1B22;
+}
+
+.navigation__path_type_home {
+  width: 70px;
+}
+
+.navigation__path_type_saved-articles {
+  width: 178px;
+}
+
+.navigation__path_decorated_main {
+  box-shadow: 0 -3px 0 0 inset white;
+}
+
+.navigation__path_decorated_saved-news {
+  box-shadow: 0 -3px 0 0 inset #1A1B22;
+}
+
+
+
+.navigation__button {
+  display: flex;
+  justify-content: center;
+  height: 48px;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 20px;
+  border: 1px solid white;
+  border-radius: 100px;
+  padding: 0 50px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.navigation__button:hover {
+  cursor: pointer;
+}
+
+.navigation__button_logged-in {
+  padding: 0 19px;
+}
+
+.navigation__button_in-saved-news{
+  border: 1px solid #D1D2D6;
+  color: #1A1B22;
+  transition: border 0.15s linear;
+}
+
+.navigation__button_in-saved-news:hover{
+  border: 1px solid #1A1B22;
+}
+
+.navigation__exit-icon{
+  background: url('../../images/union-main.svg');
+  width: 17.4px;
+  height: 16px;
+}
+
+.navigation__exit-icon_in-saved-news{
+  background: url('../../images/union-saved-news.svg');
+}

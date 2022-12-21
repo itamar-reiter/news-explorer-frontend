@@ -87,7 +87,7 @@ function App() {
         "__v": 0
       }]);
 
-  const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(true);
+  const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   
@@ -114,7 +114,7 @@ function App() {
           onSigninClick={onSigninClick}
           onSavedArticlesClick={onSavedArticlesClick}
           insideSavedArticles={true}
-          insideMain={true}
+          insideMain={false}
           onLogout={onLogout}
         />
         <Switch>
