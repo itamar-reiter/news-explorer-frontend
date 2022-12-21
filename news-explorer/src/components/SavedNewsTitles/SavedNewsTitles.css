@@ -1,0 +1,49 @@
+.saved-news-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 0 56px 104px;
+  background: white;
+  gap: 28px;
+}
+
+.saved-news-titles__title {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--fs-saved-news-titles-title);
+  color: rgba(26, 27, 34, 0.5);
+}
+
+.saved-news-titles__intro {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--fs-saved-news-titles-intro);
+  line-height: var(--lh-saved-news-titles-intro);
+  color: #1a1b22;
+  padding: 0;
+  margin: 0 0 2px 0;
+}
+
+.saved-news-titles__keywords {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--fs-saved-news-titles-keywords);
+  color: #1a1b22;
+}
+
+.saved-news-titles__keywords_highlight {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+}

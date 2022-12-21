@@ -63,6 +63,12 @@ g = gap
   --mt-news-card-title: 12px;
   --mt-news-card-description: 16px;
   --mt-news-card-source: 18px;
+
+  /* saved-news-titles vars */
+  --fs-saved-news-titles-title: 18px;
+  --fs-saved-news-titles-intro: 40px;
+  --lh-saved-news-titles-intro: 46px;
+  --fs-saved-news-titles-keywords: 18px;
 }
 
 @media (max-width: 768px) {
