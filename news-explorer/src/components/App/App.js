@@ -11,7 +11,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({ duck: "duck" });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [cards, setCards] = useState([
     {
       "_id": "638c9a5cccdc771d93f229c0",
@@ -135,7 +135,7 @@ function App() {
             />
             <SavedNews
               isInsideSavedArticles={isInsideSavedArticles}
-              cards={savedCards}
+              savedCards={savedCards}
             />
           </Route>
         </Switch>

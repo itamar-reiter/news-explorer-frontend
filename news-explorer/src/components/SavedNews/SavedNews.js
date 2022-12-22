@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import NewsCardsList from '../NewsCardsList/NewsCardsList';
 import SavedNewsTitles from '../SavedNewsTitles/SavedNewsTitles';
 import './SavedNews.css';
@@ -9,9 +9,10 @@ function SavedNews({ isInsideSavedArticles, savedCards }) {
   return (
     <section className='saved-news'>
       <SavedNewsTitles name={currentUserValue.name}
-      savedCards={savedCards}
+        savedCards={savedCards}
       />
       <NewsCardsList
+        isLoggedIn={true}
         isInsideSavedArticles={isInsideSavedArticles}
         cards={savedCards}
       />

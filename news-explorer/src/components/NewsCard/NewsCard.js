@@ -4,7 +4,6 @@ import './NewsCard.css';
 
 
 function NewsCard({
-  isInsideSavedArticles,
   isLoggedIn,
   keyword,
   card,
