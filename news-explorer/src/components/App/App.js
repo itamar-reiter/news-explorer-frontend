@@ -91,6 +91,9 @@ function App() {
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+
 
 
   function onArticleSearch() {
@@ -126,6 +129,7 @@ function App() {
               onArticleSearch={onArticleSearch}
               cards={cards}
               isSearching={true}
+              isLoading={false}
             />
           </Route>
           <Route path='/saved-news'>

@@ -9,6 +9,7 @@ function Main({
   isInsideSavedArticles,
   onArticleSearch,
   isSearching,
+  isLoading,
   cards
 }) {
   return (
@@ -21,7 +22,7 @@ function Main({
         isInsideMain={isInsideMain}
         isInsideSavedArticles={isInsideSavedArticles}
         isSearching={isSearching}
-        onLoading={false}
+        isLoading={isLoading}
         cards={cards}
       />
       <About />

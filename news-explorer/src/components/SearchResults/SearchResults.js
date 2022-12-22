@@ -4,11 +4,11 @@ import PreLoader from '../Preloader/Preloader';
 import NewsCardsList from '../NewsCardsList/NewsCardsList';
 import NotFound from '../NotFound/NotFound';
 
-function SearchResults({ isLoggedIn, isSearching, onLoading, cards, isInsideSavedArticles, isInsideMain }) {
+function SearchResults({ isLoggedIn, isSearching, isLoading, cards, isInsideSavedArticles, isInsideMain }) {
 
   let RenderedElement = null;
 
-  if (onLoading) {
+  if (isLoading) {
     RenderedElement = <PreLoader />
   }
   else if (cards) {
