@@ -17,7 +17,7 @@ function NewsCard({
 
   return (
     <div className='news-card'>
-      <Route path={'/saved-news'}>
+      <Route exact path={'/'}>
         <div className='news-card__image news-card__image_type_main' /* style={{backgroundImage: `url('${image}')`}} */>
           <button className={`news-card__button ${!isLoggedIn ? "news-card__button_not-logged-in" : ''}`}>
             <div className="news-card__save-icon" />
@@ -25,7 +25,7 @@ function NewsCard({
           <span className='news-card__popup-text news-card__popup-text_type_main'>Sign in to save articles</span>
         </div>
       </Route>
-      <Route exact path={'/'}>
+      <Route path={'/saved-news'}>
         <div className='news-card__image news-card__image_type_saved-news' /* style={{backgroundImage: `url('${image}')`}} */>
           <button className="news-card__button news-card__button_saved-news">
             <div className='news-card__garbage-icon' />

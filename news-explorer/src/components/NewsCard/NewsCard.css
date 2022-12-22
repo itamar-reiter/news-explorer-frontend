@@ -15,19 +15,13 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-start;
+  gap: 5px;
   background-image: url('../../images/itamar-profile-image.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 16px 16px 0 0;
 }
-
-.news-card__image_type_main {
-  justify-content: flex-start;
-  gap: 5px;
-}
-
-
 
 .news-card__button {
   cursor: pointer;
@@ -62,11 +56,11 @@
   transition: opacity 0.2s linear;
 }
 
-.news-card__popup-text_type_main{
+.news-card__popup-text_type_main {
   padding: 0 20px;
 }
 
-.news-card__button_not-logged-in:hover + .news-card__popup-text{
+.news-card__button_not-logged-in:hover + .news-card__popup-text {
   opacity: 1;
   visibility: visible;
 }
@@ -82,30 +76,27 @@
   background-image: url('../../images/save-button-icon-hover.svg');
 }
 
-.news-card__image_type_saved-news {
-  justify-content: space-between;
-}
-
 .news-card__garbage-icon {
   background-image: url('../../images/garbage-icon.svg');
   width: 18px;
   height: 19px;
 }
 
-.news-card__popup-text_type_saved-news{
-  margin-right: 5px;
+.news-card__popup-text_type_saved-news {
+  padding: 0 26px;
 }
 
-.news-card__button_saved-news:hover + .news-card__popup-text{
+.news-card__button_saved-news:hover + .news-card__popup-text {
   visibility: visible;
   opacity: 1;
 }
 
 .news-card__keyword {
   display: flex;
+  height: 40px;
   justify-content: center;
   align-items: center;
-  padding: 8px 22px;
+  padding: 0 22px;
   margin: var(--m-news-card-keyword);
   background-color: #ffffff;
   border-radius: 10px;
