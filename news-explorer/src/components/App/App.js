@@ -12,6 +12,11 @@ function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({ duck: "duck" });
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
+  const [isInsideMain, setIsInsideMain] = useState(false);
+  const [isSearching, setIsSearching] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFound, setIsFound] = useState(true);
   const [cards, setCards] = useState([
     {
       "_id": "638c9a5cccdc771d93f229c0",
@@ -64,6 +69,54 @@ function App() {
       "__v": 0
     },
     {
+      "_id": "638c9a5cccdc771d93f229c0",
+      "keyword": "keyword8",
+      "title": "title8",
+      "text": "text5",
+      "date": "date5",
+      "source": "source",
+      "link": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
+      "owner": "63885fc54c95267b1ed22007",
+      "__v": 0
+    },
+    {
+      "_id": "638c9a5cccdc771d93f229c0",
+      "keyword": "keyword8",
+      "title": "title8",
+      "text": "text5",
+      "date": "date5",
+      "source": "source",
+      "link": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
+      "owner": "63885fc54c95267b1ed22007",
+      "__v": 0
+    },
+    {
+      "_id": "638c9a5cccdc771d93f229c0",
+      "keyword": "keyword8",
+      "title": "title8",
+      "text": "text5",
+      "date": "date5",
+      "source": "source",
+      "link": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
+      "owner": "63885fc54c95267b1ed22007",
+      "__v": 0
+    },
+    {
+      "_id": "638c9a5cccdc771d93f229c0",
+      "keyword": "keyword8",
+      "title": "title8",
+      "text": "text5",
+      "date": "date5",
+      "source": "source",
+      "link": "https://vb3bhb.com",
+      "image": "../../images/itamar-profile-image.jpg",
+      "owner": "63885fc54c95267b1ed22007",
+      "__v": 0
+    },
+    {
       "_id": "638db088ec78557255adc4c5",
       "keyword": "keyword82",
       "title": "title8",
@@ -87,14 +140,6 @@ function App() {
       "owner": "638db0c6ec78557255adc4c9",
       "__v": 0
     }]);
-
-  const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
-  const [isInsideMain, setIsInsideMain] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-
-
 
   function onArticleSearch() {
 
@@ -128,8 +173,9 @@ function App() {
               isInsideSavedArticles={false}
               onArticleSearch={onArticleSearch}
               cards={cards}
-              isSearching={true}
-              isLoading={false}
+              isSearching={isSearching}
+              isLoading={isLoading}
+              isFound={isFound}
             />
           </Route>
           <Route path='/saved-news'>

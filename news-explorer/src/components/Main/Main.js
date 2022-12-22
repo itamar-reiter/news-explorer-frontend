@@ -10,7 +10,8 @@ function Main({
   onArticleSearch,
   isSearching,
   isLoading,
-  cards
+  cards,
+  isFound
 }) {
   return (
     <main className='main'>
@@ -24,6 +25,7 @@ function Main({
         isSearching={isSearching}
         isLoading={isLoading}
         cards={cards}
+        isFound={isFound}
       />
       <About />
     </main>
