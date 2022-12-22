@@ -4,7 +4,7 @@ import SavedNewsTitles from '../SavedNewsTitles/SavedNewsTitles';
 import './SavedNews.css';
 import CurrentUserContext from '../../utils/CurrentUserContext';
 
-function SavedNews({ isInsideSavedArticles, savedCards }) {
+function SavedNews({isLoggedIn, isInsideSavedArticles, isInsideMain, savedCards }) {
   const currentUserValue = useContext(CurrentUserContext);
   return (
     <section className='saved-news'>
@@ -12,7 +12,8 @@ function SavedNews({ isInsideSavedArticles, savedCards }) {
         savedCards={savedCards}
       />
       <NewsCardsList
-        isLoggedIn={true}
+        isLoggedIn={isLoggedIn}
+        isInsideMain={isInsideMain}
         isInsideSavedArticles={isInsideSavedArticles}
         cards={savedCards}
       />

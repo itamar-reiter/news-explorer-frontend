@@ -9,6 +9,11 @@
   gap: 64px;
 }
 
+.news-cards-list_saved-news{
+  padding: var(--p-news-cards-list-saved-news);
+
+}
+
 .news-cards-list__title {
   margin: 0;
   font-family: 'Roboto Slab';
@@ -26,6 +31,8 @@
   grid-template-columns: var(--grid-template-columns-cards-list);
   grid-auto-flow: row;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .news-cards-list__show-more {

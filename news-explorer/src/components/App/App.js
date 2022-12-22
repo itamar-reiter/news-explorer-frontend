@@ -120,7 +120,9 @@ function App() {
               onLogout={onLogout}
             />
             <Main
-            isLoggedIn={isLoggedIn}
+              isLoggedIn={isLoggedIn}
+              isInsideMain={true}
+              isInsideSavedArticles={false}
               onArticleSearch={onArticleSearch}
               cards={cards}
               isSearching={true}
@@ -128,13 +130,15 @@ function App() {
           </Route>
           <Route path='/saved-news'>
             <SavedNewsHeader
-            onSigninClick={onSigninClick}
-            onSavedArticlesClick={onSavedArticlesClick}
-            isInsideSavedArticles={isInsideSavedArticles}
-            onLogout={onLogout}
+              onSigninClick={onSigninClick}
+              onSavedArticlesClick={onSavedArticlesClick}
+              isInsideSavedArticles={true}
+              onLogout={onLogout}
             />
             <SavedNews
-              isInsideSavedArticles={isInsideSavedArticles}
+              isLoggedIn={true}
+              isInsideMain={false}
+              isInsideSavedArticles={true}
               savedCards={savedCards}
             />
           </Route>

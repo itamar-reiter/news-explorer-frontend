@@ -66,6 +66,7 @@ g = gap
   --mt-news-card-source: 18px;
 
   /* saved-news-titles vars */
+  --p-news-cards-list-saved-news: 62px 106px 62px 102px;
   --fs-saved-news-titles-title: 18px;
   --fs-saved-news-titles-intro: 40px;
   --lh-saved-news-titles-intro: 46px;
