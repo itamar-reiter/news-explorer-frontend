@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import { Route, Switch, useHistory } from "react-router-dom";
 import SavedNews from '../SavedNews/SavedNews';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function App() {
   const history = useHistory();
@@ -194,6 +195,11 @@ function App() {
           </Route>
         </Switch>
         <Footer />
+      <PopupWithForm
+        popupTitle={'Sign in'}
+        submitButtonText={'Sign in'}
+        submitErrorLabel={'This email is not available'}
+        relativePath={'Sign up'} />
       </div>
     </CurrentUserContext.Provider>
   )

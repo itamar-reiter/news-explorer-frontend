@@ -71,6 +71,9 @@ g = gap
   --fs-saved-news-titles-intro: 40px;
   --lh-saved-news-titles-intro: 46px;
   --fs-saved-news-titles-keywords: 18px;
+
+  /* popup-vars */
+  --p-popup: 34px 36px 28px 36px;
 }
 
 @media (max-width: 768px) {
