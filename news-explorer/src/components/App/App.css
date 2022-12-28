@@ -74,6 +74,13 @@ g = gap
 
   /* popup-vars */
   --p-popup: 34px 36px 28px 36px;
+  --mb-popup-head: -3.4px;
+
+  /* form-field vars*/
+  --mt-form-field: 13px;
+  --mt-form-field-input: 9px;
+  --pb-form-filed-input: 10px;
+  --mt-form-field-error: 3px;
 }
 
 @media (max-width: 768px) {

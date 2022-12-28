@@ -16,32 +16,43 @@ function PopupWithForm({
   children,
 }) {
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onSubmit();
+  }
   const closePopupOverlay = (evt) => {
     if (evt.target === evt.currentTarget) {
       onClose();
     }
   };
 
-  const handleEscClose = (evt) => {
-    if (evt.key === "Escape") {
-      onClose();
-    }
-  };
+
   return (
-    <div className='popup'>
-      <div className='popup__head'>
-        <h1 className='popup__title'>{popupTitle}</h1>
-        <button className='popup__esc' />
+    <div className={`popup ${isPopupOpen ? 'popup_active' : ''}`}
+      onClick={closePopupOverlay}>
+      <div className='popup__content'>
+        <div className='popup__head'>
+          <h1 className='popup__title'>{popupTitle}</h1>
+          <button className='popup__esc' onClick={onClose} />
+        </div>
+        <form className='popup__form' onSubmit={handleSubmit}>
+          {children}
+          <span className={`popup__submit-error ${submitErrorLabel ? 'popup__submit-error_active' : ''}`}>{submitErrorLabel}</span>
+          <button
+            className='popup__submit-button'
+            type='submit'
+            id={submitButtonId}
+          >
+            {submitButtonText}
+          </button>
+        </form>
+        <p className='popup__relative-path'>or&nbsp;
+          <span onClick={onRelativePathClick}
+            className='popup__relative-path popup__relative-path_link-style'>
+            {relativePath}
+          </span>
+        </p>
       </div>
-      {children}
-      <span className='popup__error popup__error_submit'>{submitErrorLabel}</span>
-      <button className='popup__submit-button'>{submitButtonText}</button>
-      <p className='popup__relative-path'>or&nbsp;
-        <span onClick={onRelativePathClick}
-          className='popup__relative-path popup__relative-path_link-style'>
-          {relativePath}
-        </span>
-      </p>
     </div>
   );
 }

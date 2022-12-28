@@ -8,6 +8,9 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import SavedNews from '../SavedNews/SavedNews';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import PopupFormInput from '../PopupFormInput/PopupFormInput';
+import SigninPopup from '../SigninPopup/SigninPopup';
+import SignupPopup from '../SignupPopup/SignupPopup';
 
 function App() {
   const history = useHistory();
@@ -142,11 +145,53 @@ function App() {
       "__v": 0
     }]);
 
+
+  const [isPopupSigninOpen, setIsPopupSigninOpen] = useState(false);
+  const [isPopupSignupOpen, setIsPopupSignupOpen] = useState(false);
+
+
+  function toggleSigninPopupState() {
+    setIsPopupSigninOpen(!isPopupSigninOpen);
+  }
+
+  function toggleSignupPopupState() {
+    setIsPopupSignupOpen(!isPopupSignupOpen);
+  }
+
+  const handleEscPress = (evt) => {
+    if (evt.key === "Escape") {
+      closeAllPopups();
+    }
+  };
+
+  function closeAllPopups() {
+    setIsPopupSigninOpen(false);
+    setIsPopupSignupOpen(false);
+  }
+
+  function onSigninSubmit() {
+    closeAllPopups();
+  }
+
+  function onSignupSubmit() {
+    closeAllPopups();
+  }
+
+  function onRelativeSignupClick() {
+    closeAllPopups();
+    toggleSignupPopupState();
+  }
+
+  function onRelativeSigninClick() {
+    closeAllPopups();
+    toggleSigninPopupState();
+  }
+
   function onArticleSearch() {
 
   }
   function onSigninClick() {
-
+    toggleSigninPopupState();
   }
 
   function onLogout() {
@@ -158,7 +203,10 @@ function App() {
   }
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className='app'>
+      <div className='app'
+        tabIndex={0}
+        onKeyDown={handleEscPress}
+      >
         <Switch>
           <Route exact path='/'>
             <Header
@@ -195,11 +243,18 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-      <PopupWithForm
-        popupTitle={'Sign in'}
-        submitButtonText={'Sign in'}
-        submitErrorLabel={'This email is not available'}
-        relativePath={'Sign up'} />
+        <SigninPopup
+          isPopupOpen={isPopupSigninOpen}
+          onSubmit={onSigninSubmit}
+          onRelativePathClick={onRelativeSignupClick}
+          onClose={closeAllPopups}
+        />
+        <SignupPopup
+          isPopupOpen={isPopupSignupOpen}
+          onSubmit={onSignupSubmit}
+          onRelativePathClick={onRelativeSigninClick}
+          onClose={closeAllPopups}
+        />
       </div>
     </CurrentUserContext.Provider>
   )
