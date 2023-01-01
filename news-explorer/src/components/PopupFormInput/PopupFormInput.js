@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './PopupFormInput.css';
 
 function PopupFormInput({
@@ -14,11 +14,15 @@ function PopupFormInput({
   isRequired,
   errorMessage
 }) {
+
+  const [isFocused, setIsFocused] = useState(false);
   return (
     <div className='form-field'>
       <label className='form-field__label'>{label}</label>
       <input
-        className='form-field__input' 
+        className={`form-field__input ${isFocused ? 'form-feild__input_focused' : ''}`}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         type={type}
         name={name}
         id={id}
@@ -27,8 +31,8 @@ function PopupFormInput({
         placeholder={inputPlaceholder}
         minLength={minLength}
         maxLength={maxLength}
-        required={isRequired}/>
-        <span className='form-field__error'>{errorMessage}</span>
+        required={isRequired} />
+      <span className='form-field__error'>{errorMessage}</span>
     </div>
   )
 }
