@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './PopupFormInput.css';
 
 function PopupFormInput({
+  isPopupOpen,
   label,
   type,
   name,
@@ -12,14 +13,44 @@ function PopupFormInput({
   minLength,
   maxLength,
   isRequired,
-  errorMessage
+  editInputsErrors,
 }) {
-
+  const inputRef = useRef();
   const [isFocused, setIsFocused] = useState(false);
+  const [errorText, setErrorText] = useState('');
+
+  // initializing inputs errors;
+
+  useEffect(() => {
+    if (isPopupOpen) {
+      if (!inputRef.current.checkValidity() || inputValue === '') {
+        console.log('input invalid');
+        editInputsErrors(true, id);
+      } else {
+        console.log('input ok');
+        editInputsErrors(false, id);
+      }
+    }
+  }, [isPopupOpen]);
+
+  const onInputChange = (e) => {
+    handleInputChange(e);
+    if (!inputRef.current.checkValidity() || inputValue === '') {
+      console.log('input invalid');
+      editInputsErrors(true, id);
+      setErrorText(inputRef.current.validationMessage);
+    } else {
+      console.log('input ok');
+      editInputsErrors(false, id);
+      setErrorText('');
+    }
+  };
+
   return (
-    <div className='form-field'>
-      <label className='form-field__label'>{label}</label>
+    <div className="form-field">
+      <label className="form-field__label">{label}</label>
       <input
+        ref={inputRef}
         className={`form-field__input ${isFocused ? 'form-feild__input_focused' : ''}`}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -27,14 +58,15 @@ function PopupFormInput({
         name={name}
         id={id}
         value={inputValue || ''}
-        onChange={handleInputChange}
+        onChange={onInputChange}
         placeholder={inputPlaceholder}
         minLength={minLength}
         maxLength={maxLength}
-        required={isRequired} />
-      <span className='form-field__error'>{errorMessage}</span>
+        required={isRequired}
+      />
+      <span className="form-field__error">{errorText}</span>
     </div>
-  )
+  );
 }
 
 export default PopupFormInput;

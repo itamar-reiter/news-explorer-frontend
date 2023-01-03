@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import './About.css';
-import CurrentUserContext from '../../utils/CurrentUserContext'
+import CurrentUserContext from '../../utils/CurrentUserContext';
 
 function About() {
   const currentUserValue = useContext(CurrentUserContext);
   return (
-    <section className='about'>
-      <div className='about__image' />
-      <div className='about__content'>
-        <h1 className='about__title'>About the author</h1>
-        <p className='about__description'>
+    <section className="about">
+      <div className="about__image" />
+      <div className="about__content">
+        <h1 className="about__title">About the author</h1>
+        <p className="about__description">
           This block describes the project author.
           Here you should indicate your name, what you do,
           and which development technologies you know.
@@ -18,7 +18,7 @@ function About() {
         </p>
       </div>
     </section>
-  )
+  );
 }
 
 export default About;

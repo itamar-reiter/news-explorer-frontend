@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import PopupFormInput from '../PopupFormInput/PopupFormInput';
 import './SigninPopup.css';
-import PopupWithForm from '../PopupWithForm/PopupWithForm'
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function SigninPopup({
   isPopupOpen,
   onSubmit,
   onRelativePathClick,
-  onClose
+  inputsErrors,
+  editInputsErrors,
+  onClose,
 }) {
   const [email, setEmail] = useState('');
 
@@ -23,38 +25,44 @@ function SigninPopup({
   return (
     <PopupWithForm
       isPopupOpen={isPopupOpen}
-      popupTitle={'Sign in'}
-      submitButtonText={'Sign in'}
+      popupTitle="Sign in"
+      submitButtonText="Sign in"
       /* submitErrorLabel={'This email is not available'} */
-      relativePath={'Sign up'}
+      relativePath="Sign up"
       onSubmit={onSubmit}
+      inputsErrors={inputsErrors}
       onClose={onClose}
       onRelativePathClick={onRelativePathClick}
     >
       <PopupFormInput
-        label='Email'
-        type={"text"}
-        name={'email'}
-        id={'email'}
+        label="Email"
+        type="text"
+        name="email"
+        id="signInEmail"
         inputValue={email}
         handleInputChange={handleEmailChange}
-        inputPlaceholder='Enter email'
-        isRequired={true}
-      /* errorMessage={'Invalid email address'} */
+        inputPlaceholder="Enter email"
+        minLength={2}
+        isRequired
+        editInputsErrors={editInputsErrors}
+        isPopupOpen={isPopupOpen}
       />
       <PopupFormInput
-        label='Password'
-        type='text'
-        name={'password'}
-        id={'password'}
+        label="Password"
+        type="text"
+        name="password"
+        id="signInPassword"
         inputValue={password}
         handleInputChange={handlePasswordChange}
-        inputPlaceholder='Enter password'
-        isRequired={true}
-      /* errorMessage={'invalid password'} */
+        inputPlaceholder="Enter password"
+        minLength={2}
+        maxLength={30}
+        isRequired
+        editInputsErrors={editInputsErrors}
+        isPopupOpen={isPopupOpen}
       />
     </PopupWithForm>
-  )
+  );
 }
 
-export default SigninPopup
+export default SigninPopup;

@@ -3,6 +3,7 @@ import './Main.css';
 import SearchForm from '../SearchForm/SearchForm';
 import About from '../About/About';
 import SearchResults from '../SearchResults/SearchResults';
+
 function Main({
   isLoggedIn,
   isInsideMain,
@@ -11,10 +12,10 @@ function Main({
   isSearching,
   isLoading,
   cards,
-  isFound
+  isFound,
 }) {
   return (
-    <main className='main'>
+    <main className="main">
       <SearchForm
         onArticleSearch={onArticleSearch}
       />
@@ -29,7 +30,7 @@ function Main({
       />
       <About />
     </main>
-  )
+  );
 }
 
 export default Main;

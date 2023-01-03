@@ -88,9 +88,11 @@
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
+  outline: none;
+  transition: background-color 0.1s linear;
 }
 
-.popup__submit-button_active {
+.popup__submit-button_enabled {
   color: white;
   background-color: #2f71e5;
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
@@ -98,7 +100,7 @@
   transition: background-color 0.1s linear;
 }
 
-.popup__submit-button_active:hover{
+.popup__submit-button_enabled:hover{
 background-color: #347EFF;
 }
 

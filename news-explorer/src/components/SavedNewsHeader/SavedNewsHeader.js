@@ -1,24 +1,22 @@
-import { Link } from 'react-router-dom'
-import './SavedNewsHeader.css'
+import { Link } from 'react-router-dom';
+import './SavedNewsHeader.css';
 import { React, useContext } from 'react';
 import CurrentUserContext from '../../utils/CurrentUserContext';
 import Navigation from '../Navigation/Navigation';
-
-
 
 export default function SavedNewsHeader({
   onSavedArticlesClick,
   isInsideSavedArticles,
   onSigninClick,
-  onLogout
+  onLogout,
 }) {
   const currentUserValue = useContext(CurrentUserContext);
 
   return (
     <header className="header_in-saved-news">
-      <Link to={'/'} className="header__logo_in-saved-news">NewsExplorer</Link>
+      <Link to="/" className="header__logo_in-saved-news">NewsExplorer</Link>
       <Navigation
-        isLoggedIn={true}
+        isLoggedIn
         onSavedArticlesClick={onSavedArticlesClick}
         insideMain={false}
         insideSavedArticles={isInsideSavedArticles}
@@ -28,5 +26,3 @@ export default function SavedNewsHeader({
     </header>
   );
 }
-
-

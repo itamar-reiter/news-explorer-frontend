@@ -1,14 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import NewsCardsList from '../NewsCardsList/NewsCardsList';
 import SavedNewsTitles from '../SavedNewsTitles/SavedNewsTitles';
 import './SavedNews.css';
 import CurrentUserContext from '../../utils/CurrentUserContext';
 
-function SavedNews({isLoggedIn, isInsideSavedArticles, isInsideMain, savedCards }) {
+function SavedNews({
+  isLoggedIn, isInsideSavedArticles, isInsideMain, savedCards,
+}) {
   const currentUserValue = useContext(CurrentUserContext);
   return (
-    <section className='saved-news'>
-      <SavedNewsTitles name={currentUserValue.name}
+    <section className="saved-news">
+      <SavedNewsTitles
+        name={currentUserValue.name}
         savedCards={savedCards}
       />
       <NewsCardsList
@@ -18,7 +21,7 @@ function SavedNews({isLoggedIn, isInsideSavedArticles, isInsideMain, savedCards 
         cards={savedCards}
       />
     </section>
-  )
+  );
 }
 
 export default SavedNews;

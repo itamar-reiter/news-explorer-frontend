@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './NewsCardsList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
@@ -6,13 +6,12 @@ function NewsCardsList({
   isLoggedIn,
   isInsideSavedArticles,
   isInsideMain,
-  cards
+  cards,
 }) {
-
   return (
     <div className={`news-cards-list ${isInsideSavedArticles ? 'news-cards-list_saved-news' : ''}`}>
-      {isInsideMain && <h1 className='news-cards-list__title'>Search results</h1>}
-      <ul className='news-cards-list__content'>
+      {isInsideMain && <h1 className="news-cards-list__title">Search results</h1>}
+      <ul className="news-cards-list__content">
         {cards.map((card) => (
           <li key={card._id}>
             <NewsCard
@@ -32,9 +31,9 @@ function NewsCardsList({
           </li>
         ))}
       </ul>
-      {isInsideMain && <button className='news-cards-list__show-more'>Show more</button>}
+      {isInsideMain && <button className="news-cards-list__show-more">Show more</button>}
     </div>
-  )
+  );
 }
 
 export default NewsCardsList;
