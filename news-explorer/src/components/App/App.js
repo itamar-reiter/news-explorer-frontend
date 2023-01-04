@@ -22,8 +22,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isFound, setIsFound] = useState(true);
   const [isSubmiting, setIsSubmiting] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
   const [inputsErrors, setInputsErrors] = useState([]);
+  const [submitError, setSubmitError] = useState('');
 
   const editInputsErrors = (isError, inputName) => {
     let tempErrorsArray = inputsErrors;
@@ -34,10 +34,35 @@ function App() {
     setInputsErrors(tempErrorsArray);
     console.log(inputsErrors);
   };
-
-  const toggleIsFormValidState = () => {
-    setIsFormValid(!isFormValid);
-  };
+  const [users, setUsers] = useState([
+    {
+      "_id": {
+        "$oid": "638ca212c66d4df0bef7282b"
+      },
+      "name": "itapita5",
+      "email": "ita5@gmail.com",
+      "password": "$2a$10$I8agtieiyLAhbyYoT5y12eRgQisiSgqkbya9zULMozuQXq2wV1uBu",
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "638ca22f74868725bb1a78e1"
+      },
+      "name": "itapita6",
+      "email": "ita6@gmail.com",
+      "password": "$2a$10$pG1ZfUH6IsZNja1o3vDb1OrYMJUDVYNXMPPB0Hr0BuPgO8OOZ/5OS",
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "638d97840da314b1cb765151"
+      },
+      "name": "itapita8",
+      "email": "ita8@gmail.com",
+      "password": "$2a$10$LOdz.gzL.2Mh4pVKFgu9LefXUoMKW3lP6XO7KS6F0lPZ8xGQgofBS",
+      "__v": 0
+    }
+  ]);
 
   const [cards, setCards] = useState([
     {
@@ -167,10 +192,12 @@ function App() {
   const [isPopupSignupOpen, setIsPopupSignupOpen] = useState(false);
 
   function toggleSigninPopupState() {
+    setSubmitError('');
     setIsPopupSigninOpen(!isPopupSigninOpen);
   }
 
   function toggleSignupPopupState() {
+    setSubmitError('');
     setIsPopupSignupOpen(!isPopupSignupOpen);
   }
 
@@ -185,17 +212,33 @@ function App() {
     setIsPopupSignupOpen(false);
   }
 
-  function onSigninSubmit() {
-    setIsSubmiting(true);
-    setIsLoggedIn(true);
-    closeAllPopups();
-    setIsSubmiting(false);
+  function onSigninSubmit(email, password) {
+    setSubmitError('');
+    let userEmail = undefined;
+    let userData = undefined;
+    users.forEach(user => {
+      if (user.email === email) {
+        userEmail = user.email;
+        if (user.password === password) {
+          return userData = user;
+        }
+      }
+    })
+    if (userData) {
+      setCurrentUser(userData);
+      setIsLoggedIn(true);
+      closeAllPopups();
+    }
+    else if (!userEmail) {
+      setSubmitError('This email is not available');
+    }
+    else {
+      setSubmitError('wrong Password, please try again');
+    }
   }
 
   function onSignupSubmit() {
-    setIsSubmiting(true);
     closeAllPopups();
-    setIsSubmiting(false);
   }
 
   function onRelativeSignupClick() {
@@ -270,6 +313,7 @@ function App() {
           onSubmit={onSigninSubmit}
           onRelativePathClick={onRelativeSignupClick}
           inputsErrors={inputsErrors}
+          submitError={submitError}
           editInputsErrors={editInputsErrors}
           onClose={closeAllPopups}
         />
@@ -278,6 +322,7 @@ function App() {
           onSubmit={onSignupSubmit}
           editInputsErrors={editInputsErrors}
           inputsErrors={inputsErrors}
+          submitError={submitError}
           onRelativePathClick={onRelativeSigninClick}
           onClose={closeAllPopups}
         />

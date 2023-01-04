@@ -58,7 +58,10 @@ function PopupFormInput({
         name={name}
         id={id}
         value={inputValue || ''}
-        onChange={onInputChange}
+        onInput={onInputChange}
+        onCopy={onInputChange}
+        onCut={onInputChange}
+        onPaste={onInputChange}
         placeholder={inputPlaceholder}
         minLength={minLength}
         maxLength={maxLength}

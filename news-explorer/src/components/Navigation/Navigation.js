@@ -18,7 +18,7 @@ function Navigation({
       <>
         <Link to="/saved-news" onClick={onSavedArticlesClick} className={`navigation__path navigation__path_type_saved-articles ${insideSavedArticles ? 'navigation__path_decorated_saved-news navigation__path_in-saved-news' : ''}`}>Saved articles</Link>
         <Link to="/" onClick={onLogout} className={`navigation__button navigation__button_logged-in ${insideSavedArticles ? 'navigation__button_in-saved-news' : ''}`}>
-          <p>{currentUserValue.duck}</p>
+          <p>{currentUserValue.name}</p>
           <div className={`navigation__exit-icon ${insideSavedArticles ? 'navigation__exit-icon_in-saved-news' : ''}`} />
         </Link>
       </>

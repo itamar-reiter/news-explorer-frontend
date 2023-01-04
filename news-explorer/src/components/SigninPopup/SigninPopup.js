@@ -8,6 +8,7 @@ function SigninPopup({
   onSubmit,
   onRelativePathClick,
   inputsErrors,
+  submitError,
   editInputsErrors,
   onClose,
 }) {
@@ -22,14 +23,18 @@ function SigninPopup({
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
+
+  const onSubmitPopup = () => {
+    onSubmit(email, password);
+  }
   return (
     <PopupWithForm
       isPopupOpen={isPopupOpen}
       popupTitle="Sign in"
       submitButtonText="Sign in"
-      /* submitErrorLabel={'This email is not available'} */
+      submitError={submitError}
       relativePath="Sign up"
-      onSubmit={onSubmit}
+      onSubmit={onSubmitPopup}
       inputsErrors={inputsErrors}
       onClose={onClose}
       onRelativePathClick={onRelativePathClick}

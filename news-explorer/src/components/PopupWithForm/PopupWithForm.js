@@ -13,7 +13,7 @@ function PopupWithForm({
   onRelativePathClick,
   relativePath,
   inputsErrors,
-  submitErrorLabel,
+  submitError,
   children,
 }) {
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
@@ -51,7 +51,7 @@ function PopupWithForm({
         </div>
         <form className="popup__form" onSubmit={handleSubmit}>
           {children}
-          <span className={`popup__submit-error ${submitErrorLabel ? 'popup__submit-error_active' : ''}`}>{submitErrorLabel}</span>
+          <span className='popup__submit-error' >{submitError}</span>
           <button
             className={`popup__submit-button ${isSubmitButtonDisabled ? '' : 'popup__submit-button_enabled'}`}
             type="submit"

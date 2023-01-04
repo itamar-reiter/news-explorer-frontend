@@ -7,8 +7,8 @@ function SignupPopup({
   isPopupOpen,
   onSubmit,
   onRelativePathClick,
-  isFormValid,
   inputsErrors,
+  submitError,
   editInputsErrors,
   onClose,
 }) {
@@ -38,6 +38,7 @@ function SignupPopup({
       relativePath="Sign in"
       onSubmit={onSubmit}
       inputsErrors={inputsErrors}
+      submitError={submitError}
       onClose={onClose}
       onRelativePathClick={onRelativePathClick}
     >
