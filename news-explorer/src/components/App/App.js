@@ -7,10 +7,9 @@ import Footer from '../Footer/Footer';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import SavedNews from '../SavedNews/SavedNews';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
-import PopupFormInput from '../PopupFormInput/PopupFormInput';
 import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
+import SuccessRegisterPopup from '../SuccessRegisterPopup/SuccessRegisterPopup';
 
 function App() {
   const history = useHistory();
@@ -188,18 +187,25 @@ function App() {
       __v: 0,
     }]);
 
-  const [isPopupSigninOpen, setIsPopupSigninOpen] = useState(false);
-  const [isPopupSignupOpen, setIsPopupSignupOpen] = useState(false);
+    
+    
+    const [isPopupSigninOpen, setIsPopupSigninOpen] = useState(false);
+    function toggleSigninPopupState() {
+      setSubmitError('');
+      setIsPopupSigninOpen(!isPopupSigninOpen);
+    }
+    
+    const [isPopupSignupOpen, setIsPopupSignupOpen] = useState(false);
+    function toggleSignupPopupState() {
+      setSubmitError('');
+      setIsPopupSignupOpen(!isPopupSignupOpen);
+    }
 
-  function toggleSigninPopupState() {
-    setSubmitError('');
-    setIsPopupSigninOpen(!isPopupSigninOpen);
-  }
+    const [isPopupSuccessRegisterOpen, setIsPopupSuccessRegisterOpen] = useState(false);
 
-  function toggleSignupPopupState() {
-    setSubmitError('');
-    setIsPopupSignupOpen(!isPopupSignupOpen);
-  }
+    function toggleSuccessRegisterPopupState() {
+      setIsPopupSuccessRegisterOpen(!isPopupSuccessRegisterOpen);
+    }
 
   const handleEscPress = (evt) => {
     if (evt.key === 'Escape') {
@@ -210,6 +216,7 @@ function App() {
   function closeAllPopups() {
     setIsPopupSigninOpen(false);
     setIsPopupSignupOpen(false);
+    setIsPopupSuccessRegisterOpen(false);
   }
 
   function onSigninSubmit(email, password) {
@@ -239,6 +246,7 @@ function App() {
 
   function onSignupSubmit() {
     closeAllPopups();
+    toggleSuccessRegisterPopupState();
   }
 
   function onRelativeSignupClick() {
@@ -325,6 +333,11 @@ function App() {
           submitError={submitError}
           onRelativePathClick={onRelativeSigninClick}
           onClose={closeAllPopups}
+        />
+        <SuccessRegisterPopup 
+        isPopupOpen={isPopupSuccessRegisterOpen}
+        onRelativePathClick={onRelativeSigninClick}
+        onClose={closeAllPopups}
         />
       </div>
     </CurrentUserContext.Provider>

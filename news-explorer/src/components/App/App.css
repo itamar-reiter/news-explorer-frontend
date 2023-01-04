@@ -81,6 +81,9 @@ g = gap
   --mt-form-field-input: 9px;
   --pb-form-filed-input: 10px;
   --mt-form-field-error: 3px;
+
+  /* success-register vars */
+  --p-popup-success-register: 43px 79px 51px 36px;
 }
 
 @media (max-width: 768px) {
