@@ -1,0 +1,103 @@
+.footer {
+  padding: 30px clamp(41px, 5.555%, 80px) 30px clamp(40px, 7.222%, 104px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__copyrights {
+  min-width: max-content;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #b6bcbf;
+}
+
+.footer__navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 41.89px;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.footer__link {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #1a1b22;
+  text-decoration: none;
+}
+
+.footer__icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 27.9px;
+}
+
+.footer__icon {
+  width: 20.21px;
+  height: 19.71px;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.footer__icon_type_github {
+  background-image: url('../../images/github-icon_comp.svg');
+}
+
+.footer__icon_type_facebook {
+  background-image: url('../../images/facebook-icon_comp.svg');
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 21px clamp(16px, 5.338%, 41px) 22px clamp(16px, 5.208%, 40px);
+  }
+
+  .footer__icons {
+    gap: 26.9px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column-reverse;
+    padding: 20px 16px 22px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 38px;
+  }
+
+  .footer__copyrights{
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer__navbar{
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .footer__links{
+    flex-direction: column;
+    gap: 32.6px;
+    align-items: flex-start;
+  }
+
+  .footer__icons{
+    height: 100%;
+    gap: 27.9px;
+    align-items: flex-start;
+  }
+}
