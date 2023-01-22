@@ -10,10 +10,10 @@ function Footer() {
       <nav className='footer__navbar'>
         <div className='footer__links'>
           <Link to="/" className="footer__link">Home</Link>
-          <Link to="/" className="footer__link">Practicum</Link>
+          <Link to="https://practicum.com/en-isr/" className="footer__link">Practicum</Link>
         </div>
         <div className='footer__icons'>
-          <Link to="/" className="footer__icon footer__icon_type_github" />
+          <Link to="https://github.com/itamar-reiter" className="footer__icon footer__icon_type_github" />
           <Link to="/" className="footer__icon footer__icon_type_facebook" />
         </div>
       </nav>
