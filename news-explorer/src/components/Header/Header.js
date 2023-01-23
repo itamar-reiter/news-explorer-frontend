@@ -17,20 +17,22 @@ export default function Header({
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo">NewsExplorer</Link>
-      <Navigation
-        isLoggedIn={isLoggedIn}
-        isActive={isMobileNavigationActive}
-        onSavedArticlesClick={onSavedArticlesClick}
-        insideMain
-        insideSavedArticles={insideSavedArticles}
-        onSigninClick={onSigninClick}
-        onLogout={onLogout}
-      />
-      <button
-        onClick={onMobileNavigationButtonClick}
-        className={`header__nav-button ${isMobileNavigationActive ? 'header__nav-button_esc-mode' : ''}`}
-      />
+      <div className={`header__background ${isMobileNavigationActive ? 'header__background_active' : ''}`}>
+        <Link to="/" className="header__logo">NewsExplorer</Link>
+        <Navigation
+          isLoggedIn={isLoggedIn}
+          isActive={isMobileNavigationActive}
+          onSavedArticlesClick={onSavedArticlesClick}
+          insideMain
+          insideSavedArticles={insideSavedArticles}
+          onSigninClick={onSigninClick}
+          onLogout={onLogout}
+        />
+        <button
+          onClick={onMobileNavigationButtonClick}
+          className={`header__nav-button ${isMobileNavigationActive ? 'header__nav-button_esc-mode' : ''}`}
+        />
+      </div>
     </header>
   );
 }

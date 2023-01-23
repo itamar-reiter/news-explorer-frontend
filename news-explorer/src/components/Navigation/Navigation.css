@@ -125,7 +125,7 @@
     flex-grow: 0;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.15s linear, visibility 0.15s;
+    transition: opacity 0.15s linear, visibility 0.15s linear;
   }
 
   .navigation_in-saved-news{

@@ -11,6 +11,8 @@
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
+  line-height: 22px;
+  margin: 0;
   color: #b6bcbf;
 }
 
@@ -62,7 +64,7 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 21px clamp(16px, 5.338%, 41px) 22px clamp(16px, 5.208%, 40px);
+    padding: 21px clamp(16px, 5.338%, 41px) 18px clamp(16px, 5.208%, 40px);
   }
 
   .footer__icons {

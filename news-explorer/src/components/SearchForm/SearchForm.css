@@ -24,7 +24,7 @@
 
 .search-form__subtitle {
   align-self: start;
-  margin-top: 32px;
+  margin: 32px 0 0;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -81,7 +81,7 @@
 
 @media (max-width: 768px) {
   .search-form {
-    padding: calc(38px + 66px) clamp(16px, 20.833%, 160px);
+    padding: calc(38px + 66px) clamp(16px, 20.833%, 160px) 48px;
   }
 
   .search-form__title {
@@ -90,7 +90,7 @@
   }
 
   .search-form__subtitle {
-    margin-top: 16px;
+    margin: 16px 0 0;
   }
 
   .search-form__form {
@@ -99,7 +99,8 @@
   }
 
   .search-form__submit-button {
-    width: 160px;
+    min-width: 160px;
+    padding: 0;
   }
 }
 

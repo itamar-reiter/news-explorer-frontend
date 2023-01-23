@@ -127,17 +127,22 @@
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
+  line-height: 24px;
   color: #b6bcbf;
 }
 
 .news-card__title {
+  display: inline-block;
   font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: 400;
   font-size: 26px;
   line-height: 30px;
   color: #1a1b22;
-  margin-top: 12px;
+  margin: 12px 0 0;
+  height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .news-card__text {
@@ -147,7 +152,10 @@
   font-size: 16px;
   line-height: 22px;
   color: #1a1b22;
-  margin-top: 16px;
+  margin: 16px 0 0 0;
+  height: 110px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .news-card__source {
@@ -159,7 +167,10 @@
   letter-spacing: 0.4px;
   text-transform: uppercase;
   color: #b6bcbf;
-  margin-top: 18px;
+  margin: 18px 0 0 0;
+  height: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 @media (max-width: 1000px) {
@@ -190,54 +201,56 @@
     padding: 16px;
   }
   .news-card__title {
-    margin-top: 8px;
+    margin: 8px 0 0 0;
+    height: 72px;
+    font-size: 22px;
+    line-height: 24px;
   }
 
   .news-card__text {
-    margin-top: 10px;
+    margin: 10px 0 0 0;
+    height: 88px;
   }
 
   .news-card__source {
-    margin-top: 12px;
+    margin: 12px 0 0 0;
   }
 }
 
 @media (max-width: 508px) {
-  
-  
-  
   .news-card__popup-text {
     display: flex;
   }
 }
 
 @media (max-width: 426px) {
-  .news-card__image{
-   height: 196px;
+  .news-card__image {
+    height: 196px;
   }
-  
-  .news-card__button{
-  margin: 16px 16px 0 0;
+
+  .news-card__button {
+    margin: 16px 16px 0 0;
   }
-  
+
   .news-card__popup-text {
     display: flex;
     margin: 16px 0 0 0;
   }
-  
-  .news-card__keyword{
+
+  .news-card__keyword {
     margin: 16px auto 0 16px;
   }
-  
-  .news-card__title{
-    margin-top: 10px;
+
+  .news-card__title {
+    margin: 10px 0 0 0;
+    height: 48px;
   }
-  
-  .news-card__text{
-    margin-top: 14px;
+
+  .news-card__text {
+    margin: 14px 0 0 0;
   }
-  
-  .news-card__source{
-    margin-top: 8px;
+
+  .news-card__source {
+    margin: 8px 0 0 0;
   }
-  }
+}
