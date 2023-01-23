@@ -46,7 +46,7 @@ function PopupWithForm({
     >
       <div className="popup__content">
         <div className="popup__head">
-          <h1 className="popup__title">{popupTitle}</h1>
+          <h2 className="popup__title">{popupTitle}</h2>
           <button className="popup__esc" onClick={onClose} />
         </div>
         <form className="popup__form" onSubmit={handleSubmit}>
@@ -64,12 +64,12 @@ function PopupWithForm({
         </form>
         <p className="popup__relative-path">
           or&nbsp;
-          <span
+          <button
             onClick={onRelativePathClick}
-            className="popup__relative-path popup__relative-path_link-style"
+            className="popup__relative-path popup__relative-path_style_link-style"
           >
             {relativePath}
-          </span>
+          </button>
         </p>
       </div>
     </div>

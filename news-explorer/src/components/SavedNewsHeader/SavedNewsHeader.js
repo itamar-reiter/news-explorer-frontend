@@ -15,8 +15,8 @@ export default function SavedNewsHeader({
   const currentUserValue = useContext(CurrentUserContext);
 
   return (
-    <header className="header_in-saved-news">
-      <Link to="/" className="header__logo_in-saved-news">NewsExplorer</Link>
+    <header className="header header_type_in-saved-news">
+      <Link to="/" className="header__logo header__logo_type_in-saved-news">NewsExplorer</Link>
       <Navigation
         isLoggedIn
         isActive={isMobileNavigationActive}
@@ -28,7 +28,7 @@ export default function SavedNewsHeader({
       />
       <button 
       onClick={onMobileNavigationButtonClick}
-      className={`header__nav-button_in-saved-news ${isMobileNavigationActive? 'header__nav-button_in-saved-news_esc-mode' : ''}`}
+      className={`header__nav-button header__nav-button_type_in-saved-news ${isMobileNavigationActive? 'header__nav-button_mode_saved-news-esc-mode' : ''}`}
       />
     </header>
   );

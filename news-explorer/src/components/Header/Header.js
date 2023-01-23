@@ -30,7 +30,7 @@ export default function Header({
         />
         <button
           onClick={onMobileNavigationButtonClick}
-          className={`header__nav-button ${isMobileNavigationActive ? 'header__nav-button_esc-mode' : ''}`}
+          className={`header__nav-button ${isMobileNavigationActive ? 'header__nav-button_type_esc-mode' : ''}`}
         />
       </div>
     </header>

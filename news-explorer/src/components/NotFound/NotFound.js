@@ -5,7 +5,7 @@ function NotFound() {
   return (
     <div className="not-found">
       <div className="not-found__image" />
-      <h1 className="not-found__title">Nothing found</h1>
+      <h2 className="not-found__title">Nothing found</h2>
       <p className="not-found__paragraph">
         Sorry, but nothing matched
         {' '}

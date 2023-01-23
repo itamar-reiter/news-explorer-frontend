@@ -9,7 +9,7 @@
   gap: 64px;
 }
 
-.news-cards-list_saved-news{
+.news-cards-list_type_saved-news{
   padding: 62px clamp(40px,7.361%, 106px) 62px clamp(40px,7.083%, 102px);
 
 }
@@ -61,7 +61,7 @@
     gap: 32px;
   }
   
-  .news-cards-list_saved-news{
+  .news-cards-list_type_saved-news{
     padding: 32px 5.208%;
   
   }
@@ -79,7 +79,7 @@
 
 @media (max-width: 509px) {
 
-  .news-cards-list_saved-news{
+  .news-cards-list_type_saved-news{
   padding: 24px 16px 13px 16px;
 
 }

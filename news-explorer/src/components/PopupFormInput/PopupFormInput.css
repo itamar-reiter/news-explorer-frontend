@@ -35,7 +35,7 @@
   transition: border-bottom 0.2s linear;
 }
 
-.form-feild__input_focused{
+.form-feild__input_type_focused{
   border-bottom: 1px solid rgb(0, 0, 0);
 }
 

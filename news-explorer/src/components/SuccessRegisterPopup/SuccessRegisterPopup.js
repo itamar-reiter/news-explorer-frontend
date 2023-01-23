@@ -15,20 +15,20 @@ function SuccessRegisterPopup({
 
   return (
     <div
-      className={`popup popup_success-register ${isPopupOpen ? 'popup_active' : ''}`}
+      className={`popup popup_type_success-register ${isPopupOpen ? 'popup_active' : ''}`}
       onClick={closePopupOverlay}
     >
-      <div className="popup__content popup__content_success-register">
+      <div className="popup__content popup__content_type_success-register">
         <div className="popup__head">
-          <h1 className="popup__title">Registration successfully<br/>completed!</h1>
-          <button className="popup__esc popup__esc_success-register" onClick={onClose} />
+          <h2 className="popup__title">Registration successfully<br/>completed!</h2>
+          <button className="popup__esc popup__esc_type_success-register" onClick={onClose} />
         </div>
-          <span
+          <button
             onClick={onRelativePathClick}
-            className="popup__relative-path popup__relaative-path_success-register popup__relative-path_link-style popup__relative-path_link-style_success-register"
+            className="popup__relative-path popup__relaative-path_type_success-register popup__relative-path_style_link-style popup__relative-path_style_success-register-link-style"
           >
             {"Sign in"}
-          </span>
+          </button>
       </div>
     </div>
   )

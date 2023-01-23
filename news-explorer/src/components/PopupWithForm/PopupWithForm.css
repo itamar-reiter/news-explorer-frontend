@@ -112,10 +112,12 @@
   padding: 0;
 }
 
-.popup__relative-path_link-style {
+.popup__relative-path_style_link-style {
   font-weight: 500;
   color: #2f71e5;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 @media (max-width: 426px) {

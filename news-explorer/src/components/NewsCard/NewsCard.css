@@ -88,12 +88,12 @@
   padding: 0 26px;
 }
 
-.news-card__button_saved-news:hover + .news-card__popup-text {
+.news-card__button_type_saved-news:hover + .news-card__popup-text {
   visibility: visible;
   opacity: 1;
 }
 
-.news-card__button_saved-news:hover .news-card__garbage-icon {
+.news-card__button_type_saved-news:hover .news-card__garbage-icon {
   background-image: url('../../images/garbage-icon.svg');
 }
 

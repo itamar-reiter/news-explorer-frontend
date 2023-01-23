@@ -7,16 +7,16 @@ function SavedNewsTitles() {
   return (
     <section className="saved-news-titles">
       <h1 className="saved-news-titles__title">Saved articles</h1>
-      <p className="saved-news-titles__intro">
+      <h2 className="saved-news-titles__subtitle">
         {currentUserValue.name}
         , you have
         {currentUserValue.savedArticles}
         {' '}
         saved articles
-      </p>
+      </h2>
       <p className="saved-news-titles__keywords">
         By keywords:&nbsp;
-        <span className="saved-news-titles__keywords_highlight">
+        <span className="saved-news-titles__keywords saved-news-titles__keywords_type_highlight">
           Nature, Yellowstone, and 2 other
         </span>
       </p>

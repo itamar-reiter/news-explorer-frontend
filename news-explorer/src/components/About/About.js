@@ -8,7 +8,7 @@ function About() {
     <section className="about">
       <div className="about__image" />
       <div className="about__content">
-        <h1 className="about__title">About the author</h1>
+        <h2 className="about__title">About the author</h2>
         <p className="about__description">
           This block describes the project author.
           Here you should indicate your name, what you do,

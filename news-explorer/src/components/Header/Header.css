@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 
-.header__nav-button_esc-mode {
+.header__nav-button_type_esc-mode {
   background-image: url('../../images/esc-icon.svg');
   background-size: cover;
 }

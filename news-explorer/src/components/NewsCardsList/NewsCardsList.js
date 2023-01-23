@@ -9,8 +9,8 @@ function NewsCardsList({
   cards,
 }) {
   return (
-    <div className={`news-cards-list ${isInsideSavedArticles ? 'news-cards-list_saved-news' : ''}`}>
-      {isInsideMain && <h1 className="news-cards-list__title">Search results</h1>}
+    <div className={`news-cards-list ${isInsideSavedArticles ? 'news-cards-list_type_saved-news' : ''}`}>
+      {isInsideMain && <h2 className="news-cards-list__title">Search results</h2>}
       <ul className="news-cards-list__content">
         {cards.map((card) => (
           <li key={card._id}>

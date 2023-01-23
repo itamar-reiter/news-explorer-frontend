@@ -18,7 +18,7 @@ function App() {
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
   const [isSearching, setIsSearching] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isFound, setIsFound] = useState(true);
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [inputsErrors, setInputsErrors] = useState([]);
@@ -60,7 +60,7 @@ function App() {
       "email": "ita8@gmail.com",
       "password": "$2a$10$LOdz.gzL.2Mh4pVKFgu9LefXUoMKW3lP6XO7KS6F0lPZ8xGQgofBS",
       "__v": 0
-    }
+    },
   ]);
 
   const [cards, setCards] = useState([
@@ -102,6 +102,18 @@ function App() {
     }]);
 
   const [savedCards, setSavedCards] = useState([
+    {
+      _id: '638c9a5cccdc771d93f229c0',
+      keyword: 'keyword8',
+      title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
+      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
+      date: 'mkmkm/1/1 october',
+      source: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
+      link: 'https://vb3bhb.com',
+      image: '../../images/itamar-profile-image.jpg',
+      owner: '63885fc54c95267b1ed22007',
+      __v: 0,
+    },
     {
       _id: '638c9a5cccdc771d93f229c0',
       keyword: 'keyword8',

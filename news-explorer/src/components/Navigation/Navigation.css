@@ -7,7 +7,7 @@
   padding: 0;
 }
 
-.navigation_in-saved-news{
+.navigation_type_in-saved-news{
   background: white;
 }
 
@@ -25,7 +25,7 @@
   justify-content: center;
 }
 
-.navigation__path_in-saved-news{
+.navigation__path_type_in-saved-news{
   color: #1A1B22;
 }
 
@@ -72,17 +72,17 @@
   cursor: pointer;
 }
 
-.navigation__button_logged-in {
+.navigation__button_state_logged-in {
   padding: 0 19px;
 }
 
-.navigation__button_in-saved-news{
+.navigation__button_type_in-saved-news{
   border: 1px solid #D1D2D6;
   color: #1A1B22;
   transition: border 0.15s linear;
 }
 
-.navigation__button_in-saved-news:hover{
+.navigation__button_type_in-saved-news:hover{
   border: 1px solid #1A1B22;
 }
 
@@ -92,7 +92,7 @@
   height: 16px;
 }
 
-.navigation__exit-icon_in-saved-news{
+.navigation__exit-icon_type_in-saved-news{
   background: url('../../images/union-saved-news.svg');
 }
 
@@ -128,7 +128,7 @@
     transition: opacity 0.15s linear, visibility 0.15s linear;
   }
 
-  .navigation_in-saved-news{
+  .navigation_type_in-saved-news{
     background: white;
   }
 

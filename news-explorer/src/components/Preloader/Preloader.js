@@ -5,7 +5,7 @@ function Preloader() {
   return (
     <div className="preloader">
       <div className="preloader__animation" />
-      <p className="preloader__text">Searching for news...</p>
+      <h2 className="preloader__title">Searching for news...</h2>
     </div>
   );
 }

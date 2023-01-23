@@ -51,7 +51,7 @@ function PopupFormInput({
       <label className="form-field__label">{label}</label>
       <input
         ref={inputRef}
-        className={`form-field__input ${isFocused ? 'form-feild__input_focused' : ''}`}
+        className={`form-field__input ${isFocused ? 'form-feild__input_type_focused' : ''}`}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         type={type}

@@ -18,7 +18,7 @@
   color: rgba(26, 27, 34, 0.5);
 }
 
-.saved-news-titles__intro {
+.saved-news-titles__subtitle {
   font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: 400;
@@ -39,7 +39,7 @@
   color: #1a1b22;
 }
 
-.saved-news-titles__keywords_highlight {
+.saved-news-titles__keywords_type_highlight {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
@@ -72,7 +72,7 @@
     font-size: 12px;
   }
 
-  .saved-news-titles__intro{
+  .saved-news-titles__subtitle{
     font-size: 30px;
     line-height: 34px;
     margin-bottom: 34px;
