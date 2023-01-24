@@ -67,7 +67,7 @@ function SignupPopup({
         inputPlaceholder="Enter email"
         minLength={2}
         maxLength={30}
-        isRequired
+        isRequired={true}
         editInputsErrors={editInputsErrors}
         isPopupOpen={isPopupOpen}
       />
@@ -81,7 +81,7 @@ function SignupPopup({
         inputPlaceholder="Enter password"
         minLength={2}
         maxLength={30}
-        isRequired
+        isRequired={true}
         editInputsErrors={editInputsErrors}
         isPopupOpen={isPopupOpen}
       />
@@ -96,7 +96,7 @@ function SignupPopup({
         minLength={2}
         maxLength={30}
         editInputsErrors={editInputsErrors}
-        isRequired
+        isRequired={true}
         isPopupOpen={isPopupOpen}
       />
     </PopupWithForm>

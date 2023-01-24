@@ -18,7 +18,7 @@ function SigninPopup({
   function toggleSubmitButtonClickedState(isClicked) {
     setisSubmitButtonClicked(isClicked);
   }
-  
+
   const [email, setEmail] = useState('');
 
   function handleEmailChange(e) {
@@ -60,7 +60,7 @@ function SigninPopup({
         handleInputChange={handleEmailChange}
         inputPlaceholder="Enter email"
         minLength={2}
-        isRequired
+        isRequired={true}
         editInputsErrors={editInputsErrors}
         isPopupOpen={isPopupOpen}
       />
@@ -74,7 +74,7 @@ function SigninPopup({
         inputPlaceholder="Enter password"
         minLength={2}
         maxLength={30}
-        isRequired
+        isRequired={true}
         editInputsErrors={editInputsErrors}
         isPopupOpen={isPopupOpen}
       />
