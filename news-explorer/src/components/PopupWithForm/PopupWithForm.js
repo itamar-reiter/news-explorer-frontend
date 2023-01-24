@@ -10,6 +10,7 @@ function PopupWithForm({
   popupTitle,
   submitButtonId,
   submitButtonText,
+  isSubmitButtonClicked,
   onRelativePathClick,
   relativePath,
   inputsErrors,
@@ -53,7 +54,7 @@ function PopupWithForm({
           {children}
           <span className='popup__submit-error' >{submitError}</span>
           <button
-            className={`popup__submit-button ${isSubmitButtonDisabled ? '' : 'popup__submit-button_enabled'}`}
+            className={`popup__submit-button ${isSubmitButtonDisabled ? '' : 'popup__submit-button_type_enabled'} ${isSubmitButtonClicked? 'popup__submit-button_type_active': ''}`}
             type="submit"
             id={submitButtonId}
             onClick={handleSubmit}

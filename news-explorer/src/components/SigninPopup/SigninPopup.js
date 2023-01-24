@@ -12,19 +12,30 @@ function SigninPopup({
   editInputsErrors,
   onClose,
 }) {
+
+  const [isSubmitButtonClicked, setisSubmitButtonClicked] = useState(false);
+  
+  function toggleSubmitButtonClickedState(isClicked) {
+    setisSubmitButtonClicked(isClicked);
+  }
+  
   const [email, setEmail] = useState('');
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
+    toggleSubmitButtonClickedState(false);
   }
 
   const [password, setPassword] = useState('');
 
   function handlePasswordChange(e) {
     setPassword(e.target.value);
+    toggleSubmitButtonClickedState(false);
   }
 
+
   const onSubmitPopup = () => {
+    toggleSubmitButtonClickedState(true);
     onSubmit(email, password);
   }
   return (
@@ -35,6 +46,7 @@ function SigninPopup({
       submitError={submitError}
       relativePath="Sign up"
       onSubmit={onSubmitPopup}
+      isSubmitButtonClicked={isSubmitButtonClicked}
       inputsErrors={inputsErrors}
       onClose={onClose}
       onRelativePathClick={onRelativePathClick}

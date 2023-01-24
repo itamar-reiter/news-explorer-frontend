@@ -91,7 +91,7 @@
   transition: background-color 0.1s linear;
 }
 
-.popup__submit-button_enabled {
+.popup__submit-button_type_enabled {
   color: white;
   background-color: #2f71e5;
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
@@ -99,8 +99,16 @@
   transition: background-color 0.1s linear;
 }
 
-.popup__submit-button_enabled:hover {
+.popup__submit-button_type_enabled:hover {
   background-color: #347eff;
+}
+
+.popup__submit-button_type_active {
+  background-color: #2a65cc;
+}
+
+.popup__submit-button_type_active:hover {
+  background-color: #2a65cc;
 }
 
 .popup__relative-path {
@@ -131,11 +139,11 @@
     padding: 16px 16px 500px 16px;
   }
 
-  .popup__head{
+  .popup__head {
     margin-bottom: 3px;
   }
 
-  .popup__form{
+  .popup__form {
     width: 100%;
   }
 
@@ -145,8 +153,7 @@
     transform: translate(0, -56px);
   }
 
-  .popup__submit-button{
+  .popup__submit-button {
     width: 100%;
-
   }
 }
