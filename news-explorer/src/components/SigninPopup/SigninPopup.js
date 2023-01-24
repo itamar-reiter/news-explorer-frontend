@@ -53,7 +53,7 @@ function SigninPopup({
     >
       <PopupFormInput
         label="Email"
-        type="text"
+        type="email"
         name="email"
         id="signInEmail"
         inputValue={email}

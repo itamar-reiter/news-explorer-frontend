@@ -59,9 +59,9 @@ function SignupPopup({
     >
       <PopupFormInput
         label="Email"
-        type="text"
+        type="email"
         name="email"
-        id="email"
+        id="signUpEmail"
         inputValue={email}
         handleInputChange={handleEmailChange}
         inputPlaceholder="Enter email"
