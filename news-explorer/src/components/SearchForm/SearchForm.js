@@ -7,6 +7,7 @@ function SearchForm({ onArticleSearch }) {
   const [articleName, setArticleName] = useState('');
 
   function handleArticleNameChange(e) {
+    setIsSubmitButtonClicked(false);
     setArticleName(e.target.value);
   }
 

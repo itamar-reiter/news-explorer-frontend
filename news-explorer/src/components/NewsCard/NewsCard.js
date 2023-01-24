@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Route } from 'react-router-dom';
 import './NewsCard.css';
 
@@ -12,12 +12,27 @@ function NewsCard({
   source,
   image,
 }) {
+
+  const [isArticleSaved, setIsArticleSaved] = useState(false);
+  function toggleArticleSavedState() {
+
+    setIsArticleSaved(!isArticleSaved);
+  }
+
+  function onSaveArticleClick() {
+    if (isLoggedIn) {
+      toggleArticleSavedState();
+    }
+  }
+
   return (
     <div className="news-card">
       <Route exact path="/">
         <div className="news-card__image news-card__image_type_main">
-          <button className={`news-card__button ${!isLoggedIn ? 'news-card__button_not-logged-in' : ''}`}>
-            <div className="news-card__save-icon" />
+          <button className={`news-card__button ${!isLoggedIn ? 'news-card__button_not-logged-in' : ''}`}
+            onClick={onSaveArticleClick}
+          >
+            <div className={`news-card__save-icon ${isArticleSaved ? 'news-card__save-icon_active' : ''}`} />
           </button>
           <span className="news-card__popup-text news-card__popup-text_type_main">Sign in to save articles</span>
         </div>

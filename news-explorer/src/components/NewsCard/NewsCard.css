@@ -76,6 +76,14 @@
   background-image: url('../../images/save-button-icon-hover.svg');
 }
 
+.news-card__save-icon_active{
+  background-image: url('../../images/save-button-icon-clicked.svg');
+}
+
+.news-card__button:hover .news-card__save-icon_active{
+  background-image: url('../../images/save-button-icon-clicked.svg');
+}
+
 .news-card__garbage-icon {
   background-image: url('../../images/garbage-icon-grey.svg');
   background-position: center;
