@@ -1,0 +1,53 @@
+/* roboto 500 400 900
+roboto slab 700 400
+Inter 400
+ Source Sans Pro 400
+ */
+
+ /* @font-face {
+  font-family: 'Roboto Slab';
+  src: url('./Roboto_Slab/static/RobotoSlab-Regular.ttf');
+ }
+
+ @font-face {
+  font-family: 'Roboto Slab';
+  src: url('./Roboto_Slab/static/RobotoSlab-Bold.ttf');
+ } */
+
+ @font-face {
+  font-family: 'Roboto Slab';
+  src: url('./Roboto_Slab/RobotoSlab-VariableFont_wght.ttf');
+ }
+
+ @font-face {
+  font-family: 'Inter';
+  src: url('./Inter/Inter-VariableFont_slnt\,wght.ttf');
+ }
+
+ @font-face {
+  font-family: 'Roboto';
+  src: url('./Roboto/Roboto-Black.ttf');
+  font-weight: 900;
+  font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Roboto';
+    src: url('./Roboto/Roboto-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    src: url('./Roboto/Roboto-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url('./Source_Sans_Pro/SourceSansPro-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+  }
