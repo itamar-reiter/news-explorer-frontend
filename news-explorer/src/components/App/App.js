@@ -25,7 +25,9 @@ function App() {
   const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
-  const [cardKeyword, setCardKeyword] = useState();
+  const [cardKeyword, setCardKeyword] = useState('');
+  const [keywordsCollection, setKeywordsCollection] = useState([]);
+  
   
 
 
@@ -155,6 +157,8 @@ function App() {
   }
 
   function onArticleSearch(question) {
+    setCardKeyword(question);
+    setKeywordsCollection([...keywordsCollection, cardKeyword]);
     setRenderedCards();
     setIsSearching(true);
     setIsLoading(true);
@@ -215,11 +219,16 @@ function App() {
     setSavedCards([...savedCards, card]);
   }
 
+  function onDeleteCard() {
+    
+  }
+
   const cardFunctions = {
     dateConvert: convertDataToDate,
     showMoreCards: showMoreCards,
     isShowMoreActive: isShowMoreActive,
-    onSaveClick: onSaveCard
+    onSaveClick: onSaveCard,
+    keyword: cardKeyword,
   }
 
   function onSigninClick() {

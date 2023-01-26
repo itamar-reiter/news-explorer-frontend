@@ -5,7 +5,6 @@ import './NewsCard.css';
 function NewsCard({
   cardFunctions,
   isLoggedIn,
-  keyword,
   card,
   title,
   date,
@@ -46,7 +45,7 @@ function NewsCard({
             <div className="news-card__garbage-icon" />
           </button>
           <span className="news-card__popup-text news-card__popup-text_type_saved-news">Remove from saved</span>
-          <p className="news-card__keyword">{keyword}</p>
+          <p className="news-card__keyword">{cardFunctions.keyword}</p>
         </div>
       </Route>
       <div className="news-card__description">
