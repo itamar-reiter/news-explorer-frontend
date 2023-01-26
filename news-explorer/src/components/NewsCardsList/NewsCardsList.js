@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './NewsCardsList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
@@ -17,7 +17,7 @@ function NewsCardsList({
         {cards.map((card) => (
           <li key={card.url}>
             <NewsCard
-            cardFunctions={cardFunctions}
+              cardFunctions={cardFunctions}
               isLoggedIn={isLoggedIn}
               isInsideSavedArticles={isInsideSavedArticles}
               keyword={'card.keyword'}
@@ -34,7 +34,13 @@ function NewsCardsList({
           </li>
         ))}
       </ul>
-      {isInsideMain && <button className="news-cards-list__show-more">Show more</button>}
+      {isInsideMain &&
+        <button
+          className={`news-cards-list__show-more ${cardFunctions.isShowMoreActive ? '' : 'news-cards-list__show-more_inactive'}`}
+          onClick={cardFunctions.showMoreCards}>
+          Show more
+        </button>
+      }
     </div>
   );
 }

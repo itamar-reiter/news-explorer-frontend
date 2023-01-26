@@ -11,6 +11,7 @@ import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
 import SuccessRegisterPopup from '../SuccessRegisterPopup/SuccessRegisterPopup';
 import NewsApi from '../../utils/NewsApi';
+import { func } from 'prop-types';
 
 function App() {
   const history = useHistory();
@@ -18,12 +19,14 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
-  const [isSearching, setIsSearching] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isFound, setIsFound] = useState(true);
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
+  const [isShowMoreActive, setIsShowMoreActive] = useState(true);
+
 
   const editInputsErrors = (isError, inputName) => {
     let tempErrorsArray = inputsErrors;
@@ -64,94 +67,12 @@ function App() {
     }
   ]);
 
-  const [cards, setCards] = useState([
-  ]);
+  const [newsApiRecivedCards, setNewsApiRecivedCards] = useState();
 
-  const [savedCards, setSavedCards] = useState([
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638db088ec78557255adc4c5',
-      keyword: 'keyword82',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      image: '../../images/itamar-profile-image.jpg',
-      link: 'https://vb3bhb.com',
-      owner: '638d97840da314b1cb765151',
-      __v: 0,
-    },
-    {
-      _id: '638db146ec78557255adc4ce',
-      keyword: 'keyword92',
-      title: 'title7',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '638db0c6ec78557255adc4c9',
-      __v: 0,
-    }]);
+
+  const [renderedCards, setRenderedCards] = useState();
+
+  const [savedCards, setSavedCards] = useState([]);
 
 
 
@@ -233,10 +154,22 @@ function App() {
   }
 
   function onArticleSearch(question) {
+    setRenderedCards();
+    setIsSearching(true);
+    setIsLoading(true);
+    setIsShowMoreActive(true);
     return NewsApi.getArticles(question)
       .then(res => {
-        setCards(res.articles);
-        console.log(res.articles);
+        if (res.articles) {
+          setIsLoading(false);
+          setRenderedCards(res.articles.splice(0, 3));
+          console.log(res.articles);
+          setNewsApiRecivedCards(res.articles);
+        }
+        else {
+          setIsLoading(false);
+          setIsFound(false);
+        }
       });
   }
   const namesOfMonthes = {
@@ -269,9 +202,18 @@ function App() {
     return `${monthName} ${day}, ${year}`;
   }
 
+  function showMoreCards() {
+    setRenderedCards([...renderedCards, ...newsApiRecivedCards.splice(0, 3)]);
+    setNewsApiRecivedCards(newsApiRecivedCards);
+    if (newsApiRecivedCards.length === 0) {
+      setIsShowMoreActive(false);
+    }
+  }
+
   const cardFunctions = {
     dateConvert: convertDataToDate,
-
+    showMoreCards: showMoreCards,
+    isShowMoreActive: isShowMoreActive
   }
 
   function onSigninClick() {
@@ -310,7 +252,7 @@ function App() {
               isInsideMain
               isInsideSavedArticles={false}
               onArticleSearch={onArticleSearch}
-              cards={cards}
+              cards={renderedCards}
               cardFunctions={cardFunctions}
               isSearching={isSearching}
               isLoading={isLoading}
