@@ -25,6 +25,8 @@ function App() {
   const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
+  const [cardKeyword, setCardKeyword] = useState();
+  
 
 
   const editInputsErrors = (isError, inputName) => {
@@ -209,10 +211,15 @@ function App() {
     }
   }
 
+  function onSaveCard(card) {
+    setSavedCards([...savedCards, card]);
+  }
+
   const cardFunctions = {
     dateConvert: convertDataToDate,
     showMoreCards: showMoreCards,
-    isShowMoreActive: isShowMoreActive
+    isShowMoreActive: isShowMoreActive,
+    onSaveClick: onSaveCard
   }
 
   function onSigninClick() {
@@ -272,6 +279,7 @@ function App() {
               isInsideMain={false}
               isInsideSavedArticles
               savedCards={savedCards}
+              cardFunctions={cardFunctions}
             />
           </Route>
         </Switch>

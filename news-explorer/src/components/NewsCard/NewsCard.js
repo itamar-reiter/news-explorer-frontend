@@ -24,6 +24,7 @@ function NewsCard({
   function onSaveArticleClick() {
     if (isLoggedIn) {
       toggleArticleSavedState();
+      cardFunctions.onSaveClick(card);
     }
   }
 
