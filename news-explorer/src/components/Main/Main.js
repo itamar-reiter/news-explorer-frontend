@@ -12,6 +12,7 @@ function Main({
   isSearching,
   isLoading,
   cards,
+  cardFunctions,
   isFound,
 }) {
   return (
@@ -26,6 +27,7 @@ function Main({
         isSearching={isSearching}
         isLoading={isLoading}
         cards={cards}
+        cardFunctions={cardFunctions}
         isFound={isFound}
       />
       <About />

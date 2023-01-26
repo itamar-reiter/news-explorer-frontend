@@ -65,42 +65,7 @@ function App() {
   ]);
 
   const [cards, setCards] = useState([
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
-      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
-      date: 'mkmkm/1/1 october',
-      source: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638db088ec78557255adc4c5',
-      keyword: 'keyword82',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '638d97840da314b1cb765151',
-      __v: 0,
-    },
-    {
-      _id: '638db146ec78557255adc4ce',
-      keyword: 'keyword92',
-      title: 'title7',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '638db0c6ec78557255adc4c9',
-      __v: 0,
-    }]);
+  ]);
 
   const [savedCards, setSavedCards] = useState([
     {
@@ -268,11 +233,47 @@ function App() {
   }
 
   function onArticleSearch(question) {
-   return NewsApi.getArticles(question)
+    return NewsApi.getArticles(question)
       .then(res => {
-        console.log(res);
+        setCards(res.articles);
+        console.log(res.articles);
       });
   }
+  const namesOfMonthes = {
+    'January': '01',
+    'February': '02',
+    'March': '03',
+    'April': '04',
+    'May': '05',
+    'June': '06',
+    'July': '07',
+    'August': '08',
+    'September': '09',
+    'October': '10',
+    'November': '11',
+    'December': '12'
+  };
+  function convertDataToDate(date) {
+    const year = date.substr(0, 4);
+    const month = date.substr(5, 2);
+    let day = date.substr(8, 2);
+    let monthName = '';
+    Object.values(namesOfMonthes).map((monthNumber, i) => {
+      if (month === monthNumber) {
+        return monthName = Object.keys(namesOfMonthes)[i];
+      }
+    })
+    if (day.charAt(0) === '0') {
+      day = day.substr(1, 1);
+    }
+    return `${monthName} ${day}, ${year}`;
+  }
+
+  const cardFunctions = {
+    dateConvert: convertDataToDate,
+
+  }
+
   function onSigninClick() {
     closeAllPopups();
     toggleSigninPopupState();
@@ -310,6 +311,7 @@ function App() {
               isInsideSavedArticles={false}
               onArticleSearch={onArticleSearch}
               cards={cards}
+              cardFunctions={cardFunctions}
               isSearching={isSearching}
               isLoading={isLoading}
               isFound={isFound}

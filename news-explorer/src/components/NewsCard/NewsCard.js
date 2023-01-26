@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import './NewsCard.css';
 
 function NewsCard({
+  cardFunctions,
   isLoggedIn,
   keyword,
   card,
@@ -13,6 +14,7 @@ function NewsCard({
   image,
 }) {
 
+  
   const [isArticleSaved, setIsArticleSaved] = useState(false);
   function toggleArticleSavedState() {
 
@@ -28,7 +30,7 @@ function NewsCard({
   return (
     <div className="news-card">
       <Route exact path="/">
-        <div className="news-card__image news-card__image_type_main">
+        <div className="news-card__image news-card__image_type_main" style={{ backgroundImage: `url(${image})` }}>
           <button className={`news-card__button ${!isLoggedIn ? 'news-card__button_not-logged-in' : ''}`}
             onClick={onSaveArticleClick}
           >

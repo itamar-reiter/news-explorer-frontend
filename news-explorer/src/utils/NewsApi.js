@@ -2,7 +2,6 @@ class NewsApi {
   constructor() {
     this._baseUrl = 'https://nomoreparties.co/news/v2/everything?';
     this._apiKey = '46d25ee8365a48a598cd16bba913793b';
-    this._sinceWhen = new Date(this._today.getTime() - 7 * 24 * 60 * 60 * 1000);
   }
 
   _checkResponse = (res) => {
@@ -32,7 +31,7 @@ class NewsApi {
     today = yyyy + '-' + mm + '-' + dd;
     console.log(today);
     
-    return fetch(`${this._baseUrl}q=${qeustion}&to=${today}&pageSize=100&apiKey=46d25ee8365a48a598cd16bba913793b`, {
+    return fetch(`${this._baseUrl}q=${qeustion}&to=${today}&pageSize=20&apiKey=46d25ee8365a48a598cd16bba913793b`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
