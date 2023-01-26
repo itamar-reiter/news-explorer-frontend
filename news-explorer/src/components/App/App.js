@@ -10,6 +10,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
 import SuccessRegisterPopup from '../SuccessRegisterPopup/SuccessRegisterPopup';
+import NewsApi from '../../utils/NewsApi';
 
 function App() {
   const history = useHistory();
@@ -266,8 +267,11 @@ function App() {
     toggleSigninPopupState();
   }
 
-  function onArticleSearch() {
-
+  function onArticleSearch(question) {
+   return NewsApi.getArticles(question)
+      .then(res => {
+        console.log(res);
+      });
   }
   function onSigninClick() {
     closeAllPopups();
