@@ -13,7 +13,6 @@ function NewsCard({
   image,
 }) {
 
-
   const [isArticleSaved, setIsArticleSaved] = useState(false);
   function toggleArticleSavedState() {
 

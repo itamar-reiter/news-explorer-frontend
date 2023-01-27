@@ -20,7 +20,7 @@ function NewsCardsList({
               cardFunctions={cardFunctions}
               isLoggedIn={isLoggedIn}
               isInsideSavedArticles={isInsideSavedArticles}
-              keyword={'card.keyword'}
+              
               card={card}
               title={card.title}
               date={cardFunctions.dateConvert(card.publishedAt)}
