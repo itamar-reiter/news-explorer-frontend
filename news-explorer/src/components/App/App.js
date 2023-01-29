@@ -11,6 +11,7 @@ import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
 import SuccessRegisterPopup from '../SuccessRegisterPopup/SuccessRegisterPopup';
 import NewsApi from '../../utils/NewsApi';
+import MainApi from '../../utils/MainApi';
 
 function App() {
   const history = useHistory();
@@ -38,8 +39,26 @@ function App() {
       tempErrorsArray.push(inputName);
     }
     setInputsErrors(tempErrorsArray);
-    console.log(inputsErrors);
   };
+  
+  const onRegister = (email, password, name) => {
+    MainApi.register(email, password, name)
+    .then((res) => {
+      if (res._id) {
+        console.log(res);
+        closeAllPopups();
+        toggleSuccessRegisterPopupState();
+        }
+      })
+      .catch((err) => {
+      console.log(err);
+      if (err === 'Error: 409') {
+        console.log('email is exist');
+      }
+      });
+    }
+    
+
   const [users, setUsers] = useState([
     {
       "_id": {
@@ -141,11 +160,7 @@ function App() {
     }
   }
 
-  function onSignupSubmit() {
-    closeAllPopups();
-    toggleSuccessRegisterPopupState();
-  }
-
+  
   function onRelativeSignupClick() {
     closeAllPopups();
     toggleSignupPopupState();
@@ -304,7 +319,7 @@ function App() {
         />
         <SignupPopup
           isPopupOpen={isPopupSignupOpen}
-          onSubmit={onSignupSubmit}
+          onSubmit={onRegister}
           editInputsErrors={editInputsErrors}
           inputsErrors={inputsErrors}
           submitError={submitError}

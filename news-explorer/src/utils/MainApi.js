@@ -9,7 +9,7 @@ class MainApi {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   };
 
-  register(email, password) {
+  register(email, password, name) {
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
       headers: {
@@ -18,7 +18,8 @@ class MainApi {
       },
       body: JSON.stringify({
         email: email,
-        password: password
+        password: password,
+        name: name
       }),
     })
       .then((res) => this._checkResponse(res))

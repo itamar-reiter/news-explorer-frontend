@@ -42,7 +42,7 @@ function SignupPopup({
 
   function onSubmitPopup() {
     toggleSubmitButtonClickedState(true);
-    onSubmit();
+    onSubmit(email, password, username);
   }
   return (
     <PopupWithForm
