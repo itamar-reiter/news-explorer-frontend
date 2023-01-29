@@ -62,7 +62,7 @@ class MainApi {
   }
 
   getInitialAppInfo(token) {
-    return Promise.all([this.getUserInfo(token), this.getInitialCards(token)]);
+    return Promise.all([this.getUserInfo(token), this.getSavedCards(token)]);
   }
 
   getUserInfo(token) {
@@ -76,8 +76,8 @@ class MainApi {
       .then((res) => this._checkResponse(res));
   }
 
-  getInitialCards(token) {
-    return fetch(`${this._baseUrl}/cards`, {
+  getSavedCards(token) {
+    return fetch(`${this._baseUrl}/articles`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${token}`,

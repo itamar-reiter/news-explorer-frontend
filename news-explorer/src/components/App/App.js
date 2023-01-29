@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import CurrentUserContext from '../../utils/CurrentUserContext';
 import './App.css';
 import Header from '../Header/Header';
@@ -15,7 +15,48 @@ import MainApi from '../../utils/MainApi';
 
 function App() {
   const history = useHistory();
-  const [currentUser, setCurrentUser] = useState({ duck: 'duck' });
+  
+  const [token, setToken] = useState();
+
+
+  //Effect for token verification and auto login when rendering app
+  useEffect(() => {
+    setToken(localStorage.getItem("jwt"));
+    if (token) {
+      MainApi.checkToken(token)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            history.push('/');
+          }
+          else {
+            localStorage.removeItem("jwt");
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [token, history]);
+
+
+  // assign user values and get saved cards from the server
+  useEffect(() => {
+    if (token) {
+      console.log(token);
+      MainApi.getInitialAppInfo(token)
+        .then(([userInfo, savedCardsData]) => {
+          console.log(userInfo);
+          setCurrentUser(userInfo);
+          setSavedCards(savedCardsData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [token]);
+
+
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
@@ -28,8 +69,8 @@ function App() {
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
   const [cardKeyword, setCardKeyword] = useState('');
   const [keywordsCollection, setKeywordsCollection] = useState([]);
-  
-  
+
+
 
 
   const editInputsErrors = (isError, inputName) => {
@@ -40,55 +81,44 @@ function App() {
     }
     setInputsErrors(tempErrorsArray);
   };
-  
+
   const onRegister = (email, password, name) => {
     MainApi.register(email, password, name)
-    .then((res) => {
-      if (res._id) {
-        console.log(res);
-        closeAllPopups();
-        toggleSuccessRegisterPopupState();
+      .then((res) => {
+        if (res._id) {
+          console.log(res);
+          closeAllPopups();
+          toggleSuccessRegisterPopupState();
         }
       })
       .catch((err) => {
-      console.log(err);
-      if (err === 'Error: 409') {
-        console.log('email is exist');
-      }
+        console.log(err);
+        if (err === 'Error: 409') {
+          console.log('email is exist');
+        }
       });
-    }
-    
+  }
 
-  const [users, setUsers] = useState([
-    {
-      "_id": {
-        "$oid": "638ca212c66d4df0bef7282b"
-      },
-      "name": "itapita5",
-      "email": "ita5@gmail.com",
-      "password": "$2a$10$I8agtieiyLAhbyYoT5y12eRgQisiSgqkbya9zULMozuQXq2wV1uBu",
-      "__v": 0
-    },
-    {
-      "_id": {
-        "$oid": "638ca22f74868725bb1a78e1"
-      },
-      "name": "itapita6",
-      "email": "ita6@gmail.com",
-      "password": "$2a$10$pG1ZfUH6IsZNja1o3vDb1OrYMJUDVYNXMPPB0Hr0BuPgO8OOZ/5OS",
-      "__v": 0
-    },
-    {
-      "_id": {
-        "$oid": "638d97840da314b1cb765151"
-      },
-      "name": "itapita8",
-      "email": "ita8@gmail.com",
-      "password": "$2a$10$LOdz.gzL.2Mh4pVKFgu9LefXUoMKW3lP6XO7KS6F0lPZ8xGQgofBS",
-      "__v": 0
-    }
-  ]);
+  function onLogin(email, password) {
+    setSubmitError('');
+    MainApi.login(email, password)
+      .then((res => {
+        if (res.token) {
+          console.log(res);
+          localStorage.setItem("jwt", res.token);
+          setToken(localStorage.getItem("jwt"));
+          setIsLoggedIn(true);
+          closeAllPopups();
+        }
+      }
+      ))
+      .catch(err => {
+        if (err === 'Error: 401') {
 
+        }
+        setSubmitError('Email or password are incorrect. Please try again.');
+      });
+  }
   const [newsApiRecivedCards, setNewsApiRecivedCards] = useState();
 
 
@@ -135,32 +165,8 @@ function App() {
     setIsMobileNavigationOpen(false);
   }
 
-  function onSigninSubmit(email, password) {
-    setSubmitError('');
-    let userEmail = undefined;
-    let userData = undefined;
-    users.forEach(user => {
-      if (user.email === email) {
-        userEmail = user.email;
-        if (user.password === password) {
-          return userData = user;
-        }
-      }
-    })
-    if (userData) {
-      setCurrentUser(userData);
-      setIsLoggedIn(true);
-      closeAllPopups();
-    }
-    else if (!userEmail) {
-      setSubmitError('This email is not available');
-    }
-    else {
-      setSubmitError('wrong Password, please try again');
-    }
-  }
 
-  
+
   function onRelativeSignupClick() {
     closeAllPopups();
     toggleSignupPopupState();
@@ -235,7 +241,7 @@ function App() {
   }
 
   function onDeleteCard() {
-    
+
   }
 
   const cardFunctions = {
@@ -310,7 +316,7 @@ function App() {
         <Footer />
         <SigninPopup
           isPopupOpen={isPopupSigninOpen}
-          onSubmit={onSigninSubmit}
+          onSubmit={onLogin}
           onRelativePathClick={onRelativeSignupClick}
           inputsErrors={inputsErrors}
           submitError={submitError}
