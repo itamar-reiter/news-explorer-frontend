@@ -191,7 +191,7 @@ function App() {
               title: title,
               url: link,
               urlToImage: image } = article;
-              //edit source and date to feet the figma criateria
+            //edit source and date to feet the figma criateria
             editedSource = source.name;
             editedDate = convertDataToDate(date);
             const editedArticle = { isSaved: false, keyword: question, text, date: editedDate, source: editedSource, title, link, image };
@@ -261,7 +261,15 @@ function App() {
   }
 
   function onDeleteCard(card) {
-
+    const toDeleteCard = savedCards.filter(
+      (currentCard) => card.link === currentCard.link
+    )[0];
+    return MainApi.deleteCard(toDeleteCard._id, token)
+      .then(() => {
+        setSavedCards(savedCards.filter(
+          (currentCard) => toDeleteCard._id !== currentCard._id
+        ));
+      })
   }
 
   const cardFunctions = {

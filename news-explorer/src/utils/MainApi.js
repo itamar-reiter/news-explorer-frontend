@@ -111,7 +111,7 @@ class MainApi {
   }
 
   deleteCard(cardId, token) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return fetch(`${this._baseUrl}/articles/${cardId}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${token}`,
