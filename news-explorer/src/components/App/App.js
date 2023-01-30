@@ -55,7 +55,7 @@ function App() {
 
 
   const [currentUser, setCurrentUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
   const [isInsideMain, setIsInsideMain] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
@@ -286,8 +286,9 @@ function App() {
   }
 
   function onLogout() {
-    closeAllPopups();
+    localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    history.push('/');
   }
 
   function onSavedArticlesClick() {
