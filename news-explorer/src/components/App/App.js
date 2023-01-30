@@ -15,7 +15,7 @@ import MainApi from '../../utils/MainApi';
 
 function App() {
   const history = useHistory();
-  
+
   const [token, setToken] = useState();
 
 
@@ -42,10 +42,8 @@ function App() {
   // assign user values and get saved cards from the server
   useEffect(() => {
     if (token) {
-      console.log(token);
       MainApi.getInitialAppInfo(token)
         .then(([userInfo, savedCardsData]) => {
-          console.log(userInfo);
           setCurrentUser(userInfo);
           setSavedCards(savedCardsData);
         })
@@ -67,7 +65,6 @@ function App() {
   const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
-  const [cardKeyword, setCardKeyword] = useState('');
   const [keywordsCollection, setKeywordsCollection] = useState([]);
 
 
@@ -114,12 +111,11 @@ function App() {
       ))
       .catch(err => {
         if (err === 'Error: 401') {
-
+          setSubmitError('Email or password are incorrect. Please try again.');
         }
-        setSubmitError('Email or password are incorrect. Please try again.');
       });
   }
-  const [newsApiRecivedCards, setNewsApiRecivedCards] = useState();
+  const [newsApiRecivedCards, setNewsApiRecivedCards] = useState([]);
 
 
   const [renderedCards, setRenderedCards] = useState();
@@ -178,19 +174,32 @@ function App() {
   }
 
   function onArticleSearch(question) {
-    setCardKeyword(question);
-    setKeywordsCollection([...keywordsCollection, cardKeyword]);
     setRenderedCards();
     setIsSearching(true);
     setIsLoading(true);
     setIsShowMoreActive(true);
+    let editedArticles = [];
+    let editedSource;
+    let editedDate;
     return NewsApi.getArticles(question)
       .then(res => {
         if (res.articles) {
+          res.articles.map((article) => {
+            const { description: text,
+              publishedAt: date,
+              source: source,
+              title: title,
+              url: link,
+              urlToImage: image } = article;
+              //edit source and date to feet the figma criateria
+            editedSource = source.name;
+            editedDate = convertDataToDate(date);
+            const editedArticle = { keyword: question, text, date: editedDate, source: editedSource, title, link, image };
+            editedArticles = [...editedArticles, editedArticle];
+          })
           setIsLoading(false);
-          setRenderedCards(res.articles.splice(0, 3));
-          console.log(res.articles);
-          setNewsApiRecivedCards(res.articles);
+          setRenderedCards(editedArticles.splice(0, 3));
+          setNewsApiRecivedCards(editedArticles);
         }
         else {
           setIsLoading(false);
@@ -236,15 +245,14 @@ function App() {
     }
   }
 
-  function onSaveCard(card, keyword) {
-    return MainApi.saveCard(card, keyword, token)
-    .then((res) => {
-      console.log(res);
-      setSavedCards([...savedCards, res]);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  function onSaveCard(card) {
+    return MainApi.saveCard(card, token)
+      .then((res) => {
+        setSavedCards([...savedCards, res]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function onDeleteCard() {
@@ -256,7 +264,6 @@ function App() {
     showMoreCards: showMoreCards,
     isShowMoreActive: isShowMoreActive,
     onSaveClick: onSaveCard,
-    keyword: cardKeyword,
   }
 
   function onSigninClick() {

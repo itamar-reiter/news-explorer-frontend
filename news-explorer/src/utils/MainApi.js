@@ -87,9 +87,9 @@ class MainApi {
       .then((res) => this._checkResponse(res));
   }
 
-  saveCard(data, keyword, token) {
+  saveCard(data, token) {
     const {
-      title, description, publishedAt, source, url, urlToImage,
+     keyword, title, text, date, source, link, image,
     } = data;
     return fetch(`${this._baseUrl}/articles`, {
       method: "POST",
@@ -98,13 +98,13 @@ class MainApi {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        keyword: keyword,
-        title: title,
-        text: description,
-        date: publishedAt,
-        source: source.name,
-        link: url,
-        image: urlToImage,
+        keyword,
+        title,
+        text,
+        date,
+        source,
+        link,
+        image,
       }),
     })
       .then((res) => this._checkResponse(res));

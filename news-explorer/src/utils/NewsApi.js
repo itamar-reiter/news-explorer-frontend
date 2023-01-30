@@ -31,7 +31,7 @@ class NewsApi {
     today = yyyy + '-' + mm + '-' + dd;
     console.log(today);
     
-    return fetch(`${this._baseUrl}q=${qeustion}&to=${today}&pageSize=20&apiKey=46d25ee8365a48a598cd16bba913793b`, {
+    return fetch(`${this._baseUrl}q=${qeustion}&to=${today}&pageSize=100&apiKey=46d25ee8365a48a598cd16bba913793b`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

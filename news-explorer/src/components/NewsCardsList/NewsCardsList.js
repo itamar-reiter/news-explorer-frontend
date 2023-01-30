@@ -15,18 +15,12 @@ function NewsCardsList({
       {isInsideMain && <h2 className="news-cards-list__title">Search results</h2>}
       <ul className="news-cards-list__content">
         {cards.map((card) => (
-          <li key={card.url}>
+          <li key={card.link}>
             <NewsCard
               cardFunctions={cardFunctions}
               isLoggedIn={isLoggedIn}
               isInsideSavedArticles={isInsideSavedArticles}
-              
               card={card}
-              title={card.title}
-              date={cardFunctions.dateConvert(card.publishedAt)}
-              text={card.content}
-              source={card.source.name}
-              image={card.urlToImage}
             /* onCardClick={onCardClick}
             onCardLike={onCardLike}
             onCardDelete={onCardDelete} */
