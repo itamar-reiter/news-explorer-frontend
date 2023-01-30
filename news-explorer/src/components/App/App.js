@@ -194,7 +194,12 @@ function App() {
               //edit source and date to feet the figma criateria
             editedSource = source.name;
             editedDate = convertDataToDate(date);
-            const editedArticle = { keyword: question, text, date: editedDate, source: editedSource, title, link, image };
+            const editedArticle = { isSaved: false, keyword: question, text, date: editedDate, source: editedSource, title, link, image };
+            savedCards.forEach((card) => {
+              if (card.link === editedArticle.link) {
+                return editedArticle.isSaved = true;
+              }
+            })
             editedArticles = [...editedArticles, editedArticle];
           })
           setIsLoading(false);
@@ -255,7 +260,7 @@ function App() {
       });
   }
 
-  function onDeleteCard() {
+  function onDeleteCard(card) {
 
   }
 
@@ -264,6 +269,7 @@ function App() {
     showMoreCards: showMoreCards,
     isShowMoreActive: isShowMoreActive,
     onSaveClick: onSaveCard,
+    onDeleteClick: onDeleteCard
   }
 
   function onSigninClick() {

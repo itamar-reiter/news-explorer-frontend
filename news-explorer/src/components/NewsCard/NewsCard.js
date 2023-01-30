@@ -8,7 +8,7 @@ function NewsCard({
   card,
 }) {
   
-  const [isArticleSaved, setIsArticleSaved] = useState(false);
+  const [isArticleSaved, setIsArticleSaved] = useState(card.isSaved);
   function toggleArticleSavedState() {
 
     setIsArticleSaved(!isArticleSaved);
@@ -23,12 +23,18 @@ function NewsCard({
     }
   }
 
+  function onDeleteArticleClick() {
+    return cardFunctions.onDeleteClick(card)
+    .then(() => {
+      toggleArticleSavedState();
+    });
+  }
   return (
     <div className="news-card">
       <Route exact path="/">
         <div className="news-card__image news-card__image_type_main" style={{ backgroundImage: `url(${card.image})` }}>
           <button className={`news-card__button ${!isLoggedIn ? 'news-card__button_not-logged-in' : ''}`}
-            onClick={onSaveArticleClick}
+            onClick={isArticleSaved? onDeleteArticleClick: onSaveArticleClick}
           >
             <div className={`news-card__save-icon ${isArticleSaved ? 'news-card__save-icon_active' : ''}`} />
           </button>
@@ -37,7 +43,8 @@ function NewsCard({
       </Route>
       <Route path="/saved-news">
         <div className="news-card__image news-card__image_type_saved-news" style={{ backgroundImage: `url(${card.image})` }}>
-          <button className="news-card__button news-card__button_type_saved-news">
+          <button className="news-card__button news-card__button_type_saved-news"
+          onClick={onDeleteArticleClick}>
             <div className="news-card__garbage-icon" />
           </button>
           <span className="news-card__popup-text news-card__popup-text_type_saved-news">Remove from saved</span>
