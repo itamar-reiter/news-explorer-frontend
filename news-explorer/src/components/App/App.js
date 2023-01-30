@@ -236,8 +236,15 @@ function App() {
     }
   }
 
-  function onSaveCard(card) {
-    setSavedCards([...savedCards, card]);
+  function onSaveCard(card, keyword) {
+    return MainApi.saveCard(card, keyword, token)
+    .then((res) => {
+      console.log(res);
+      setSavedCards([...savedCards, res]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   function onDeleteCard() {
