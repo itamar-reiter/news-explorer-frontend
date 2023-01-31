@@ -1,3 +1,14 @@
+//tasks 
+// fix popups submit button display
+//apply notfound component
+//fix save button when switching routes
+//add onclick to card url
+//add content to saved-news titles
+//fix showing saved news content when its empty
+//add link instead of facebook
+//about the author
+//arrange the code
+
 import { React, useState, useEffect } from 'react';
 import CurrentUserContext from '../../utils/CurrentUserContext';
 import './App.css';
