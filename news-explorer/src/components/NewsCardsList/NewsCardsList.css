@@ -27,7 +27,7 @@
   width: 100%;
   display: grid;
   gap: 16px 16px;
-  grid-template-columns: repeat(auto-fit, clamp(224px, 32.467%, 400px));
+  grid-template-columns: repeat(auto-fit, 27.777%);
   grid-auto-flow: row;
   list-style: none;
   padding: 0;

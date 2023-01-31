@@ -1,7 +1,6 @@
 //tasks 
 //fix save button when switching routes
 // fix popups submit button display
-//add link instead of facebook
 //about the author
 //arrange the code - rearrange savedNewsTitles
 
