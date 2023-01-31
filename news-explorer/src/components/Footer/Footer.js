@@ -14,7 +14,7 @@ function Footer() {
         </div>
         <div className='footer__icons'>
           <a href="https://github.com/itamar-reiter" className="footer__icon footer__icon_type_github" target="_blank" rel="noopener noreferrer" />
-          <a href="/" className="footer__icon footer__icon_type_facebook" target="_blank" rel="noopener noreferrer" />
+          <a href="https://www.linkedin.com/in/itamar-reiter-b724b7230/" className="footer__icon footer__icon_type_linkedin" target="_blank" rel="noopener noreferrer" />
         </div>
       </nav>
     </footer>
