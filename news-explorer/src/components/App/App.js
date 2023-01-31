@@ -1,9 +1,8 @@
 //tasks 
-// fix popups submit button display
-//apply notfound component
 //fix save button when switching routes
-//add onclick to card url
+// fix popups submit button display
 //add content to saved-news titles
+//add onclick to card url
 //fix showing saved news content when its empty
 //add link instead of facebook
 //about the author
@@ -185,6 +184,7 @@ function App() {
   }
 
   function onArticleSearch(question) {
+    setIsFound(true);
     setRenderedCards();
     setIsSearching(true);
     setIsLoading(true);
@@ -194,7 +194,7 @@ function App() {
     let editedDate;
     return NewsApi.getArticles(question)
       .then(res => {
-        if (res.articles) {
+        if (res.articles.length !== 0) {
           res.articles.map((article) => {
             const { description: text,
               publishedAt: date,
@@ -215,6 +215,7 @@ function App() {
           })
           setIsLoading(false);
           setRenderedCards(editedArticles.splice(0, 3));
+          console.log(renderedCards);
           setNewsApiRecivedCards(editedArticles);
         }
         else {

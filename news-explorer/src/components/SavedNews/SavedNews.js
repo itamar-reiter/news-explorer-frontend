@@ -14,13 +14,13 @@ function SavedNews({
         name={currentUserValue.name}
         savedCards={savedCards}
       />
-      <NewsCardsList
+      {savedCards.length !== 0 && <NewsCardsList
         isLoggedIn={isLoggedIn}
         isInsideMain={isInsideMain}
         isInsideSavedArticles={isInsideSavedArticles}
         cards={savedCards}
         cardFunctions={cardFunctions}
-      />
+      />}
     </section>
   );
 }
