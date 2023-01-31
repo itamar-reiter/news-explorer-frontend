@@ -1,9 +1,8 @@
 //tasks 
-//fix save button when switching routes
-// fix popups submit button display
 //add content to saved-news titles
 //add onclick to card url
-//fix showing saved news content when its empty
+//fix save button when switching routes
+// fix popups submit button display
 //add link instead of facebook
 //about the author
 //arrange the code
