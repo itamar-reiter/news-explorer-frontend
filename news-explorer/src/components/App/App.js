@@ -1,11 +1,10 @@
 //tasks 
-//add content to saved-news titles
-//add onclick to card url
+
 //fix save button when switching routes
 // fix popups submit button display
 //add link instead of facebook
 //about the author
-//arrange the code
+//arrange the code - rearrange savedNewsTitles
 
 import { React, useState, useEffect } from 'react';
 import CurrentUserContext from '../../utils/CurrentUserContext';
@@ -27,6 +26,7 @@ function App() {
 
   const [token, setToken] = useState();
 
+  const [keywordsCollection, setKeywordsCollection] = useState([]);
 
   //Effect for token verification and auto login when rendering app
   useEffect(() => {
@@ -55,6 +55,11 @@ function App() {
         .then(([userInfo, savedCardsData]) => {
           setCurrentUser(userInfo);
           setSavedCards(savedCardsData);
+          let keywords = [];
+          savedCardsData.forEach((card) => {
+            keywords.push(card.keyword);
+          })
+          setKeywordsCollection(keywords);
         })
         .catch((err) => {
           console.log(err);
@@ -74,9 +79,7 @@ function App() {
   const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
-  const [keywordsCollection, setKeywordsCollection] = useState([]);
-
-
+  const [isCardClickDisabled, setIsCardClickDisabled] = useState(false);
 
 
   const editInputsErrors = (isError, inputName) => {
@@ -92,7 +95,6 @@ function App() {
     MainApi.register(email, password, name)
       .then((res) => {
         if (res._id) {
-          console.log(res);
           closeAllPopups();
           toggleSuccessRegisterPopupState();
         }
@@ -110,7 +112,6 @@ function App() {
     MainApi.login(email, password)
       .then((res => {
         if (res.token) {
-          console.log(res);
           localStorage.setItem("jwt", res.token);
           setToken(localStorage.getItem("jwt"));
           setIsLoggedIn(true);
@@ -214,7 +215,6 @@ function App() {
           })
           setIsLoading(false);
           setRenderedCards(editedArticles.splice(0, 3));
-          console.log(renderedCards);
           setNewsApiRecivedCards(editedArticles);
         }
         else {
@@ -262,16 +262,51 @@ function App() {
   }
 
   function onSaveCard(card) {
+    setIsCardClickDisabled(true);
     return MainApi.saveCard(card, token)
       .then((res) => {
         setSavedCards([...savedCards, res]);
+        let keywords = keywordsCollection;
+        keywords.push(res.keyword);
+        setKeywordsCollection(keywords);
+        sortKeywordsByFrequency();
+        setIsCardClickDisabled(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsCardClickDisabled(false);
       });
+  }
+  function sortKeywordsByFrequency() {
+    let frequency = {};
+    keywordsCollection.forEach((keyword) => {
+      frequency[keyword] = frequency[keyword] ? frequency[keyword] + 1 : 1;
+    });
+
+    keywordsCollection.sort((a, b) => {
+      return frequency[b] - frequency[a];
+    });
+
+    let singleKeywords = keywordsCollection.filter((card, i) => {
+      return keywordsCollection.indexOf(card) === i;
+    })
+    let keywordsToPrint = [];
+    singleKeywords.forEach((keyword, i) => {
+      if (i < 2) {
+        keywordsToPrint[i] = keyword;
+      }
+      if (i === 2) {
+        keywordsToPrint[i] = 1;
+      }
+      else {
+        keywordsToPrint[2] = keywordsToPrint[2] + 1;
+      }
+    })
+    return keywordsToPrint;
   }
 
   function onDeleteCard(card) {
+    setIsCardClickDisabled(true);
     const toDeleteCard = savedCards.filter(
       (currentCard) => card.link === currentCard.link
     )[0];
@@ -280,7 +315,12 @@ function App() {
         setSavedCards(savedCards.filter(
           (currentCard) => toDeleteCard._id !== currentCard._id
         ));
+        setIsCardClickDisabled(false);
       })
+  }
+
+  function onCardClick(card) {
+    window.open(card.link, "_blank");
   }
 
   const cardFunctions = {
@@ -288,7 +328,8 @@ function App() {
     showMoreCards: showMoreCards,
     isShowMoreActive: isShowMoreActive,
     onSaveClick: onSaveCard,
-    onDeleteClick: onDeleteCard
+    onDeleteClick: onDeleteCard,
+    onCardClick: onCardClick
   }
 
   function onSigninClick() {
@@ -350,6 +391,7 @@ function App() {
               isInsideSavedArticles
               savedCards={savedCards}
               cardFunctions={cardFunctions}
+              keywords={sortKeywordsByFrequency()}
             />
           </Route>
         </Switch>
