@@ -2,6 +2,7 @@
 //fix save button when switching routes
 // fix popups submit button display
 //about the author
+//eslint errors
 //arrange the code - rearrange savedNewsTitles
 
 import { React, useState, useEffect } from 'react';
