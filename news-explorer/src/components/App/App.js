@@ -78,7 +78,6 @@ function App() {
   const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
-  const [isCardClickDisabled, setIsCardClickDisabled] = useState(false);
 
 
   const editInputsErrors = (isError, inputName) => {
@@ -261,19 +260,23 @@ function App() {
   }
 
   function onSaveCard(card) {
-    setIsCardClickDisabled(true);
+    const savedCard = card;
+    savedCard.isSaved = true;
     return MainApi.saveCard(card, token)
       .then((res) => {
         setSavedCards([...savedCards, res]);
         let keywords = keywordsCollection;
+        setRenderedCards((state) => {
+          return state.map(currentCard => {
+           return currentCard.link === savedCard.link ? savedCard : currentCard; 
+          })
+        })
         keywords.push(res.keyword);
         setKeywordsCollection(keywords);
         sortKeywordsByFrequency();
-        setIsCardClickDisabled(false);
       })
       .catch((err) => {
         console.log(err);
-        setIsCardClickDisabled(false);
       });
   }
   function sortKeywordsByFrequency() {
@@ -305,7 +308,6 @@ function App() {
   }
 
   function onDeleteCard(card) {
-    setIsCardClickDisabled(true);
     const toDeleteCard = savedCards.filter(
       (currentCard) => card.link === currentCard.link
     )[0];
@@ -314,7 +316,6 @@ function App() {
         setSavedCards(savedCards.filter(
           (currentCard) => toDeleteCard._id !== currentCard._id
         ));
-        setIsCardClickDisabled(false);
       })
   }
 
