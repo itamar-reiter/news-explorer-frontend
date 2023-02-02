@@ -1,5 +1,4 @@
 //tasks 
-//fix save button when switching routes
 // fix popups submit button display
 //about the author
 //eslint errors
