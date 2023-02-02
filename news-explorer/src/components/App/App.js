@@ -18,6 +18,7 @@ import SignupPopup from '../SignupPopup/SignupPopup';
 import SuccessRegisterPopup from '../SuccessRegisterPopup/SuccessRegisterPopup';
 import NewsApi from '../../utils/NewsApi';
 import MainApi from '../../utils/MainApi';
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 
 function App() {
   const history = useHistory();
@@ -34,7 +35,10 @@ function App() {
         .then((res) => {
           if (res) {
             setIsLoggedIn(true);
-            history.push('/');
+            console.log(true);
+            if (isDirectedToSavedNewsRoute) {
+              history.push('/saved-news');
+            }
           }
           else {
             localStorage.removeItem("jwt");
@@ -68,16 +72,19 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
-  const [isInsideMain, setIsInsideMain] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isFound, setIsFound] = useState(true);
-  const [isSubmiting, setIsSubmiting] = useState(false);
   const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
+  const [isDirectedToSavedNewsRoute, setisDirectedToSavedNewsRoute] = useState(false);
 
+  function toggleIsdirectedToSavedNews() {
+    if (isDirectedToSavedNewsRoute === false){
+      setisDirectedToSavedNewsRoute(!isDirectedToSavedNewsRoute);
+    }
+  }
 
   const editInputsErrors = (isError, inputName) => {
     let tempErrorsArray = inputsErrors;
@@ -267,7 +274,7 @@ function App() {
         let keywords = keywordsCollection;
         setRenderedCards((state) => {
           return state.map(currentCard => {
-           return currentCard.link === savedCard.link ? savedCard : currentCard; 
+            return currentCard.link === savedCard.link ? savedCard : currentCard;
           })
         })
         keywords.push(res.keyword);
@@ -342,9 +349,6 @@ function App() {
     history.push('/');
   }
 
-  function onSavedArticlesClick() {
-    setIsInsideSavedArticles(true);
-  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div
@@ -359,7 +363,6 @@ function App() {
               isMobileNavigationActive={isMobileNavigationOpen}
               onMobileNavigationButtonClick={toggleMobileNavigationState}
               onSigninClick={onSigninClick}
-              onSavedArticlesClick={onSavedArticlesClick}
               insideSavedArticles={false}
               onLogout={onLogout}
             />
@@ -375,24 +378,23 @@ function App() {
               isFound={isFound}
             />
           </Route>
-          <Route path="/saved-news">
+          <ProtectedRoute exact path="/saved-news" loggedIn={isLoggedIn} changeDirectionState={toggleIsdirectedToSavedNews} redirectedPath='/'>
             <SavedNewsHeader
               isMobileNavigationActive={isMobileNavigationOpen}
               onMobileNavigationButtonClick={toggleMobileNavigationState}
               onSigninClick={onSigninClick}
-              onSavedArticlesClick={onSavedArticlesClick}
-              isInsideSavedArticles
+              isInsideSavedArticles={true}
               onLogout={onLogout}
             />
             <SavedNews
               isLoggedIn
               isInsideMain={false}
-              isInsideSavedArticles
+              isInsideSavedArticles={true}
               savedCards={savedCards}
               cardFunctions={cardFunctions}
               keywords={sortKeywordsByFrequency()}
             />
-          </Route>
+          </ProtectedRoute>
         </Switch>
         <Footer />
         <SigninPopup

@@ -13,7 +13,6 @@ export default function SavedNewsHeader({
   onLogout,
 }) {
   const currentUserValue = useContext(CurrentUserContext);
-
   return (
     <header className="header header_type_in-saved-news">
       <Link to="/" className="header__logo header__logo_type_in-saved-news">NewsExplorer</Link>
