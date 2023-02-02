@@ -22,6 +22,7 @@ function App() {
   const [keywordsCollection, setKeywordsCollection] = useState([]);
 
   const [isDirectedToSavedNewsRoute, setisDirectedToSavedNewsRoute] = useState(false);
+  const [isPopupSigninOpen, setIsPopupSigninOpen] = useState(false);
   //Effect for token verification and auto login when rendering app
   useEffect(() => {
     setToken(localStorage.getItem("jwt"));
@@ -37,10 +38,16 @@ function App() {
           }
           else {
             localStorage.removeItem("jwt");
+            if (isDirectedToSavedNewsRoute) {
+              setIsPopupSigninOpen(true);
+            }
           }
         }).catch((err) => {
           console.log(err);
         });
+    }
+    else if (isDirectedToSavedNewsRoute) {
+      setIsPopupSigninOpen(true);
     }
   }, [token, history, isDirectedToSavedNewsRoute]);
 
@@ -132,7 +139,6 @@ function App() {
 
 
 
-  const [isPopupSigninOpen, setIsPopupSigninOpen] = useState(false);
   function toggleSigninPopupState() {
     setSubmitError('');
     setIsPopupSigninOpen(!isPopupSigninOpen);
