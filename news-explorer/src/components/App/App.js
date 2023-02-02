@@ -1,9 +1,3 @@
-//tasks 
-// fix popups submit button display
-//about the author
-//eslint errors
-//arrange the code - rearrange savedNewsTitles
-
 import { React, useState, useEffect } from 'react';
 import CurrentUserContext from '../../utils/CurrentUserContext';
 import './App.css';
@@ -27,6 +21,7 @@ function App() {
 
   const [keywordsCollection, setKeywordsCollection] = useState([]);
 
+  const [isDirectedToSavedNewsRoute, setisDirectedToSavedNewsRoute] = useState(false);
   //Effect for token verification and auto login when rendering app
   useEffect(() => {
     setToken(localStorage.getItem("jwt"));
@@ -47,7 +42,7 @@ function App() {
           console.log(err);
         });
     }
-  }, [token, history]);
+  }, [token, history, isDirectedToSavedNewsRoute]);
 
 
   // assign user values and get saved cards from the server
@@ -78,10 +73,9 @@ function App() {
   const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
-  const [isDirectedToSavedNewsRoute, setisDirectedToSavedNewsRoute] = useState(false);
 
   function toggleIsdirectedToSavedNews() {
-    if (isDirectedToSavedNewsRoute === false){
+    if (isDirectedToSavedNewsRoute === false) {
       setisDirectedToSavedNewsRoute(!isDirectedToSavedNewsRoute);
     }
   }
@@ -202,8 +196,8 @@ function App() {
           res.articles.map((article) => {
             const { description: text,
               publishedAt: date,
-              source: source,
-              title: title,
+              source,
+              title,
               url: link,
               urlToImage: image } = article;
             //edit source and date to feet the figma criateria
@@ -215,7 +209,7 @@ function App() {
                 return editedArticle.isSaved = true;
               }
             })
-            editedArticles = [...editedArticles, editedArticle];
+            return editedArticles = [...editedArticles, editedArticle];
           })
           setIsLoading(false);
           setRenderedCards(editedArticles.splice(0, 3));
@@ -248,8 +242,9 @@ function App() {
     let monthName = '';
     Object.values(namesOfMonthes).map((monthNumber, i) => {
       if (month === monthNumber) {
-        return monthName = Object.keys(namesOfMonthes)[i];
+        monthName = Object.keys(namesOfMonthes)[i];
       }
+      return monthName;
     })
     if (day.charAt(0) === '0') {
       day = day.substr(1, 1);
