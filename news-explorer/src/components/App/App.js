@@ -12,7 +12,7 @@ import SignupPopup from '../SignupPopup/SignupPopup';
 import SuccessRegisterPopup from '../SuccessRegisterPopup/SuccessRegisterPopup';
 import NewsApi from '../../utils/NewsApi';
 import MainApi from '../../utils/MainApi';
-import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const history = useHistory();
