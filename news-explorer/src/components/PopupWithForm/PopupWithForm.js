@@ -36,7 +36,6 @@ function PopupWithForm({
       } else {
         setIsSubmitButtonDisabled(true);
       }
-      console.log(isSubmitButtonDisabled);
     }
   }, [inputsErrors]);
 

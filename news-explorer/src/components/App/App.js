@@ -77,7 +77,6 @@ function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isFound, setIsFound] = useState(true);
-  const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
   const [isShowMoreActive, setIsShowMoreActive] = useState(true);
 
@@ -87,14 +86,14 @@ function App() {
     }
   }
 
-  const editInputsErrors = (isError, inputName) => {
+  /* const editInputsErrors = (isError, inputName) => {
     let tempErrorsArray = inputsErrors;
     tempErrorsArray = tempErrorsArray.filter((name) => name !== inputName);
     if (isError) {
       tempErrorsArray.push(inputName);
     }
     setInputsErrors(tempErrorsArray);
-  };
+  }; */
 
   const onRegister = (email, password, name) => {
     MainApi.register(email, password, name)
@@ -107,7 +106,7 @@ function App() {
       .catch((err) => {
         console.log(err);
         if (err === 'Error: 409') {
-          console.log('email is exist');
+          setSubmitError('A user with that Email is already exist.');
         }
       });
   }
@@ -125,7 +124,7 @@ function App() {
       }
       ))
       .catch(err => {
-        if (err === 'Error: 401') {
+        if (err === 'Error: 401' || err === 'Error: 400') {
           setSubmitError('Email or password are incorrect. Please try again.');
         }
       });
@@ -402,16 +401,12 @@ function App() {
           isPopupOpen={isPopupSigninOpen}
           onSubmit={onLogin}
           onRelativePathClick={onRelativeSignupClick}
-          inputsErrors={inputsErrors}
           submitError={submitError}
-          editInputsErrors={editInputsErrors}
           onClose={closeAllPopups}
         />
         <SignupPopup
           isPopupOpen={isPopupSignupOpen}
           onSubmit={onRegister}
-          editInputsErrors={editInputsErrors}
-          inputsErrors={inputsErrors}
           submitError={submitError}
           onRelativePathClick={onRelativeSigninClick}
           onClose={closeAllPopups}

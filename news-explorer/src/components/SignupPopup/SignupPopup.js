@@ -7,11 +7,20 @@ function SignupPopup({
   isPopupOpen,
   onSubmit,
   onRelativePathClick,
-  inputsErrors,
   submitError,
-  editInputsErrors,
   onClose,
 }) {
+
+  const [inputsErrors, setInputsErrors] = useState([]);
+
+  const editInputsErrors = (isError, inputName) => {
+    let tempErrorsArray = inputsErrors;
+    tempErrorsArray = tempErrorsArray.filter((name) => name !== inputName);
+    if (isError) {
+      tempErrorsArray.push(inputName);
+    }
+    setInputsErrors(tempErrorsArray);
+  };
 
   const [isSubmitButtonClicked, setisSubmitButtonClicked] = useState(false);
 

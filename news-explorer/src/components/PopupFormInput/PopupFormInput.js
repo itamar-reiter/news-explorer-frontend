@@ -24,10 +24,8 @@ function PopupFormInput({
   useEffect(() => {
     if (isPopupOpen) {
       if (!inputRef.current.checkValidity() || inputValue === '') {
-        console.log('input invalid');
         editInputsErrors(true, id);
       } else {
-        console.log('input ok');
         editInputsErrors(false, id);
       }
     }
@@ -36,11 +34,9 @@ function PopupFormInput({
   const onInputChange = (e) => {
     handleInputChange(e);
     if (!inputRef.current.checkValidity() || inputValue === '') {
-      console.log('input invalid');
       editInputsErrors(true, id);
       setErrorText(inputRef.current.validationMessage);
     } else {
-      console.log('input ok');
       editInputsErrors(false, id);
       setErrorText('');
     }
