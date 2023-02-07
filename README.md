@@ -1,6 +1,6 @@
 News Explorer
 
-[news-explorer](https://itamarreiter.newsexplorer.students.nomoredomainssbs.ru/) is a place for searching and storaging of news articles from around the globe, about any subject and from every well-known news-source.
+[news-explorer](https://itamarreiternewsexplorer.onrender.com/) is a place for searching and storaging of news articles from around the globe, about any subject and from every well-known news-source.
 
 The app use newsapi.com, and make fetch request to it.
 # It has two Api's: 
@@ -25,6 +25,6 @@ All fonts and images that are constant in the app are contained in the 'src' fol
 
 Api requests are handled with NewsApi and MainApi classes.
 
-[Visit News Explorer](https://itamarreiter.newsexplorer.students.nomoredomainssbs.ru/)
+[Visit News Explorer](https://itamarreiternewsexplorer.onrender.com/)
 
 
