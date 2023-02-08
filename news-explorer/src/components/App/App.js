@@ -378,7 +378,7 @@ function App() {
               isFound={isFound}
             />
           </Route>
-          <ProtectedRoute exact path="/saved-news" loggedIn={isLoggedIn} changeDirectionState={toggleIsdirectedToSavedNews} redirectedPath='/'>
+          <ProtectedRoute path="/saved-news" loggedIn={isLoggedIn} changeDirectionState={toggleIsdirectedToSavedNews} redirectedPath='/'>
             <SavedNewsHeader
               isMobileNavigationActive={isMobileNavigationOpen}
               onMobileNavigationButtonClick={toggleMobileNavigationState}
