@@ -30,10 +30,11 @@ function PopupFormInput({
       }
     }
   }, [isPopupOpen]);
-
+  
   const onInputChange = (e) => {
+    console.log('handle input change was triggered');
     handleInputChange(e);
-    if (!inputRef.current.checkValidity() || inputValue === '') {
+    if (!inputRef.current.checkValidity()) {
       editInputsErrors(true, id);
       setErrorText(inputRef.current.validationMessage);
     } else {
@@ -55,7 +56,6 @@ function PopupFormInput({
         id={id}
         value={inputValue || ''}
         onInput={onInputChange}
-        onCopy={onInputChange}
         onCut={onInputChange}
         onPaste={onInputChange}
         placeholder={inputPlaceholder}
