@@ -17,7 +17,7 @@ function SearchResults({
   return (
     <section className={`search-results ${isSearching ? '' : 'search-results_hidden'}`}>
       {isLoading && <PreLoader />}
-      {cards && (
+      {cards.length !== 0 && (
         <NewsCardsList
           isLoggedIn={isLoggedIn}
           isInsideSavedArticles={isInsideSavedArticles}
