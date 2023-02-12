@@ -16,9 +16,10 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const history = useHistory();
-
+  
   const [token, setToken] = useState();
-
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [keywordsCollection, setKeywordsCollection] = useState([]);
 
   const [isDirectedToSavedNewsRoute, setisDirectedToSavedNewsRoute] = useState(false);
@@ -38,6 +39,7 @@ function App() {
           }
           else {
             localStorage.removeItem("jwt");
+            setIsLoggedIn(false);
             if (isDirectedToSavedNewsRoute) {
               setIsPopupSigninOpen(true);
             }
@@ -47,6 +49,7 @@ function App() {
         });
     }
     else if (isDirectedToSavedNewsRoute) {
+      setIsLoggedIn(false);
       setIsPopupSigninOpen(true);
     }
   }, [token, history, isDirectedToSavedNewsRoute]);
@@ -73,7 +76,6 @@ function App() {
 
 
   const [currentUser, setCurrentUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isFound, setIsFound] = useState(true);

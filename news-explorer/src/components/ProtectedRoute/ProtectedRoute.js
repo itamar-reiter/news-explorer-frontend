@@ -9,7 +9,8 @@ function ProtectedRoute({ children, loggedIn, redirectedPath, changeDirectionSta
   console.log(loggedIn);
   return (
     <Route {...props}>
-      {loggedIn ? children : <Redirect to={redirectedPath} />}
+      {loggedIn === true &&  children} 
+      {loggedIn === false && <Redirect to={redirectedPath} />}
     </Route>
   )
 }
