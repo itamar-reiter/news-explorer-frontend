@@ -62,11 +62,7 @@ function App() {
         .then(([userInfo, savedCardsData]) => {
           setCurrentUser(userInfo);
           setSavedCards(savedCardsData);
-          let keywords = [];
-          savedCardsData.forEach((card) => {
-            keywords.push(card.keyword);
-          })
-          setKeywordsCollection(keywords);
+          setKeywordsCollection(savedCardsData.map((card) => card.keyword));
         })
         .catch((err) => {
           console.log(err);
@@ -134,7 +130,7 @@ function App() {
   const [newsApiRecivedCards, setNewsApiRecivedCards] = useState([]);
 
 
-  const [renderedCards, setRenderedCards] = useState();
+  const [renderedCards, setRenderedCards] = useState([]);
 
   const [savedCards, setSavedCards] = useState([]);
 
@@ -190,7 +186,7 @@ function App() {
 
   function onArticleSearch(question) {
     setIsFound(true);
-    setRenderedCards();
+    setRenderedCards([]);
     setIsSearching(true);
     setIsLoading(true);
     setIsShowMoreActive(true);
@@ -226,6 +222,8 @@ function App() {
           setIsLoading(false);
           setIsFound(false);
         }
+      }).catch(err => {
+        console.log(err);
       });
   }
   const namesOfMonthes = {
@@ -324,6 +322,9 @@ function App() {
         setSavedCards(savedCards.filter(
           (currentCard) => toDeleteCard._id !== currentCard._id
         ));
+      })
+      .catch(err => {
+        console.log(err);
       })
   }
 
