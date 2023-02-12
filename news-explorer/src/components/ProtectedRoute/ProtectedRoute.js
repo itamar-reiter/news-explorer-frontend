@@ -1,17 +1,25 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect } from "react";
 import { Route, Redirect } from 'react-router-dom';
 
 function ProtectedRoute({ children, loggedIn, redirectedPath, changeDirectionState, ...props }) {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     changeDirectionState();
-  }, [changeDirectionState]);
-  console.log(children);
-  console.log(loggedIn);
+    if (loggedIn !== undefined) {
+      setIsLoading(false);
+    }
+  }, [changeDirectionState, loggedIn]);
+  
   return (
-    <Route {...props}>
-      {loggedIn === true &&  children} 
+    <>
+    {isLoading ? <p>Loading...</p>
+    :<Route {...props}>
+      {loggedIn === true && children}
       {loggedIn === false && <Redirect to={redirectedPath} />}
     </Route>
+  }
+    </>
   )
 }
 
