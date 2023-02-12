@@ -5,6 +5,8 @@ function ProtectedRoute({ children, loggedIn, redirectedPath, changeDirectionSta
   useEffect(() => {
     changeDirectionState();
   }, [changeDirectionState]);
+  console.log(children);
+  console.log(loggedIn);
   return (
     <Route {...props}>
       {loggedIn ? children : <Redirect to={redirectedPath} />}
