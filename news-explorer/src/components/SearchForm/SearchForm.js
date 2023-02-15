@@ -4,17 +4,17 @@ import './SearchForm.css';
 function SearchForm({ onArticleSearch }) {
   const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
 
-  const [articleName, setArticleName] = useState('');
+  const [articleKeyword, setArticleKeyword] = useState('');
 
-  function handleArticleNameChange(e) {
+  function handleArticleKeywordChange(e) {
     setIsSubmitButtonClicked(false);
-    setArticleName(e.target.value);
+    setArticleKeyword(e.target.value);
   }
 
   function handleSubmit(e) {
     console.log('handling search submit');
     e.preventDefault();
-    onArticleSearch(articleName);
+    onArticleSearch(articleKeyword);
   }
 
   function onSubmitClick(e) {
@@ -29,9 +29,9 @@ function SearchForm({ onArticleSearch }) {
           className="search-form__input"
           type="text"
           name="article-name"
-          value={articleName}
-          onChange={handleArticleNameChange}
-          id="articleName"
+          value={articleKeyword}
+          onChange={handleArticleKeywordChange}
+          id="articleKeyword"
           placeholder="Enter topic"
           minLength="1"
           maxLength="30"

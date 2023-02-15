@@ -24,23 +24,20 @@ function PopupFormInput({
   useEffect(() => {
     if (isPopupOpen) {
       if (!inputRef.current.checkValidity() || inputValue === '') {
-        console.log('input invalid');
         editInputsErrors(true, id);
       } else {
-        console.log('input ok');
         editInputsErrors(false, id);
       }
     }
   }, [isPopupOpen]);
-
+  
   const onInputChange = (e) => {
+    console.log('handle input change was triggered');
     handleInputChange(e);
-    if (!inputRef.current.checkValidity() || inputValue === '') {
-      console.log('input invalid');
+    if (!inputRef.current.checkValidity()) {
       editInputsErrors(true, id);
       setErrorText(inputRef.current.validationMessage);
     } else {
-      console.log('input ok');
       editInputsErrors(false, id);
       setErrorText('');
     }
@@ -59,7 +56,6 @@ function PopupFormInput({
         id={id}
         value={inputValue || ''}
         onInput={onInputChange}
-        onCopy={onInputChange}
         onCut={onInputChange}
         onPaste={onInputChange}
         placeholder={inputPlaceholder}

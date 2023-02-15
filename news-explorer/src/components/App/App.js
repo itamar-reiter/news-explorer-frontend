@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import CurrentUserContext from '../../utils/CurrentUserContext';
 import './App.css';
 import Header from '../Header/Header';
@@ -10,186 +10,132 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
 import SuccessRegisterPopup from '../SuccessRegisterPopup/SuccessRegisterPopup';
+import NewsApi from '../../utils/NewsApi';
+import MainApi from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const history = useHistory();
-  const [currentUser, setCurrentUser] = useState({ duck: 'duck' });
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [isInsideSavedArticles, setIsInsideSavedArticles] = useState(false);
-  const [isInsideMain, setIsInsideMain] = useState(false);
-  const [isSearching, setIsSearching] = useState(true);
+  
+  const [token, setToken] = useState();
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
+  const [keywordsCollection, setKeywordsCollection] = useState([]);
+
+  const [isDirectedToSavedNewsRoute, setisDirectedToSavedNewsRoute] = useState(false);
+  const [isPopupSigninOpen, setIsPopupSigninOpen] = useState(false);
+  //Effect for token verification and auto login when rendering app
+  useEffect(() => {
+    setToken(localStorage.getItem("jwt"));
+    if (token) {
+      MainApi.checkToken(token)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            console.log(true);
+            if (isDirectedToSavedNewsRoute) {
+              history.push('/saved-news');
+            }
+          }
+          else {
+            localStorage.removeItem("jwt");
+            setIsLoggedIn(false);
+            if (isDirectedToSavedNewsRoute) {
+              setIsPopupSigninOpen(true);
+            }
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+    else if (isDirectedToSavedNewsRoute) {
+      setIsLoggedIn(false);
+      setIsPopupSigninOpen(true);
+    }
+  }, [token, history, isDirectedToSavedNewsRoute]);
+
+
+  // assign user values and get saved cards from the server
+  useEffect(() => {
+    if (token) {
+      MainApi.getInitialAppInfo(token)
+        .then(([userInfo, savedCardsData]) => {
+          setCurrentUser(userInfo);
+          setSavedCards(savedCardsData);
+          setKeywordsCollection(savedCardsData.map((card) => card.keyword));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [token]);
+
+
+  const [currentUser, setCurrentUser] = useState({});
+  const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isFound, setIsFound] = useState(true);
-  const [isSubmiting, setIsSubmiting] = useState(false);
-  const [inputsErrors, setInputsErrors] = useState([]);
   const [submitError, setSubmitError] = useState('');
+  const [isShowMoreActive, setIsShowMoreActive] = useState(true);
 
-  const editInputsErrors = (isError, inputName) => {
+  function toggleIsdirectedToSavedNews() {
+    if (isDirectedToSavedNewsRoute === false) {
+      setisDirectedToSavedNewsRoute(!isDirectedToSavedNewsRoute);
+    }
+  }
+
+  /* const editInputsErrors = (isError, inputName) => {
     let tempErrorsArray = inputsErrors;
     tempErrorsArray = tempErrorsArray.filter((name) => name !== inputName);
     if (isError) {
       tempErrorsArray.push(inputName);
     }
     setInputsErrors(tempErrorsArray);
-    console.log(inputsErrors);
-  };
-  const [users, setUsers] = useState([
-    {
-      "_id": {
-        "$oid": "638ca212c66d4df0bef7282b"
-      },
-      "name": "itapita5",
-      "email": "ita5@gmail.com",
-      "password": "$2a$10$I8agtieiyLAhbyYoT5y12eRgQisiSgqkbya9zULMozuQXq2wV1uBu",
-      "__v": 0
-    },
-    {
-      "_id": {
-        "$oid": "638ca22f74868725bb1a78e1"
-      },
-      "name": "itapita6",
-      "email": "ita6@gmail.com",
-      "password": "$2a$10$pG1ZfUH6IsZNja1o3vDb1OrYMJUDVYNXMPPB0Hr0BuPgO8OOZ/5OS",
-      "__v": 0
-    },
-    {
-      "_id": {
-        "$oid": "638d97840da314b1cb765151"
-      },
-      "name": "itapita8",
-      "email": "ita8@gmail.com",
-      "password": "$2a$10$LOdz.gzL.2Mh4pVKFgu9LefXUoMKW3lP6XO7KS6F0lPZ8xGQgofBS",
-      "__v": 0
-    }
-  ]);
+  }; */
 
-  const [cards, setCards] = useState([
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
-      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
-      date: 'mkmkm/1/1 october',
-      source: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638db088ec78557255adc4c5',
-      keyword: 'keyword82',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '638d97840da314b1cb765151',
-      __v: 0,
-    },
-    {
-      _id: '638db146ec78557255adc4ce',
-      keyword: 'keyword92',
-      title: 'title7',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '638db0c6ec78557255adc4c9',
-      __v: 0,
-    }]);
+  const onRegister = (email, password, name) => {
+    MainApi.register(email, password, name)
+      .then((res) => {
+        if (res._id) {
+          closeAllPopups();
+          toggleSuccessRegisterPopupState();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err === 'Error: 409') {
+          setSubmitError('A user with that Email is already exist.');
+        }
+      });
+  }
 
-  const [savedCards, setSavedCards] = useState([
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638c9a5cccdc771d93f229c0',
-      keyword: 'keyword8',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '63885fc54c95267b1ed22007',
-      __v: 0,
-    },
-    {
-      _id: '638db088ec78557255adc4c5',
-      keyword: 'keyword82',
-      title: 'title8',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      image: '../../images/itamar-profile-image.jpg',
-      link: 'https://vb3bhb.com',
-      owner: '638d97840da314b1cb765151',
-      __v: 0,
-    },
-    {
-      _id: '638db146ec78557255adc4ce',
-      keyword: 'keyword92',
-      title: 'title7',
-      text: 'text5',
-      date: 'date5',
-      source: 'source',
-      link: 'https://vb3bhb.com',
-      image: '../../images/itamar-profile-image.jpg',
-      owner: '638db0c6ec78557255adc4c9',
-      __v: 0,
-    }]);
+  function onLogin(email, password) {
+    setSubmitError('');
+    MainApi.login(email, password)
+      .then((res => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setToken(localStorage.getItem("jwt"));
+          setIsLoggedIn(true);
+          closeAllPopups();
+        }
+      }
+      ))
+      .catch(err => {
+        if (err === 'Error: 401' || err === 'Error: 400') {
+          setSubmitError('Email or password are incorrect. Please try again.');
+        }
+      });
+  }
+  const [newsApiRecivedCards, setNewsApiRecivedCards] = useState([]);
+
+
+  const [renderedCards, setRenderedCards] = useState([]);
+
+  const [savedCards, setSavedCards] = useState([]);
 
 
 
-  const [isPopupSigninOpen, setIsPopupSigninOpen] = useState(false);
   function toggleSigninPopupState() {
     setSubmitError('');
     setIsPopupSigninOpen(!isPopupSigninOpen);
@@ -226,35 +172,7 @@ function App() {
     setIsMobileNavigationOpen(false);
   }
 
-  function onSigninSubmit(email, password) {
-    setSubmitError('');
-    let userEmail = undefined;
-    let userData = undefined;
-    users.forEach(user => {
-      if (user.email === email) {
-        userEmail = user.email;
-        if (user.password === password) {
-          return userData = user;
-        }
-      }
-    })
-    if (userData) {
-      setCurrentUser(userData);
-      setIsLoggedIn(true);
-      closeAllPopups();
-    }
-    else if (!userEmail) {
-      setSubmitError('This email is not available');
-    }
-    else {
-      setSubmitError('wrong Password, please try again');
-    }
-  }
 
-  function onSignupSubmit() {
-    closeAllPopups();
-    toggleSuccessRegisterPopupState();
-  }
 
   function onRelativeSignupClick() {
     closeAllPopups();
@@ -266,22 +184,174 @@ function App() {
     toggleSigninPopupState();
   }
 
-  function onArticleSearch() {
-
+  function onArticleSearch(question) {
+    setIsFound(true);
+    setRenderedCards([]);
+    setIsSearching(true);
+    setIsLoading(true);
+    setIsShowMoreActive(true);
+    let editedArticles = [];
+    let editedSource;
+    let editedDate;
+    return NewsApi.getArticles(question)
+      .then(res => {
+        if (res.articles.length !== 0) {
+          res.articles.map((article) => {
+            const { description: text,
+              publishedAt: date,
+              source,
+              title,
+              url: link,
+              urlToImage: image } = article;
+            //edit source and date to feet the figma criateria
+            editedSource = source.name;
+            editedDate = convertDataToDate(date);
+            const editedArticle = { isSaved: false, keyword: question, text, date: editedDate, source: editedSource, title, link, image };
+            savedCards.forEach((card) => {
+              if (card.link === editedArticle.link) {
+                return editedArticle.isSaved = true;
+              }
+            })
+            return editedArticles = [...editedArticles, editedArticle];
+          })
+          setIsLoading(false);
+          setRenderedCards(editedArticles.splice(0, 3));
+          setNewsApiRecivedCards(editedArticles);
+        }
+        else {
+          setIsLoading(false);
+          setIsFound(false);
+        }
+      }).catch(err => {
+        console.log(err);
+      });
   }
+  const namesOfMonthes = {
+    'January': '01',
+    'February': '02',
+    'March': '03',
+    'April': '04',
+    'May': '05',
+    'June': '06',
+    'July': '07',
+    'August': '08',
+    'September': '09',
+    'October': '10',
+    'November': '11',
+    'December': '12'
+  };
+  function convertDataToDate(date) {
+    const year = date.substr(0, 4);
+    const month = date.substr(5, 2);
+    let day = date.substr(8, 2);
+    let monthName = '';
+    Object.values(namesOfMonthes).map((monthNumber, i) => {
+      if (month === monthNumber) {
+        monthName = Object.keys(namesOfMonthes)[i];
+      }
+      return monthName;
+    })
+    if (day.charAt(0) === '0') {
+      day = day.substr(1, 1);
+    }
+    return `${monthName} ${day}, ${year}`;
+  }
+
+  function showMoreCards() {
+    setRenderedCards([...renderedCards, ...newsApiRecivedCards.splice(0, 3)]);
+    setNewsApiRecivedCards(newsApiRecivedCards);
+    if (newsApiRecivedCards.length === 0) {
+      setIsShowMoreActive(false);
+    }
+  }
+
+  function onSaveCard(card) {
+    const savedCard = card;
+    savedCard.isSaved = true;
+    return MainApi.saveCard(card, token)
+      .then((res) => {
+        setSavedCards([...savedCards, res]);
+        let keywords = keywordsCollection;
+        setRenderedCards((state) => {
+          return state.map(currentCard => {
+            return currentCard.link === savedCard.link ? savedCard : currentCard;
+          })
+        })
+        keywords.push(res.keyword);
+        setKeywordsCollection(keywords);
+        sortKeywordsByFrequency();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  function sortKeywordsByFrequency() {
+    let frequency = {};
+    keywordsCollection.forEach((keyword) => {
+      frequency[keyword] = frequency[keyword] ? frequency[keyword] + 1 : 1;
+    });
+
+    keywordsCollection.sort((a, b) => {
+      return frequency[b] - frequency[a];
+    });
+
+    let singleKeywords = keywordsCollection.filter((card, i) => {
+      return keywordsCollection.indexOf(card) === i;
+    })
+    let keywordsToPrint = [];
+    singleKeywords.forEach((keyword, i) => {
+      if (i < 2) {
+        keywordsToPrint[i] = keyword;
+      }
+      if (i === 2) {
+        keywordsToPrint[i] = 1;
+      }
+      else {
+        keywordsToPrint[2] = keywordsToPrint[2] + 1;
+      }
+    })
+    return keywordsToPrint;
+  }
+
+  function onDeleteCard(card) {
+    const toDeleteCard = savedCards.filter(
+      (currentCard) => card.link === currentCard.link
+    )[0];
+    return MainApi.deleteCard(toDeleteCard._id, token)
+      .then(() => {
+        setSavedCards(savedCards.filter(
+          (currentCard) => toDeleteCard._id !== currentCard._id
+        ));
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  function onCardClick(card) {
+    window.open(card.link, "_blank");
+  }
+
+  const cardFunctions = {
+    dateConvert: convertDataToDate,
+    showMoreCards: showMoreCards,
+    isShowMoreActive: isShowMoreActive,
+    onSaveClick: onSaveCard,
+    onDeleteClick: onDeleteCard,
+    onCardClick: onCardClick
+  }
+
   function onSigninClick() {
     closeAllPopups();
     toggleSigninPopupState();
   }
 
   function onLogout() {
-    closeAllPopups();
+    localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    history.push('/');
   }
 
-  function onSavedArticlesClick() {
-    setIsInsideSavedArticles(true);
-  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div
@@ -296,7 +366,6 @@ function App() {
               isMobileNavigationActive={isMobileNavigationOpen}
               onMobileNavigationButtonClick={toggleMobileNavigationState}
               onSigninClick={onSigninClick}
-              onSavedArticlesClick={onSavedArticlesClick}
               insideSavedArticles={false}
               onLogout={onLogout}
             />
@@ -305,44 +374,42 @@ function App() {
               isInsideMain
               isInsideSavedArticles={false}
               onArticleSearch={onArticleSearch}
-              cards={cards}
+              cards={renderedCards}
+              cardFunctions={cardFunctions}
               isSearching={isSearching}
               isLoading={isLoading}
               isFound={isFound}
             />
           </Route>
-          <Route path="/saved-news">
+          <ProtectedRoute path="/saved-news" loggedIn={isLoggedIn} changeDirectionState={toggleIsdirectedToSavedNews} redirectedPath='/'>
             <SavedNewsHeader
               isMobileNavigationActive={isMobileNavigationOpen}
               onMobileNavigationButtonClick={toggleMobileNavigationState}
               onSigninClick={onSigninClick}
-              onSavedArticlesClick={onSavedArticlesClick}
-              isInsideSavedArticles
+              isInsideSavedArticles={true}
               onLogout={onLogout}
             />
             <SavedNews
               isLoggedIn
               isInsideMain={false}
-              isInsideSavedArticles
+              isInsideSavedArticles={true}
               savedCards={savedCards}
+              cardFunctions={cardFunctions}
+              keywords={sortKeywordsByFrequency()}
             />
-          </Route>
+          </ProtectedRoute>
         </Switch>
         <Footer />
         <SigninPopup
           isPopupOpen={isPopupSigninOpen}
-          onSubmit={onSigninSubmit}
+          onSubmit={onLogin}
           onRelativePathClick={onRelativeSignupClick}
-          inputsErrors={inputsErrors}
           submitError={submitError}
-          editInputsErrors={editInputsErrors}
           onClose={closeAllPopups}
         />
         <SignupPopup
           isPopupOpen={isPopupSignupOpen}
-          onSubmit={onSignupSubmit}
-          editInputsErrors={editInputsErrors}
-          inputsErrors={inputsErrors}
+          onSubmit={onRegister}
           submitError={submitError}
           onRelativePathClick={onRelativeSigninClick}
           onClose={closeAllPopups}

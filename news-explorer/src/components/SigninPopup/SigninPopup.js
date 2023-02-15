@@ -7,14 +7,23 @@ function SigninPopup({
   isPopupOpen,
   onSubmit,
   onRelativePathClick,
-  inputsErrors,
   submitError,
-  editInputsErrors,
   onClose,
 }) {
 
-  const [isSubmitButtonClicked, setisSubmitButtonClicked] = useState(false);
+  const [inputsErrors, setInputsErrors] = useState([]);
+
+  const editInputsErrors = (isError, inputName) => {
+    let tempErrorsArray = inputsErrors;
+    tempErrorsArray = tempErrorsArray.filter((name) => name !== inputName);
+    if (isError) {
+      tempErrorsArray.push(inputName);
+    }
+    setInputsErrors(tempErrorsArray);
+  };
   
+  const [isSubmitButtonClicked, setisSubmitButtonClicked] = useState(false);
+
   function toggleSubmitButtonClickedState(isClicked) {
     setisSubmitButtonClicked(isClicked);
   }

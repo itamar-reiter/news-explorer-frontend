@@ -36,7 +36,6 @@ function PopupWithForm({
       } else {
         setIsSubmitButtonDisabled(true);
       }
-      console.log(isSubmitButtonDisabled);
     }
   }, [inputsErrors]);
 
@@ -57,7 +56,6 @@ function PopupWithForm({
             className={`popup__submit-button ${isSubmitButtonDisabled ? '' : 'popup__submit-button_type_enabled'} ${isSubmitButtonClicked? 'popup__submit-button_type_active': ''}`}
             type="submit"
             id={submitButtonId}
-            onClick={handleSubmit}
             disabled={isSubmitButtonDisabled}
           >
             {submitButtonText}

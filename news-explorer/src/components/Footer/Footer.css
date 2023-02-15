@@ -58,8 +58,10 @@
   background-image: url('../../images/github-icon_comp.svg');
 }
 
-.footer__icon_type_facebook {
-  background-image: url('../../images/facebook-icon_comp.svg');
+.footer__icon_type_linkedin {
+  width: 24.5px;
+  height: 24.5px;
+  background-image: url('../../images/linkedin-icon.svg');
 }
 
 @media (max-width: 768px) {
