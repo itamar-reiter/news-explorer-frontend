@@ -1,3 +1,3 @@
 export const apiData = {
-  baseUrl: "https://itamarreiternewsexplorer.onrender.com",
+  baseUrl: "https://news-explorer-api-9qzt.onrender.com",
 };
