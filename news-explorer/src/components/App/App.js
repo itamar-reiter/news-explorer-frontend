@@ -14,6 +14,7 @@ import NewsApi from '../../utils/NewsApi';
 import MainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { namesOfMonthes } from '../../utils/constants';
+import ContentLoader from '../ContentLoader/ContentLoader';
 
 function App() {
   const history = useHistory();
@@ -25,8 +26,18 @@ function App() {
 
   const [isDirectedToSavedNewsRoute, setisDirectedToSavedNewsRoute] = useState(false);
   const [isPopupSigninOpen, setIsPopupSigninOpen] = useState(false);
+  const [isFooterDisplayed, setIsFooterDisplayed] = useState(false);
+
+  //insurance that footer is displayed only after page is loaded
+  async function handleNavigation(route) {
+    await history.push(route);
+    setIsFooterDisplayed(true);
+  }
+
   //Effect for token verification and auto login when rendering app
   useEffect(() => {
+    setIsFooterDisplayed(false);
+    history.push('/');
     setToken(localStorage.getItem("jwt"));
     if (token) {
       // if there is a token in local storage, check it
@@ -42,23 +53,33 @@ function App() {
             setIsLoggedIn(true);
             console.log(true);
             if (isDirectedToSavedNewsRoute) {
-              history.push('/saved-news');
+             handleNavigation('/saved-news');
+            }
+            else {
+              handleNavigation('/main');
             }
           }
           else {
             localStorage.removeItem("jwt");
             setIsLoggedIn(false);
+            setIsFooterDisplayed(true);
             if (isDirectedToSavedNewsRoute) {
               setIsPopupSigninOpen(true);
             }
+            history.push('/main');
           }
         }).catch((err) => {
           console.log(err);
+          setIsFooterDisplayed(true);
         });
     }
-    else if (isDirectedToSavedNewsRoute) {
+    else {
+      history.push('/main');
+      setIsFooterDisplayed(true);
       setIsLoggedIn(false);
-      setIsPopupSigninOpen(true);
+      if (isDirectedToSavedNewsRoute) {
+        setIsPopupSigninOpen(true);
+      }
     }
   }, [token, history, isDirectedToSavedNewsRoute]);
 
@@ -77,7 +98,7 @@ function App() {
     }
   }
 
-// functions for registration and Login
+  // functions for registration and Login
 
   const onRegister = (email, password, name) => {
     MainApi.register(email, password, name)
@@ -212,7 +233,7 @@ function App() {
         console.log(err);
       });
   }
-  
+
   function convertDataToDate(date) {
     const year = date.substr(0, 4);
     const month = date.substr(5, 2);
@@ -322,7 +343,7 @@ function App() {
   function onLogout() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-    history.push('/');
+    history.push('/main');
   }
 
   return (
@@ -334,6 +355,9 @@ function App() {
       >
         <Switch>
           <Route exact path="/">
+            <ContentLoader />
+          </Route>
+          <Route path="/main">
             <Header
               isLoggedIn={isLoggedIn}
               isMobileNavigationActive={isMobileNavigationOpen}
@@ -354,7 +378,7 @@ function App() {
               isFound={isFound}
             />
           </Route>
-          <ProtectedRoute path="/saved-news" loggedIn={isLoggedIn} changeDirectionState={toggleIsdirectedToSavedNews} redirectedPath='/'>
+          <ProtectedRoute path="/saved-news" loggedIn={isLoggedIn} changeDirectionState={toggleIsdirectedToSavedNews} redirectedPath='/main'>
             <SavedNewsHeader
               isMobileNavigationActive={isMobileNavigationOpen}
               onMobileNavigationButtonClick={toggleMobileNavigationState}
@@ -372,7 +396,9 @@ function App() {
             />
           </ProtectedRoute>
         </Switch>
-        <Footer />
+        <Footer
+          isFooterDisplayed={isFooterDisplayed}
+        />
         <SigninPopup
           isPopupOpen={isPopupSigninOpen}
           onSubmit={onLogin}

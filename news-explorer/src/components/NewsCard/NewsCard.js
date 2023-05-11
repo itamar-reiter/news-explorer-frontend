@@ -34,7 +34,7 @@ function NewsCard({
   return (
     <div className="news-card"
       onClick={() => cardFunctions.onCardClick(card)}>
-      <Route exact path="/">
+      <Route exact path="/main">
         <div className="news-card__image news-card__image_type_main" style={{ backgroundImage: `url(${card.image})` }}>
           <button className={`news-card__button ${!isLoggedIn ? 'news-card__button_not-logged-in' : ''}`}
             onClick={isArticleSaved ? onDeleteArticleClick : onSaveArticleClick}

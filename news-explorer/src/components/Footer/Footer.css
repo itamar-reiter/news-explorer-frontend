@@ -1,6 +1,10 @@
 .footer {
-  padding: 30px clamp(41px, 5.555%, 80px) 30px clamp(40px, 7.222%, 104px);
+  display: none;
+}
+
+.footer_active{
   display: flex;
+  padding: 30px clamp(41px, 5.555%, 80px) 30px clamp(40px, 7.222%, 104px);
   align-items: center;
   justify-content: space-between;
 }

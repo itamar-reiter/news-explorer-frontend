@@ -18,7 +18,7 @@ export default function Header({
   return (
     <header className="header">
       <div className={`header__background ${isMobileNavigationActive ? 'header__background_active' : ''}`}>
-        <Link to="/" className="header__logo">NewsExplorer</Link>
+        <Link to="/main" className="header__logo">NewsExplorer</Link>
         <Navigation
           isLoggedIn={isLoggedIn}
           isActive={isMobileNavigationActive}

@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import './Footer.css';
 
-function Footer() {
+function Footer({ isFooterDisplayed }) {
   return (
-    <footer className="footer">
+    <footer className={`footer ${isFooterDisplayed ? "footer_active" : ""}`}>
       <p className="footer__copyrights">© 2022, Powered by itamar Reiter</p>
       <nav className='footer__navbar'>
         <div className='footer__links'>
-          <Link to="/" className="footer__link">Home</Link>
+          <Link to="/main" className="footer__link">Home</Link>
           <a href="https://practicum.com/en-isr/" className="footer__link" target="_blank" rel="noopener noreferrer">Practicum</a>
         </div>
         <div className='footer__icons'>
