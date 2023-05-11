@@ -84,15 +84,6 @@ function App() {
     }
   }
 
-  /* const editInputsErrors = (isError, inputName) => {
-    let tempErrorsArray = inputsErrors;
-    tempErrorsArray = tempErrorsArray.filter((name) => name !== inputName);
-    if (isError) {
-      tempErrorsArray.push(inputName);
-    }
-    setInputsErrors(tempErrorsArray);
-  }; */
-
   const onRegister = (email, password, name) => {
     MainApi.register(email, password, name)
       .then((res) => {
