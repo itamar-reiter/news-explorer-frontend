@@ -13,12 +13,13 @@ import SuccessRegisterPopup from '../SuccessRegisterPopup/SuccessRegisterPopup';
 import NewsApi from '../../utils/NewsApi';
 import MainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { namesOfMonthes } from '../../utils/constants';
 
 function App() {
   const history = useHistory();
-  
+
   const [token, setToken] = useState();
-  
+
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [keywordsCollection, setKeywordsCollection] = useState([]);
 
@@ -28,9 +29,16 @@ function App() {
   useEffect(() => {
     setToken(localStorage.getItem("jwt"));
     if (token) {
-      MainApi.checkToken(token)
+      // if there is a token in local storage, check it
+      // if it is valid, get user info and saved cards
+      // if it is not valid, remove it from local storage
+      MainApi.getInitialAppInfo(token)
         .then((res) => {
           if (res) {
+            const [userInfo, savedCardsData] = res;
+            setCurrentUser(userInfo);
+            setSavedCards(savedCardsData);
+            setKeywordsCollection(savedCardsData.map((card) => card.keyword));
             setIsLoggedIn(true);
             console.log(true);
             if (isDirectedToSavedNewsRoute) {
@@ -54,22 +62,7 @@ function App() {
     }
   }, [token, history, isDirectedToSavedNewsRoute]);
 
-
-  // assign user values and get saved cards from the server
-  useEffect(() => {
-    if (token) {
-      MainApi.getInitialAppInfo(token)
-        .then(([userInfo, savedCardsData]) => {
-          setCurrentUser(userInfo);
-          setSavedCards(savedCardsData);
-          setKeywordsCollection(savedCardsData.map((card) => card.keyword));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [token]);
-
+  //define states
 
   const [currentUser, setCurrentUser] = useState({});
   const [isSearching, setIsSearching] = useState(false);
@@ -83,6 +76,8 @@ function App() {
       setisDirectedToSavedNewsRoute(!isDirectedToSavedNewsRoute);
     }
   }
+
+// functions for registration and Login
 
   const onRegister = (email, password, name) => {
     MainApi.register(email, password, name)
@@ -217,20 +212,7 @@ function App() {
         console.log(err);
       });
   }
-  const namesOfMonthes = {
-    'January': '01',
-    'February': '02',
-    'March': '03',
-    'April': '04',
-    'May': '05',
-    'June': '06',
-    'July': '07',
-    'August': '08',
-    'September': '09',
-    'October': '10',
-    'November': '11',
-    'December': '12'
-  };
+  
   function convertDataToDate(date) {
     const year = date.substr(0, 4);
     const month = date.substr(5, 2);
