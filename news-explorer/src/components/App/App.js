@@ -63,14 +63,15 @@ function App() {
             localStorage.removeItem("jwt");
             setIsLoggedIn(false);
             setIsFooterDisplayed(true);
+            history.push('/main');
             if (isDirectedToSavedNewsRoute) {
               setIsPopupSigninOpen(true);
             }
-            history.push('/main');
           }
         }).catch((err) => {
           console.log(err);
           setIsFooterDisplayed(true);
+          history.push('/main');
         });
     }
     else {
@@ -354,9 +355,6 @@ function App() {
         onKeyDown={handleEscPress}
       >
         <Switch>
-          <Route exact path="/">
-            <ContentLoader />
-          </Route>
           <Route path="/main">
             <Header
               isLoggedIn={isLoggedIn}
@@ -395,6 +393,9 @@ function App() {
               keywords={sortKeywordsByFrequency()}
             />
           </ProtectedRoute>
+          <Route path="/*">
+            <ContentLoader />
+          </Route>
         </Switch>
         <Footer
           isFooterDisplayed={isFooterDisplayed}
