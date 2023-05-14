@@ -15,6 +15,7 @@ import MainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { namesOfMonthes } from '../../utils/constants';
 import ContentLoader from '../ContentLoader/ContentLoader';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
   const history = useHistory();
@@ -395,6 +396,9 @@ function App() {
           </ProtectedRoute>
           <Route path="/content-loader">
             <ContentLoader />
+          </Route>
+          <Route path="*">
+            <Redirect to='/'/>
           </Route>
         </Switch>
         <Footer
