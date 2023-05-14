@@ -37,7 +37,7 @@ function App() {
   //Effect for token verification and auto login when rendering app
   useEffect(() => {
     setIsFooterDisplayed(false);
-    history.push('/');
+    history.push('/content-loader');
     setToken(localStorage.getItem("jwt"));
     if (token) {
       // if there is a token in local storage, check it
@@ -393,7 +393,7 @@ function App() {
               keywords={sortKeywordsByFrequency()}
             />
           </ProtectedRoute>
-          <Route path="/*">
+          <Route path="/content-loader">
             <ContentLoader />
           </Route>
         </Switch>
