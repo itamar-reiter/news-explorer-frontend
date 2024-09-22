@@ -6,7 +6,7 @@ import './Footer.css';
 function Footer({ isFooterDisplayed }) {
   return (
     <footer className={`footer ${isFooterDisplayed ? "footer_active" : ""}`}>
-      <p className="footer__copyrights">© 2022, Powered by itamar Reiter</p>
+      <p className="footer__copyrights">© 2024, Powered by itamar Reiter</p>
       <nav className='footer__navbar'>
         <div className='footer__links'>
           <Link to="/main" className="footer__link">Home</Link>
