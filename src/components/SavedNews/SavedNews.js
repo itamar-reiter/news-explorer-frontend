@@ -5,7 +5,7 @@ import './SavedNews.css';
 import CurrentUserContext from '../../utils/CurrentUserContext';
 
 function SavedNews({
-  isLoggedIn, isInsideSavedArticles, isInsideMain, savedCards, cardFunctions, keywords
+  isLoggedIn, isInsideSavedNews, isInsideMain, savedCards, cardFunctions, keywords
 }) {
   const currentUserValue = useContext(CurrentUserContext);
   return (
@@ -17,7 +17,7 @@ function SavedNews({
       {savedCards.length !== 0 && <NewsCardsList
         isLoggedIn={isLoggedIn}
         isInsideMain={isInsideMain}
-        isInsideSavedArticles={isInsideSavedArticles}
+        isInsideSavedNews={isInsideSavedNews}
         cards={savedCards}
         cardFunctions={cardFunctions}
       />}

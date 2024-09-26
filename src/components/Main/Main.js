@@ -7,7 +7,7 @@ import SearchResults from '../SearchResults/SearchResults';
 function Main({
   isLoggedIn,
   isInsideMain,
-  isInsideSavedArticles,
+  isInsideSavedNews,
   onArticleSearch,
   isSearching,
   isLoading,
@@ -23,7 +23,7 @@ function Main({
       <SearchResults
         isLoggedIn={isLoggedIn}
         isInsideMain={isInsideMain}
-        isInsideSavedArticles={isInsideSavedArticles}
+        isInsideSavedNews={isInsideSavedNews}
         isSearching={isSearching}
         isLoading={isLoading}
         cards={cards}

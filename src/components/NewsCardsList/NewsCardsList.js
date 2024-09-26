@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './NewsCardsList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
 function NewsCardsList({
   isLoggedIn,
-  isInsideSavedArticles,
-  isInsideMain,
   cards,
   cardFunctions
 }) {
 
+  const location = useLocation();
+
+  const [isInsideMain, setIsInsideMain] = useState(false);
+  const [isInsideSavedNews, setIsInsideSavedNews] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/main')) {
+      setIsInsideSavedNews(false);
+      setIsInsideMain(true);
+    } else if (location.pathname.startsWith('/saved-news')) {
+      setIsInsideSavedNews(true);
+      setIsInsideMain(false);
+    }
+  }, [location]);
+
+
+
   return (
-    <div className={`news-cards-list ${isInsideSavedArticles ? 'news-cards-list_type_saved-news' : ''}`}>
+    <div className={`news-cards-list ${isInsideSavedNews ? 'news-cards-list_type_saved-news' : ''}`}>
       {isInsideMain && <h2 className="news-cards-list__title">Search results</h2>}
       <ul className="news-cards-list__content">
         {cards.map((card) => (
@@ -19,8 +35,9 @@ function NewsCardsList({
             <NewsCard
               cardFunctions={cardFunctions}
               isLoggedIn={isLoggedIn}
-              isInsideSavedArticles={isInsideSavedArticles}
               card={card}
+              isInsideMain={isInsideMain}
+              isInsideSavedNews={isInsideSavedNews}
             /* onCardClick={onCardClick}
             onCardLike={onCardLike}
             onCardDelete={onCardDelete} */

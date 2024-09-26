@@ -8,7 +8,7 @@ export default function SavedNewsHeader({
   isMobileNavigationActive,
   onMobileNavigationButtonClick,
   onSavedArticlesClick,
-  isInsideSavedArticles,
+  isInsideSavedNews,
   onSigninClick,
   onLogout,
 }) {
@@ -21,13 +21,13 @@ export default function SavedNewsHeader({
         isActive={isMobileNavigationActive}
         onSavedArticlesClick={onSavedArticlesClick}
         insideMain={false}
-        insideSavedArticles={isInsideSavedArticles}
+        insideSavedArticles={isInsideSavedNews}
         onSigninClick={onSigninClick}
         onLogout={onLogout}
       />
-      <button 
-      onClick={onMobileNavigationButtonClick}
-      className={`header__nav-button header__nav-button_type_in-saved-news ${isMobileNavigationActive? 'header__nav-button_mode_saved-news-esc-mode' : ''}`}
+      <button
+        onClick={onMobileNavigationButtonClick}
+        className={`header__nav-button header__nav-button_type_in-saved-news ${isMobileNavigationActive ? 'header__nav-button_mode_saved-news-esc-mode' : ''}`}
       />
     </header>
   );

@@ -29,20 +29,21 @@ function App() {
   const [isFooterDisplayed, setIsFooterDisplayed] = useState(false);
 
   //insurance that footer is displayed only after page is loaded
-  const handleNavigation = useCallback(async (route) => {
-    await navigate(route);
+  const handleNavigation = useCallback((route) => {
+    navigate(route);
     setIsFooterDisplayed(true);
+    console.log("in handleNavigation");
   }, [navigate]);
 
   //Effect for token verification and auto login when rendering app
   useEffect(() => {
     setIsFooterDisplayed(false);
-    navigate('/content-loader');
     setToken(localStorage.getItem("jwt"));
     if (token) {
       // if there is a token in local storage, check it
       // if it is valid, get user info and saved cards
       // if it is not valid, remove it from local storage
+      navigate("/content-loader");
       MainApi.getInitialAppInfo(token)
         .then((res) => {
           if (res) {
@@ -82,7 +83,7 @@ function App() {
         setIsPopupSigninOpen(true);
       }
     }
-  }, [token, navigate, isDirectedToSavedNewsRoute, handleNavigation]);
+  }, [token, isDirectedToSavedNewsRoute]);
 
   //define states
 
@@ -363,11 +364,11 @@ function App() {
           onLogout={onLogout}
         />
         <Routes>
-          <Route path="/main"
+          <Route path="/main/*"
             element={<Main
               isLoggedIn={isLoggedIn}
               isInsideMain
-              isInsideSavedArticles={false}
+              isInsideSavedNews={false}
               onArticleSearch={onArticleSearch}
               cards={renderedCards}
               cardFunctions={cardFunctions}
@@ -377,36 +378,38 @@ function App() {
             />}
           />
           <Route
-            path="/saved-news"
+            path="/saved-news/*"
             element={
               <ProtectedRoute
                 loggedIn={isLoggedIn}
                 changeDirectionState={toggleIsdirectedToSavedNews}
                 redirectedPath="/main"
-                element={() => (
-                  <>
-                    <SavedNewsHeader
-                      isMobileNavigationActive={isMobileNavigationOpen}
-                      onMobileNavigationButtonClick={toggleMobileNavigationState}
-                      onSigninClick={onSigninClick}
-                      isInsideSavedArticles={true}
-                      onLogout={onLogout}
-                    />
-                    <SavedNews
-                      isLoggedIn
-                      isInsideMain={false}
-                      isInsideSavedArticles={true}
-                      savedCards={savedCards}
-                      cardFunctions={cardFunctions}
-                      keywords={sortKeywordsByFrequency()}
-                    />
-                  </>
-                )}
+                children={
+                  <Route path='/' element={
+                    <>
+                      <SavedNewsHeader
+                        isMobileNavigationActive={isMobileNavigationOpen}
+                        onMobileNavigationButtonClick={toggleMobileNavigationState}
+                        onSigninClick={onSigninClick}
+                        isInsideSavedNews={true}
+                        onLogout={onLogout}
+                      />
+                      <SavedNews
+                        isLoggedIn={isLoggedIn}
+                        isInsideMain={false}
+                        isInsideSavedNews={true}
+                        savedCards={savedCards}
+                        cardFunctions={cardFunctions}
+                        keywords={sortKeywordsByFrequency()}
+                      />
+                    </>
+                  } />
+                }
               />
             }
           />
           <Route path="/content-loader" element={<ContentLoader />} />
-          <Route path="*" element={<Navigate to='/' />} />
+          <Route path="*" element={<Navigate to='/main' />} />
         </Routes>
         <Footer
           isFooterDisplayed={isFooterDisplayed}

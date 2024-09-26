@@ -10,7 +10,7 @@ function SearchResults({
   isLoading,
   cards,
   cardFunctions,
-  isInsideSavedArticles,
+  isInsideSavedNews,
   isInsideMain,
   isFound,
 }) {
@@ -20,7 +20,7 @@ function SearchResults({
       {cards.length !== 0 && (
         <NewsCardsList
           isLoggedIn={isLoggedIn}
-          isInsideSavedArticles={isInsideSavedArticles}
+          isInsideSavedNews={isInsideSavedNews}
           isInsideMain={isInsideMain}
           cards={cards}
           cardFunctions={cardFunctions}
