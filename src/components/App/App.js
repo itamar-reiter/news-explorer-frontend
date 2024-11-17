@@ -14,7 +14,7 @@ import NewsApi from '../../utils/NewsApi';
 import MainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { namesOfMonthes } from '../../utils/constants';
-import ContentLoader from '../ContentLoader/ContentLoader';
+// import ContentLoader from '../ContentLoader/ContentLoader';
 
 function App() {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ function App() {
       // if there is a token in local storage, check it
       // if it is valid, get user info and saved cards
       // if it is not valid, remove it from local storage
-      navigate("/content-loader");
+      // navigate("/content-loader");
       MainApi.getInitialAppInfo(token)
         .then((res) => {
           if (res) {
@@ -182,7 +182,7 @@ function App() {
   }
 
 
-
+  
   function onRelativeSignupClick() {
     closeAllPopups();
     toggleSignupPopupState();
@@ -408,7 +408,7 @@ function App() {
               />
             }
           />
-          <Route path="/content-loader" element={<ContentLoader />} />
+          {/* <Route path="/content-loader" element={<ContentLoader />} /> */}
           <Route path="*" element={<Navigate to='/main' />} />
         </Routes>
         <Footer
