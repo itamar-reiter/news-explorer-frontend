@@ -3,7 +3,13 @@ import './SearchForm.css';
 
 function SearchForm({ onArticleSearch }) {
   const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
+  const [isHotestButtonClicked, setIsHotestButtonClicked] = useState(false);
 
+  function onHotestNewsClick(e) {
+    e.preventDefault();
+    setIsHotestButtonClicked(true);
+    onArticleSearch('hotest-news');
+  }
   const [articleKeyword, setArticleKeyword] = useState('');
 
   function handleArticleKeywordChange(e) {
@@ -45,7 +51,16 @@ function SearchForm({ onArticleSearch }) {
         >
           Search
         </button>
+
       </form>
+      <button
+        type='button'
+        id="hotestNewsId"
+        onClick={onHotestNewsClick}
+        className={`search-form__hotest-news ${isHotestButtonClicked ? 'search-form__hotest-news-active' : ''}`}
+      >
+        Hotest News
+      </button>
     </section>
   );
 }

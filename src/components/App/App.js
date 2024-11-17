@@ -204,6 +204,7 @@ function App() {
     let editedDate;
     return NewsApi.getArticles(question)
       .then(res => {
+        console.log(res.articles);
         if (res.articles.length !== 0) {
           res.articles.map((article) => {
             const { description: text,

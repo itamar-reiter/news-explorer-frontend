@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 160px clamp(160px, 28.888%, 416px) 80px;
+  padding: 160px clamp(160px, 28.888%, 416px) 20px;
 }
 
 .search-form__title {
@@ -81,6 +81,27 @@
 
 .search-form__submit-button_active:hover{
   background: rgb(42, 101, 204);
+}
+
+.search-form__hotest-news{
+  margin-top: 20px;
+  cursor: pointer;
+  width: 40%;
+  background: rgb(207, 171, 40);
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  border-radius: 100px;
+  border: none;
+  color: white;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 30px;
+  transition: background-color 0.3s ease-in;
+}
+
+.search-form__hotest-news:hover{
+  background: rgb(116, 8, 8);
 }
 
 @media (max-width: 768px) {
