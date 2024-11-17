@@ -4,7 +4,7 @@ import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-import { Route, Routes, useNavigate, Navigate, Router } from 'react-router-dom';
+import { Route, Routes, useNavigate, Navigate, Router, useFetcher } from 'react-router-dom';
 import SavedNews from '../SavedNews/SavedNews';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SigninPopup from '../SigninPopup/SigninPopup';
@@ -182,7 +182,7 @@ function App() {
   }
 
 
-  
+
   function onRelativeSignupClick() {
     closeAllPopups();
     toggleSignupPopupState();
@@ -318,6 +318,12 @@ function App() {
         setSavedCards(savedCards.filter(
           (currentCard) => toDeleteCard._id !== currentCard._id
         ));
+        //re-render updated cards
+        setRenderedCards((state) => {
+          return state.map(currentCard => {
+            return currentCard.link === toDeleteCard.link ? toDeleteCard : currentCard;
+          })
+        })
       })
       .catch(err => {
         console.log(err);
