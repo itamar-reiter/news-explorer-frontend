@@ -157,4 +157,9 @@
     min-height: 56px;
     margin: 0;
   }
+
+  .search-form__hotest-news{
+    margin-top: 11px;
+    width: 80%;
+  }
 }
