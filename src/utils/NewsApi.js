@@ -21,10 +21,15 @@ class NewsApi {
     })
   }
 
-  getArticles(qeustion) {
+  async getArticles(qeustion) {
     if (qeustion === 'hotest-news') {
-      return fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${this._apiKey}`)
-        .then((res) => this._checkResponse(res));
+      const response = await fetch(`${this._baseUrl}/top-headlines?country=us&apiKey=${this._apiKey}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Key": this._apiKey
+        }
+      });
+      return this._checkResponse(response);
     }
     else {
       let today = new Date();
