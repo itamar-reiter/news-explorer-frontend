@@ -102,8 +102,8 @@ function App() {
 
   // functions for registration and Login
 
-  const onRegister = (email, password, name) => {
-    MainApi.register(email, password, name)
+  const onRegister = (email, password, name, image) => {
+    MainApi.register(email, password, name, image)
       .then((res) => {
         if (res._id) {
           closeAllPopups();
@@ -114,6 +114,8 @@ function App() {
         console.log(err);
         if (err === 'Error: 409') {
           setSubmitError('A user with that Email is already exist.');
+        } else {
+          setSubmitError('cant register. please try again later');
         }
       });
   }

@@ -23,35 +23,25 @@ function SignupPopup({
   };
 
   const [isSubmitButtonClicked, setisSubmitButtonClicked] = useState(false);
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  
   function toggleSubmitButtonClickedState(isClicked) {
     setisSubmitButtonClicked(isClicked);
   }
 
-  const [email, setEmail] = useState('');
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-    toggleSubmitButtonClickedState(false);
-  }
-
-  const [password, setPassword] = useState('');
-
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-    toggleSubmitButtonClickedState(false);
-  }
-
-  const [username, setUsername] = useState('');
-
-  function handleUsernameChange(e) {
-    setUsername(e.target.value);
-    toggleSubmitButtonClickedState(false);
+  function handleInputChange(setState, e, shouldResetSubmit = true) {
+    setState(e.target.value);
+    if (shouldResetSubmit) {
+      toggleSubmitButtonClickedState(false);
+    }
   }
 
   function onSubmitPopup() {
     toggleSubmitButtonClickedState(true);
-    onSubmit(email, password, username);
+    onSubmit(email, password, username, imageUrl);
   }
   return (
     <PopupWithForm
@@ -72,7 +62,7 @@ function SignupPopup({
         name="email"
         id="signUpEmail"
         inputValue={email}
-        handleInputChange={handleEmailChange}
+        handleInputChange={(e) => handleInputChange(setEmail, e)}
         inputPlaceholder="Enter email"
         minLength={2}
         maxLength={30}
@@ -86,7 +76,7 @@ function SignupPopup({
         name="password"
         id="password"
         inputValue={password}
-        handleInputChange={handlePasswordChange}
+        handleInputChange={(e) => handleInputChange(setPassword, e)}
         inputPlaceholder="Enter password"
         minLength={2}
         maxLength={30}
@@ -100,10 +90,23 @@ function SignupPopup({
         name="username"
         id="username"
         inputValue={username}
-        handleInputChange={handleUsernameChange}
+        handleInputChange={(e) => handleInputChange(setUsername, e)}
         inputPlaceholder="Enter your username"
         minLength={2}
         maxLength={30}
+        editInputsErrors={editInputsErrors}
+        isRequired={true}
+        isPopupOpen={isPopupOpen}
+      />
+      <PopupFormInput
+        label="Image"
+        type="url"
+        name="userImageLink"
+        id="userImageLink"
+        inputValue={imageUrl}
+        handleInputChange={(e) => handleInputChange(setImageUrl, e)}
+        inputPlaceholder="Enter image URL"
+        minLength={2}
         editInputsErrors={editInputsErrors}
         isRequired={true}
         isPopupOpen={isPopupOpen}

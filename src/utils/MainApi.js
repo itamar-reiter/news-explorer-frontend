@@ -9,7 +9,7 @@ class MainApi {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   };
 
-  register(email, password, name) {
+  register(email, password, name, image) {
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
       headers: {
@@ -19,7 +19,8 @@ class MainApi {
       body: JSON.stringify({
         email: email,
         password: password,
-        name: name
+        name: name,
+        image: image
       }),
     })
       .then((res) => this._checkResponse(res))
@@ -36,8 +37,8 @@ class MainApi {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        password: password
+       email,
+       password
       }),
     })
       .then((res) => this._checkResponse(res))
@@ -122,4 +123,5 @@ class MainApi {
   }
 }
 
-export default new MainApi(apiData);
+const mainApi = new MainApi(apiData);
+export default mainApi;
