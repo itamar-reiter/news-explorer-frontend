@@ -68,6 +68,13 @@
   color: #ffffff;
 }
 
+.navigation__user-image{
+  object-fit: contain;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
 .navigation__button:hover {
   cursor: pointer;
 }

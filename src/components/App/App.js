@@ -49,6 +49,7 @@ function App() {
           if (res) {
             const [userInfo, savedCardsData] = res;
             setCurrentUser(userInfo);
+            console.log(userInfo);
             setSavedCards(savedCardsData);
             setKeywordsCollection(savedCardsData.map((card) => card.keyword));
             setIsLoggedIn(true);

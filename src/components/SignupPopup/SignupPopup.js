@@ -99,7 +99,7 @@ function SignupPopup({
         isPopupOpen={isPopupOpen}
       />
       <PopupFormInput
-        label="Image"
+        label="Image (Optional)"
         type="url"
         name="userImageLink"
         id="userImageLink"
@@ -108,7 +108,7 @@ function SignupPopup({
         inputPlaceholder="Enter image URL"
         minLength={2}
         editInputsErrors={editInputsErrors}
-        isRequired={true}
+        isRequired={false}
         isPopupOpen={isPopupOpen}
       />
     </PopupWithForm>
