@@ -9,17 +9,17 @@ class NewsApi {
   };
 
 
-  getHotestArticles() {
-    return fetch(`${this._baseUrl}/top-headlines?country=us&apiKey=${this._apiKey}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Headers": "*",
-        "Authoriztion": this._apiKey,
-        "X-Api-Key": this._apiKey
-      }
-    })
-  }
+  // getHotestArticles() {
+  //   return fetch(`${this._baseUrl}/top-headlines?country=us&apiKey=${this._apiKey}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Access-Control-Allow-Headers": "*",
+  //       "Authoriztion": this._apiKey,
+  //       "X-Api-Key": this._apiKey
+  //     }
+  //   })
+  // }
 
   async getArticles(qeustion) {
     if (qeustion === 'hotest-news') {
