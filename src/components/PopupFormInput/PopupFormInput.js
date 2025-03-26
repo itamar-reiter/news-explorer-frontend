@@ -23,24 +23,13 @@ function PopupFormInput({
 
   useEffect(() => {
     if (isPopupOpen) {
-      if (isRequired) {
-        if (!inputRef.current.checkValidity() || inputValue === '') {
-          editInputsErrors(true, id);
-        } else {
-          editInputsErrors(false, id);
-        }
+      if (!inputRef.current.checkValidity() || inputValue === '') {
+        editInputsErrors(true, id);
       } else {
-        // If the field is optional and empty, no error
-        if (inputValue === '') {
-          editInputsErrors(false, id);
-        } else if (!inputRef.current.checkValidity()) {
-          editInputsErrors(true, id);
-        } else {
-          editInputsErrors(false, id);
-        }
+        editInputsErrors(false, id);
       }
     }
-  }, [isPopupOpen, isRequired, inputValue, id, editInputsErrors]);
+  }, [isPopupOpen]);
   
   const onInputChange = (e) => {
     console.log('handle input change was triggered');
